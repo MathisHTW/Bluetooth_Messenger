@@ -30,9 +30,9 @@ public interface network {
     /**
      * if a new Contact makes himself visible to this device, this Method will add this Contact to the List of known contacts
      * @param name of the newly visible contact
-     * @param ID unique identifier of the newly visible contact
+     * @param contact unique identifier of the newly visible contact
      * @return true if the new contact was successfully added to the list, false otherwise
      */
-    boolean addContact(String name,macadress ID); //boolean oder lieber void??
+    boolean addContact(String name,macadress contact); //boolean oder lieber void??
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
