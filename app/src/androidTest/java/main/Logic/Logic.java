@@ -4,55 +4,62 @@ import java.util.List;
 
 public interface Logic {
 
-    //inteface to GUI
+    //inteface to GUI////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * enables Bluetooth and informs all connected devices about the new participant by broadcasting the name
-     * and other relevant information, like an unique identifier to enable future communication
-     * @param name of this device, visible for all connected devices
-     * @return true when Bluetooth is enabled and the name was sent to all connected Devices
+     * enables Bluetooth and informs all available devices about the new participant by broadcasting the name
+     * and other relevant information, like an unique identifier to enable future communication in a channel that has the same name and
+     * identifier as the contact of this device
+     * @param name of this device/channel, visible for all connected devices
+     * @return true when Bluetooth is enabled and the name was sent to all available devices
      */
-    boolean join(String name);
+    boolean openChannel(String name);
 
     /**
-     * used by GUI to refresh the available contacts
-     * @return the list of names of the currently connected devices
+     * used by GUI to refresh the available channels
+     * @return the list of names and Ids of the currently connected devices/channels
      */
-    List<String> listContacts();
+    List<Channel> listChannels();
 
     /**
-     * sends the given message to the known and available contact
-     * @param contact unique identifier of the message receiver
+     * sends the given message into a known and available channel
+     * @param channel unique identifier of the message receiver
      * @param message that is to be sent
      * @return true if the message was successfully delivered, false if there is a time out
      */
-    boolean sendMessage(macaddress contact, String message);
+    boolean sendMessage(int channel, String message);
 
     /**
-     * delivers all the SUCCESSFULLY sent and received messages of the given contact
-     * @param contact whose messages shall be shown
-     * @return all the sent and received messages of the given contact
+     * delivers all the successfully sent and received messages of the given channel
+     * @param channel whose messages shall be shown
+     * @return all the sent and received messages of the given channel
      */
-    List<String> listMessages(macaddress contact);
+    List<String> listMessages(int channel);
 
-    //inteface to network
+    //interface to network///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * if a new Contact makes himself visible to this device(using iAmNewHere), this Method will add this Contact to the List of known contacts
+     * if a new contact/channel makes himself visible to this device, this Method will add this contact to the List of known contacts
      * @param name of the newly visible contact
      * @param contact unique identifier of the newly visible contact
-     * @return true if the new contact was successfully added to the list, false otherwise
+     * @return true if the new contact was successfully added to the list of contacts or if it is already saved, false otherwise
      */
-    boolean addContact(String name,macadress contact);
-    //warum in Logic und nicht in model direkt?
-    //was wenn Kontakt schon bekannt? -> muss nicht nochmal geaddet werden -> Logic lehnt ab
+    boolean addContact(String name,int contact);
 
     /**
-     * this device receives a message from an available contact and saves it in the list of
-     * sent and received messages of this contact
-     * @param contact the device that sent this message
-     * @param message
+     * if a new contact/channel makes himself visible to this device, this Method will add this channel to the List of known channels
+     * @param name of the newly visible channel
+     * @param channel unique identifier of the newly visible channel
+     * @return true if the new channel was successfully added to the list of channels or if it is already saved, false otherwise
+     */
+    boolean addChannel(String name,int channel);
+
+    /**
+     * this device receives a message from an available channel and saves it in the list of
+     * sent and received messages of this channel
+     * @param channel the channel in which the message was posted
+     * @param message the content of the message
      * @return true if the received message was successfully saved, false otherwise
      */
-    boolean receiveMessage(macaddress contact, String message);
+    boolean receiveMessage(int channel,message message);
 
 }

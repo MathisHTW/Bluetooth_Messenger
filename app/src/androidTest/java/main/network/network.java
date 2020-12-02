@@ -1,38 +1,46 @@
 package main.network;
 
+import java.util.List;
+
 public interface network {
     //network interface for the Logic
 
     /**
-     * takes the unique ID and the name of this device and broadcasts it to all connected devices
-     * to enable future communication
-     * @param Name of this device
-     * @param ID unique identifier of this device
+     * asks all availabe devices for their unique channel ids and returns a List of these IDs
+     * that way the logic can decide which id to pick that is not used yet
+     * @return List of already used Ids
      */
-    void iAmNewHere(String Name, macadress ID);
+    List<Integer> usedIDs();
 
     /**
-     * checks if a known contact is still available by sending a minimal request to the other device
-     * @param contact unique identifier of the contact that is to be checked up on
-     * @return true if the contact is still available, false if the request times out
+     * takes the unique ID and the name of this device and broadcasts it to all available devices
+     * to enable future communication in this channel
+     * @param name of this device/this devices channel
+     * @param myID unique identifier of this device/this devices channel
      */
-    boolean areYouStillThere(macadress contact);
+    void openChannel(String name, int myID);
 
     /**
-     * sends the given message to the known and available contact
-     * @param contact unique identifier of the message receiver
+     * if this device recieves the information that a new device is available, it sends its name and
+     * channel/contact ID to the new device
+     * @param myName name of this device
+     * @param myID channel/contactID of this device
+     * @return if the information was successfully delivered to the newly available device
+     */
+    boolean respondToNewDevice(String myName,int myID);
+
+    /**
+     * checks if a known contact/channel is still available by sending a minimal request to the other device
+     * @param channel unique identifier of the contact/channel that is to be checked up on
+     * @return true if the contact/channel is still available, false if the request times out
+     */
+    boolean channelActive(int channel);
+
+    /**
+     * sends the given message into the known and available channel
+     * @param channel unique identifier of the message receiver
      * @param message that is to be sent
      * @return true if the message was successfully delivered, false if there is a time out
      */
-    boolean sendMessage(macadress contact, String message);
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //interface for the network of the other devices
-    /**
-     * if a new Contact makes himself visible to this device, this Method will add this Contact to the List of known contacts
-     * @param name of the newly visible contact
-     * @param contact unique identifier of the newly visible contact
-     * @return true if the new contact was successfully added to the list, false otherwise
-     */
-    boolean addContact(String name,macadress contact); //boolean oder lieber void??
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    boolean sendMessage(int channel, message message);
 }
