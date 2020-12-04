@@ -24,6 +24,7 @@ public class Channel implements IChannel {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", userList=" + userList +
+                ", alive = " + alive +
                 '}';
     }
 
