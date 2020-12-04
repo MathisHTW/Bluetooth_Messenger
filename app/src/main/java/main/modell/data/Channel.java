@@ -23,7 +23,7 @@ public class Channel implements IChannel {
         return "Channel{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", userList=" + userList +
+                ", userList=" + userList + '\'' +
                 ", alive = " + alive +
                 '}';
     }
