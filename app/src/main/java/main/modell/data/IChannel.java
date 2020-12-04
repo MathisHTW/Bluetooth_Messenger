@@ -6,7 +6,7 @@ public interface IChannel {
 
     String getID();
 
-    String name();
+    String getName();
 
     List<IUser> getUserList();
 

@@ -31,7 +31,7 @@ public class Channel implements IChannel {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return this.name;
     }
 
