@@ -2,7 +2,7 @@ package main.controller.asap;
 
 import android.os.Bundle;
 
-public class ASAPActivity extends ASAPRootActivity {
+class ASAPActivity extends ASAPRootActivity {
     public ASAPActivity() {
 
     }

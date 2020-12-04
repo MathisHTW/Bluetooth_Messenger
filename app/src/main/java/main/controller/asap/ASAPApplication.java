@@ -8,7 +8,7 @@ import net.sharksystem.asap.android.apps.ASAPActivity;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class ASAPApplication extends net.sharksystem.asap.android.apps.ASAPApplication {
+class ASAPApplication extends net.sharksystem.asap.android.apps.ASAPApplication {
 
     public static final String ASAP_Messenger = "ASAP_MESSENGER";
     private CharSequence id;
