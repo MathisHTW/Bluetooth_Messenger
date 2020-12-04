@@ -1,4 +1,4 @@
-package com.example.bluetoothmessenger;
+package test;
 
 import org.junit.Test;
 

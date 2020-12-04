@@ -1,4 +1,4 @@
-package main.model;
+package main.modell;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ public interface model {
      * used by Logic to deliver the AVAILABLE channels to the GUI to refresh the view
      * @return the list of names of the currently connected devices/channels
      */
-    List<Channel> listOfChannels();
+    //List<Channel> listOfChannels();
 
     /**
      * sets the state of the given contact to available or not available
@@ -73,7 +73,7 @@ public interface model {
      * @param channel whose messages shall be shown
      * @return all the sent and received messages of a channel
      */
-    List<Message> listOfMessages(int channel);
+    //List<Message> listOfMessages(int channel);
 
     /**
      * this device receives a message from an available contact and saves it in the list of
@@ -82,6 +82,6 @@ public interface model {
      * @param message
      * @return true if the received message was successfully saved, false otherwise
      */
-    boolean addMessage(int channel, message message);
+    //boolean addMessage(int channel, message message);
 
 }

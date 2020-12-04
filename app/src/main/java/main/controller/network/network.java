@@ -1,4 +1,4 @@
-package main.network;
+package main.controller.network;
 
 import java.util.List;
 
@@ -42,5 +42,5 @@ public interface network {
      * @param message that is to be sent
      * @return true if the message was successfully delivered, false if there is a time out
      */
-    boolean sendMessage(int channel, message message);
+   // boolean sendMessage(int channel, message message);
 }

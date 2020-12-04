@@ -1,4 +1,4 @@
-package main.GUI;
+package main.view;
 
 public interface GUI {
     //no inteface because GUI

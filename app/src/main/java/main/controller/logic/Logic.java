@@ -1,4 +1,4 @@
-package main.Logic;
+package main.controller.logic;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public interface Logic {
      * used by GUI to refresh the available channels
      * @return the list of names and Ids of the currently connected devices/channels
      */
-    List<Channel> listChannels();
+   // List<Channel> listChannels();
 
     /**
      * sends the given message into a known and available channel
@@ -60,6 +60,6 @@ public interface Logic {
      * @param message the content of the message
      * @return true if the received message was successfully saved, false otherwise
      */
-    boolean receiveMessage(int channel,message message);
+   // boolean receiveMessage(int channel,message message);
 
 }
