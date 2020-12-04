@@ -10,6 +10,8 @@ public class Channel implements IChannel {
 
     private List<IUser> userList;
 
+    private boolean alive;
+
     public Channel(String id, String name, List<IUser> userList) {
         this.id = id;
         this.name = name;
@@ -21,7 +23,8 @@ public class Channel implements IChannel {
         return "Channel{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", userList=" + userList +
+                ", userList=" + userList + '\'' +
+                ", alive = " + alive +
                 '}';
     }
 
@@ -39,4 +42,7 @@ public class Channel implements IChannel {
     public List<IUser> getUserList() {
         return this.userList;
     }
+
+    @Override
+    public boolean getAlive(){ return this.alive; }
 }
