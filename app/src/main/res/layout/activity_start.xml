@@ -6,4 +6,57 @@
     android:layout_height="match_parent"
     tools:context="main.start">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Bluetooth Messenger" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCreateChannel"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:text="Create Channel" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnJoin"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:text="Join Channel" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="331dp"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnChangeName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Change Name" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

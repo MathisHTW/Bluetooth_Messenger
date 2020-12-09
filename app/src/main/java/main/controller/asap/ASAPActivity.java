@@ -25,7 +25,7 @@ class ASAPActivity extends ASAPRootActivity {
     public void onClick(View view) {
         View startBTButton = findViewById(R.id.startBT);
         View stopBTButton = findViewById(R.id.stopBT);
-        
+
         if (view == startBTButton) {
             Log.d(this.getLogStart(), "start bt button pressed - ask service to start bt");
             super.startBluetooth();
