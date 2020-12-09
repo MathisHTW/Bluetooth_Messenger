@@ -7,4 +7,9 @@ class ASAPRootActivity extends ASAPActivity {
     public ASAPRootActivity() {
         super(main.controller.asap.ASAPApplication.getASAPApplication());
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 }

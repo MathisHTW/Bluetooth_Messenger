@@ -1,8 +1,11 @@
 package main;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bluetoothmessenger.R;
 
@@ -16,6 +19,14 @@ public class start extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         ASAPInit init = new ASAPInit();
-        init.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent discoverableIntent =
+                new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+        startActivity(discoverableIntent);
     }
 }
