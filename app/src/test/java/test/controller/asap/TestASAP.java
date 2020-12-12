@@ -1,5 +1,8 @@
 package test.controller.asap;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPMessages;
 import net.sharksystem.asap.ASAPStorage;
@@ -10,6 +13,7 @@ import net.sharksystem.asap.apps.mock.ASAPSessionMock;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Iterator;
 
 import test.controller.asap.mock.ASAPMockSerial;
@@ -25,16 +29,17 @@ public class TestASAP {
 
         ASAPMessageSender asapMessageSender = asapSessionMock;
 
+        //TODO Erstellen
         asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, serialData);
 
-        //TODO Erstelle Listener
+        //TODO Erstellen Listener
         ASAPMessageReceivedListener asapMessageReceivedListener = new ASAPMessageReceivedListener() {
             @Override
             public void asapMessagesReceived(ASAPMessages asapMessages) throws IOException {
                 CharSequence format = asapMessages.getFormat();
                 CharSequence uri = asapMessages.getURI();
 
-                System.out.println("FORMAT: " + format + " URI: " + uri + " SIZE " + asapMessages.size());
+                System.out.println("FORMAT  : " + format + " URI: " + uri + " SIZE " + asapMessages.size());
                 Iterator<byte[]> iterator = asapMessages.getMessages();
 
                 while (iterator.hasNext()) {
@@ -43,6 +48,7 @@ public class TestASAP {
             }
         };
 
+        //TODO in ASAP Application
         asapSessionMock.addASAPMessageReceivedListener(ASAPMockSerial.APP, asapMessageReceivedListener);
 
         asapSessionMock.connect();
