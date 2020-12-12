@@ -11,4 +11,11 @@ public class Channel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_channel);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
 }

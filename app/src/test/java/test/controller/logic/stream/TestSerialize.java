@@ -12,14 +12,13 @@ import main.modell.data.User;
 
 public class TestSerialize {
 
-    private static String iUserName = "Kevin";
-    private static String iUserID = "123";
-    private static String iUser1Name = "Matis";
-    private static String iUser1ID = "3242";
+    private static final String iUserName = "Kevin";
+    private static final String iUserID = "123";
+    private static final String iUser1Name = "Matis";
+    private static final String iUser1ID = "3242";
 
-    private static IUser iUser = new User(iUserName, iUserID);
-    private static IUser iUser1 = new User(iUser1Name, iUser1ID);
-
+    private static final IUser iUser = new User(iUserName, iUserID);
+    private static final IUser iUser1 = new User(iUser1Name, iUser1ID);
 
     @Test
     public void serializeAndDeserialize() throws IOException {

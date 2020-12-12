@@ -1,11 +1,11 @@
-package main.controller.asap;
+package main.controller.asap.rebuild;
 
 import android.app.Activity;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-class ASAPApplication extends net.sharksystem.asap.android.apps.ASAPApplication {
+public class ASAPApplication extends net.sharksystem.asap.android.apps.ASAPApplication {
 
     public static final String ASAP_Messenger = "ASAP_MESSENGER";
     private CharSequence id;
@@ -26,7 +26,6 @@ class ASAPApplication extends net.sharksystem.asap.android.apps.ASAPApplication 
             ASAPApplication.instance = new ASAPApplication(formats, initialActivity);
 
             // there could be some other steps. Setting up sub components. But there are non here.
-
             // launch
             ASAPApplication.instance.startASAPApplication();
         } // else - already initialized - nothing happens.

@@ -8,7 +8,7 @@ import main.modell.data.IChannel;
 import main.modell.data.INotification;
 import main.modell.data.IUser;
 
-class Storage {
+public class Storage {
 
     private List<IUser> userList;
     private List<IChannel> channelList;
@@ -30,6 +30,18 @@ class Storage {
 
     public void addNotification(INotification iNotification) {
         this.notificationList.add(iNotification);
+    }
+
+    public List<IUser> getUserList() {
+        return userList;
+    }
+
+    public List<IChannel> getChannelList() {
+        return channelList;
+    }
+
+    public List<INotification> getNotificationList() {
+        return notificationList;
     }
 
     public void clear() {

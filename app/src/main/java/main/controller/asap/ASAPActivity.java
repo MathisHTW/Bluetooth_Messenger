@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 import main.R;
+import main.controller.asap.rebuild.ASAPApplication;
 
 class ASAPActivity extends ASAPRootActivity {
     public ASAPActivity() {

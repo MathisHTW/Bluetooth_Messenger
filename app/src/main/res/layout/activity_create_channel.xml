@@ -41,7 +41,7 @@
           android:layout_height="match_parent"
           android:orientation="horizontal">
 
-        <TextView
+        <EditText
             android:id="@+id/textViewName"
             android:layout_width="323dp"
             android:layout_height="match_parent"

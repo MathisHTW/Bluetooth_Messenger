@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import net.sharksystem.asap.android.apps.ASAPActivity;
 
+import main.controller.asap.rebuild.ASAPApplication;
+
 public class ASAPInit extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
