@@ -7,7 +7,7 @@ public final class StorageAsSingelton {
 
     private volatile static Storage intance;
 
-    public static Storage getIntance() {
+    public synchronized static Storage getIntance() {
         if (null == intance) {
             intance = new Storage();
         }
