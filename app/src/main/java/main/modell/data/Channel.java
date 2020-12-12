@@ -1,5 +1,6 @@
 package main.modell.data;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Channel implements IChannel {
@@ -11,6 +12,13 @@ public class Channel implements IChannel {
     private List<IUser> userList;
 
     private boolean alive;
+
+    public Channel() {
+        this.id = "-1";
+        this.name = "Dummy";
+        this.userList = new LinkedList<>();
+        this.userList.add(new User("-1", "Paul"));
+    }
 
     public Channel(String id, String name, List<IUser> userList) {
         this.id = id;

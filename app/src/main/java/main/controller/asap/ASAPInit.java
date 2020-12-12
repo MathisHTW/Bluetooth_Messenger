@@ -11,6 +11,12 @@ public class ASAPInit extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         ASAPApplication.initializeASAPApplication(this);
         this.finish();
         Intent intent = new Intent(this, ASAPActivity.class);

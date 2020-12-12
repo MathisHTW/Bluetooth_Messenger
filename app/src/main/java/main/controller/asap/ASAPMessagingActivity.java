@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.bluetoothmessenger.R;
-
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPMessages;
 import net.sharksystem.asap.android.apps.ASAPMessageReceivedListener;
@@ -17,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import main.R;
 
 class ASAPMessagingActivity extends ASAPRootActivity {
 

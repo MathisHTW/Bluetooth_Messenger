@@ -1,10 +1,8 @@
 package main;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.example.bluetoothmessenger.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Channel extends AppCompatActivity {
 

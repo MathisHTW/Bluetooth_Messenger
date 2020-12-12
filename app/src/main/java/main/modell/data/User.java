@@ -1,13 +1,27 @@
 package main.modell.data;
 
 public class User implements IUser {
+
+    private String name;
+    private String id;
+
+    public User() {
+        this.id = "-1";
+        this.name = "Dummy";
+    }
+
+    public User(String name, String id) {
+        this.name = name;
+        this.id = id;
+    }
+
     @Override
     public String getID() {
-        return null;
+        return this.id;
     }
 
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 }

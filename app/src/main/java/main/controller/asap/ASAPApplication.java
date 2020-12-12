@@ -1,9 +1,6 @@
 package main.controller.asap;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-
-import net.sharksystem.asap.android.apps.ASAPActivity;
 
 import java.util.ArrayList;
 import java.util.Collection;
