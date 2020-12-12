@@ -26,10 +26,5 @@
 
         </ListView>
 
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="39dp"
-            android:text="Back" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
