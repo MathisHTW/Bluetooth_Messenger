@@ -9,11 +9,7 @@ import java.util.List;
 
 import main.R;
 
-public class ASAPActivity extends net.sharksystem.asap.android.apps.ASAPActivity {
-
-    public ASAPActivity() {
-        super(ASAPApplication.getASAPApplication());
-    }
+public class ASAPActivity extends ASAPRootActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

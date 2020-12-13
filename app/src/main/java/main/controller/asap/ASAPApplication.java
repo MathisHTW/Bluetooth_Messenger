@@ -1,6 +1,7 @@
 package main.controller.asap;
 
 import android.app.Activity;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,8 +22,11 @@ public class ASAPApplication extends net.sharksystem.asap.android.apps.ASAPAppli
             Collection<CharSequence> formats = new ArrayList<>();
             formats.add(ASAP_Messenger);
 
+            Log.i("Test", "INIT: " + initialActivity);
             // create
             ASAPApplication.instance = new ASAPApplication(formats, initialActivity);
+
+            Log.i("TEST", "Instance" + instance);
 
             // there could be some other steps. Setting up sub components. But there are non here.
             // launch
