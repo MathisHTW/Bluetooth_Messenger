@@ -24,4 +24,12 @@ public class User implements IUser {
     public String getName() {
         return this.name;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                '}';
+    }
 }

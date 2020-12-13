@@ -5,7 +5,7 @@ import android.app.Activity;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class ASAPApplication extends net.sharksystem.asap.android.apps.ASAPApplication {
+public class ASAPApplication extends net.sharksystem.asap.android.apps.ASAPApplication  {
     public static final String ASAP_Messenger = "ASAP_MESSENGER";
     private CharSequence id;
     static ASAPApplication instance;
@@ -39,4 +39,5 @@ public class ASAPApplication extends net.sharksystem.asap.android.apps.ASAPAppli
     public CharSequence getOwnerID() {
         return this.id;
     }
+
 }

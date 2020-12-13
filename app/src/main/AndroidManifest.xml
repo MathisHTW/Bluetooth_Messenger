@@ -8,7 +8,6 @@ package="main">
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name="main.view.Channel"></activity>
     <activity android:name="main.Start">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -16,9 +15,10 @@ package="main">
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
-    <activity android:name="main.view.CreateChannel"></activity>
-    <activity android:name="main.view.CurrentChannel"></activity>
+    <activity android:name="main.view.CreateChannel" />
+    <activity android:name="main.view.CurrentChannel" />
+    <activity android:name="main.view.Channel" />
+    <activity android:name="main.controller.asap.ASAPActivity" />
 </application>
 
 </manifest>
-

@@ -21,11 +21,9 @@
             android:textSize="30sp" />
 
         <ListView
-            android:id="@+id/ChannelList"
+            android:id="@+id/listViewOfChannels"
             android:layout_width="match_parent"
-            android:layout_height="643dp">
-
-        </ListView>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

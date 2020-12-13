@@ -1,11 +1,7 @@
 package test.controller.asap;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPMessages;
-import net.sharksystem.asap.ASAPStorage;
 import net.sharksystem.asap.apps.ASAPMessageReceivedListener;
 import net.sharksystem.asap.apps.ASAPMessageSender;
 import net.sharksystem.asap.apps.mock.ASAPSessionMock;
@@ -13,7 +9,6 @@ import net.sharksystem.asap.apps.mock.ASAPSessionMock;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Iterator;
 
 import test.controller.asap.mock.ASAPMockSerial;
@@ -21,7 +16,7 @@ import test.controller.asap.mock.ASAPMockSerial;
 public class TestASAP {
 
     @Test
-    public void sendMesssage() throws IOException, ASAPException, InterruptedException {
+    public void sendMessage() throws IOException, ASAPException, InterruptedException {
 
         byte[] serialData = ASAPMockSerial.serialize("Ein Weltwunder ein Weltwunder");
 
@@ -31,8 +26,6 @@ public class TestASAP {
 
         //TODO Erstellen
         asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, serialData);
-
-
 
         //TODO Erstellen Listener
         ASAPMessageReceivedListener asapMessageReceivedListener = new ASAPMessageReceivedListener() {
@@ -50,7 +43,7 @@ public class TestASAP {
             }
         };
 
-        //TODO in ASAP Application
+        //TODO in ASAP impl Interface interface | Abruf bei der ASAP application
         asapSessionMock.addASAPMessageReceivedListener(ASAPMockSerial.APP, asapMessageReceivedListener);
 
         asapSessionMock.connect();

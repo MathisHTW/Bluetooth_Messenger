@@ -18,7 +18,7 @@ import java.util.List;
 
 import main.R;
 
-class ASAPMessagingActivity extends ASAPRootActivity {
+class ASAPMessagingActivity extends ASAPActivity {
 
     private static final CharSequence URI ="asap://exampleURI";
     private static final CharSequence EXAMPLE_MESSAGE = "ASAP example message";
