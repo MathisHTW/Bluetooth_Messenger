@@ -1,4 +1,4 @@
-package main;
+package main.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,9 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import main.R;
 import main.controller.logic.CRUD.Create;
-import main.modell.storage.Storage;
-import main.modell.storage.StorageAsSingelton;
+import main.view.Channel;
 
 public class CreateChannel extends AppCompatActivity {
 
@@ -32,7 +32,6 @@ public class CreateChannel extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean check = new Create().createChannel(textView.getText().toString());
-
                 if (check) {
                     startActivity(intent);
                 }

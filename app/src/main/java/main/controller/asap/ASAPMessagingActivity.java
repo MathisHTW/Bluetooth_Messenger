@@ -17,7 +17,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import main.R;
-import main.controller.asap.rebuild.ASAPApplication;
 
 class ASAPMessagingActivity extends ASAPRootActivity {
 

@@ -1,8 +1,10 @@
-package main;
+package main.view;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import main.R;
 
 public class Channel extends AppCompatActivity {
 
@@ -15,7 +17,5 @@ public class Channel extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
     }
 }

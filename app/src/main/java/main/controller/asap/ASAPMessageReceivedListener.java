@@ -1,4 +1,4 @@
-package main.controller.asap.rebuild;
+package main.controller.asap;
 
 import net.sharksystem.asap.ASAPMessages;
 

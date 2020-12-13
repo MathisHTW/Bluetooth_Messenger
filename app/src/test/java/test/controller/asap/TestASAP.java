@@ -32,6 +32,8 @@ public class TestASAP {
         //TODO Erstellen
         asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, serialData);
 
+
+
         //TODO Erstellen Listener
         ASAPMessageReceivedListener asapMessageReceivedListener = new ASAPMessageReceivedListener() {
             @Override

@@ -9,6 +9,9 @@ import android.widget.Button;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import main.view.Channel;
+import main.view.CreateChannel;
+
 public class Start extends AppCompatActivity {
 
     @Override
