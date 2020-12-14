@@ -3,6 +3,8 @@ package main.controller.asap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -14,7 +16,6 @@ public class ASAPActivity extends ASAPRootActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_a_s_a_p);
     }
 
     public void onClick(View view) {

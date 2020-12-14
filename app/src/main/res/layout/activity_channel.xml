@@ -20,10 +20,16 @@
             android:text="List of Channels:"
             android:textSize="30sp" />
 
-        <ListView
-            android:id="@+id/listViewOfChannels"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ListView
+                android:id="@+id/ItemViewList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

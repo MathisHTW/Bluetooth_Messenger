@@ -20,7 +20,7 @@ import main.R;
 
 class ASAPMessagingActivity extends ASAPActivity {
 
-    private static final CharSequence URI ="asap://exampleURI";
+    private static final CharSequence URI = "asap://exampleURI";
     private static final CharSequence EXAMPLE_MESSAGE = "ASAP example message";
     private ASAPMessageReceivedListener receivedListener;
     private List<String> sentMessages = new ArrayList<>();
@@ -54,7 +54,8 @@ class ASAPMessagingActivity extends ASAPActivity {
         // set listener to get informed about newly arrived messages
         this.getASAPApplication().addASAPMessageReceivedListener(
                 ASAPApplication.ASAP_Messenger, // listen to this app
-                this.receivedListener);
+                this.receivedListener
+        );
     }
 
     @Override
@@ -81,6 +82,13 @@ class ASAPMessagingActivity extends ASAPActivity {
 
         Log.d(this.getLogStart(), "going to send messageBytes: " + byteContent);
 
+        this.sendMessage(byteContent);
+
+        // success - remember sent message
+        this.sentMessages.add(messageText.toString());
+    }
+
+    public void sendMessage(byte[] byteContent) {
         try {
             this.sendASAPMessage(
                     ASAPApplication.ASAP_Messenger,
@@ -90,9 +98,6 @@ class ASAPMessagingActivity extends ASAPActivity {
         } catch (ASAPException e) {
             Log.e(this.getLogStart(), "when sending asap message: " + e.getLocalizedMessage());
         }
-
-        // success - remember sent message
-        this.sentMessages.add(messageText.toString());
     }
 
     // handle incoming messages
@@ -106,18 +111,18 @@ class ASAPMessagingActivity extends ASAPActivity {
         try {
             Iterator<CharSequence> messagesAsCharSequence = asapMessages.getMessagesAsCharSequence();
             sb.append("new messages:\n");
-            while(messagesAsCharSequence.hasNext()) {
+            while (messagesAsCharSequence.hasNext()) {
                 String receivedMessage = messagesAsCharSequence.next().toString();
                 this.receivedMessages.add(receivedMessage);
                 sb.append(receivedMessage);
             }
             sb.append("your messages: \n");
-            for(String msg : this.sentMessages) {
+            for (String msg : this.sentMessages) {
                 sb.append(msg);
                 sb.append("\n");
             }
             sb.append("received messages: \n");
-            for(String msg : this.receivedMessages) {
+            for (String msg : this.receivedMessages) {
                 sb.append(msg);
             }
         } catch (IOException e) {

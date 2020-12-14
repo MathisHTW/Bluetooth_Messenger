@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import main.R;
+import main.controller.asap.ASAPActivity;
+import main.controller.asap.ASAPApplication;
 import main.controller.logic.CRUD.Create;
 import main.view.Channel;
 
@@ -17,7 +19,12 @@ public class CreateChannel extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_channel);
+
+        ASAPApplication.applicationInstance(this);
+
+        this.finish();
+        Intent intent = new Intent(this, ASAPActivity.class);
+        this.startActivity(intent);
     }
 
     @Override
