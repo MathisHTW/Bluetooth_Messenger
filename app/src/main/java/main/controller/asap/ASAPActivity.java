@@ -17,6 +17,8 @@ public class ASAPActivity extends ASAPRootActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_channel);
+        TextView textView = findViewById(R.id.debugASAPText);
+        textView.setText("ASPA has been started");
     }
 
     public void onClick(View view) {
