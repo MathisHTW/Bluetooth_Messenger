@@ -24,7 +24,6 @@ public class Start extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         this.loadChannelActivity();
         this.loadCreateChannelActivity();
     }

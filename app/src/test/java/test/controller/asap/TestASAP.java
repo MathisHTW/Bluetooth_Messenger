@@ -20,6 +20,7 @@ public class TestASAP {
 
         byte[] serialData = ASAPMockSerial.serialize("Ein Weltwunder ein Weltwunder");
 
+        //TODO
         ASAPSessionMock asapSessionMock = new ASAPSessionMock();
 
         ASAPMessageSender asapMessageSender = asapSessionMock;
@@ -63,9 +64,6 @@ public class TestASAP {
         Thread.sleep(1000);
 
         asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, ASAPMockSerial.serialize("ICH SENDE ALS 4 das ist ja krass wie heftig"));
-
-
     }
-
 }
 

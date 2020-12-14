@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import main.R;
-import main.controller.asap.ASAPApplication;
 
 public class CurrentChannel extends AppCompatActivity {
 
@@ -14,12 +13,6 @@ public class CurrentChannel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_channel);
 
-
-        ASAPApplication.initializeASAPApplication(this);
-
-        this.finish();
-        //Intent intent = new Intent(this, ASAPRootActivity.class);
-       // this.startActivity(intent);
     }
 
     @Override

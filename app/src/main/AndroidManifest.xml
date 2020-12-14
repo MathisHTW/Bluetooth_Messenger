@@ -19,6 +19,8 @@ package="main">
     <activity android:name="main.view.CurrentChannel" />
     <activity android:name="main.view.Channel" />
     <activity android:name="main.controller.asap.ASAPActivity" />
+    <activity android:name="main.controller.asap.ASAPInit" />
 </application>
 
 </manifest>
+
