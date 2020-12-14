@@ -16,6 +16,7 @@ public class ASAPActivity extends ASAPRootActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_current_channel);
     }
 
     public void onClick(View view) {

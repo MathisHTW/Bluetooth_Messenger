@@ -40,11 +40,10 @@ public class Channel extends AppCompatActivity {
         );
         listView.setAdapter(adapter);
 
-        final Intent createChannel = new Intent(this, CreateChannel.class);
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final Intent createChannel = new Intent(getApplicationContext(), CurrentChannel.class);
                 startActivity(createChannel);
             }
         });

@@ -19,12 +19,6 @@ public class CreateChannel extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ASAPApplication.applicationInstance(this);
-
-        this.finish();
-        Intent intent = new Intent(this, ASAPActivity.class);
-        this.startActivity(intent);
     }
 
     @Override
@@ -35,6 +29,9 @@ public class CreateChannel extends AppCompatActivity {
         final TextView textView = findViewById(R.id.textViewName);
         final Intent intent = new Intent(this, Channel.class);
 
+        /**
+         * Open a Channel View
+         */
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
