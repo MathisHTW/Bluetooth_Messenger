@@ -2,6 +2,7 @@ package main.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +19,11 @@ public class CurrentChannel extends AppCompatActivity {
         this.finish();
         Intent intent = new Intent(this, ASAPActivity.class);
         this.startActivity(intent);
+    }
+
+    /**called when user taps the send it button*/
+    public void sendMessage(View view){
+
     }
 
     @Override
