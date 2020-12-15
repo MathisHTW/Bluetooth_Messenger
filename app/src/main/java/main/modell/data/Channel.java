@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Channel implements IChannel {
 
-    private String id;
+    private final String id ;
 
-    private String name;
+    private final String name;
 
     private List<IUser> userList;
 
@@ -17,11 +17,11 @@ public class Channel implements IChannel {
         this.id = "-1";
         this.name = "Dummy";
         this.userList = new LinkedList<>();
-        this.userList.add(new User("-1", "Paul"));
+        this.userList.add(new User( "Paul"));
     }
 
-    public Channel(String id, String name, List<IUser> userList) {
-        this.id = id;
+    public Channel(String name, List<IUser> userList) {
+        this.id = "id"; //TODO add ID generator
         this.name = name;
         this.userList = userList;
     }

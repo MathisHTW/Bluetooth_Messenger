@@ -1,5 +1,9 @@
 package main.controller.logic.CRUD;
 
+import java.util.List;
+
+import main.modell.data.IUser;
+
 interface ICreate {
 
     /**
@@ -7,7 +11,7 @@ interface ICreate {
      *
      * @param name
      */
-    boolean createChannel(String name);
+    boolean createChannel(String name, List<IUser> users);
 
     /**
      * Create a User and add this to storage
@@ -16,11 +20,5 @@ interface ICreate {
      */
     boolean createUser(String name);
 
-    /**
-     * creates a unique URI for this device to be used as a unique identifier of
-     * the channel of this device
-     * @param channelName the name of the channel that is entered into the UI
-     * @return URI for this device
-     */
-    String createURI(String channelName);
+
 }

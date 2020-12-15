@@ -32,6 +32,32 @@ public class Storage {
         this.notificationList.add(iNotification);
     }
 
+    public void removeUser(String id) {
+
+        IUser removeUser = null;
+
+        for (IUser iUser : this.userList) {
+            if (iUser.getID().compareTo(id) == 0) {
+                removeUser = iUser;
+            }
+        }
+
+        this.userList.remove(removeUser);
+    }
+
+    public void removeChannel(String id) {
+
+        IChannel removeChannel = null;
+
+        for (IChannel iChannel : this.channelList) {
+            if (iChannel.getID().compareTo(id) == 0) {
+                removeChannel = iChannel;
+            }
+        }
+
+        this.channelList.remove(removeChannel);
+    }
+
     public List<IUser> getUserList() {
         return userList;
     }

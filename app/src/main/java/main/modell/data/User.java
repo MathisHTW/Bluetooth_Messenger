@@ -3,16 +3,21 @@ package main.modell.data;
 public class User implements IUser {
 
     private String name;
-    private String id;
+    private final String id;
 
     public User() {
         this.id = "-1";
         this.name = "Dummy";
     }
 
-    public User(String name, String id) {
+    public User(String name) {
+
+        if(null == name || name.isEmpty()){
+            throw new NullPointerException("Name is null or Empty");
+        }
+
         this.name = name;
-        this.id = id;
+        this.id = "id"; //TODO set ID Generator
     }
 
     @Override
