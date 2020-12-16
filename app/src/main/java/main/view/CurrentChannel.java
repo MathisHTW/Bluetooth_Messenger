@@ -2,12 +2,24 @@ package main.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import net.sharksystem.asap.ASAPException;
+
+import org.w3c.dom.Text;
+
+import main.R;
 import main.controller.asap.ASAPActivity;
 import main.controller.asap.ASAPApplication;
+
+import main.controller.logic.CRUD.Create;
 
 public class CurrentChannel extends AppCompatActivity {
 
@@ -21,14 +33,30 @@ public class CurrentChannel extends AppCompatActivity {
         this.startActivity(intent);
     }
 
-    /**called when user taps the send it button*/
-    public void sendMessage(View view){
-
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        final TextView channelName = findViewById(R.id.textViewChannelName);
+        final EditText editText = (EditText) findViewById(R.id.editTextNewMessage);
+        final Button sendButton = findViewById(R.id.buttonSendMessage);
+
+        //final Intent intent = new Intent(this, ASAPMessagingActivity.class);??
+
+        //Send message and refresh view
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = editText.getText().toString();
+                //Nachricht mit ASAP verschicken:
+
+                //View refreshen mit Nachrichten aus diesem Channel
+            }
+        });
+
+        //bentötigt noch listener für empfangenen messages:
+
     }
 
     @Override
@@ -45,4 +73,6 @@ public class CurrentChannel extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
+
 }
