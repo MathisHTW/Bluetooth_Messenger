@@ -2,8 +2,6 @@ package main.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,22 +9,15 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.sharksystem.asap.ASAPException;
-
-import org.w3c.dom.Text;
-
 import main.R;
 import main.controller.asap.ASAPActivity;
 import main.controller.asap.ASAPApplication;
-
-import main.controller.logic.CRUD.Create;
 
 public class CurrentChannel extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         ASAPApplication.applicationInstance(this);
         this.finish();
         Intent intent = new Intent(this, ASAPActivity.class);

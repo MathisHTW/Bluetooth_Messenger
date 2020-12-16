@@ -1,18 +1,17 @@
 package main.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import main.R;
-import main.controller.asap.ASAPActivity;
-import main.controller.asap.ASAPApplication;
 import main.controller.logic.CRUD.Create;
-import main.view.Channel;
+import main.modell.storage.Storage;
+import main.modell.storage.StorageAsSingelton;
 
 public class CreateChannel extends AppCompatActivity {
 

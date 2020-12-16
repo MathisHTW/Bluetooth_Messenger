@@ -1,8 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-  <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="main.controller.asap.ASAPActivity"/>
+    tools:context="main.view.CurrentChannel">
+
+  <TextView
+      android:id="@+id/textViewChannelName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="@string/textViewChannelName"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+      android:id="@+id/editTextNewMessage"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:ems="10"
+      android:inputType="textPersonName"
+      android:text="@string/editTextNewMessage"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/buttonSendMessage"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <Button
+      android:id="@+id/buttonSendMessage"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/buttonSendMessage"
+      android:onClick="onClick"
+      app:layout_constraintBaseline_toBaselineOf="@+id/editTextNewMessage"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/editTextNewMessage"
+      tools:ignore="OnClick" />
+
+  <TextView
+      android:id="@+id/textViewForASAPMessenges"
+      android:layout_width="284dp"
+      android:layout_height="451dp"
+      android:layout_marginStart="60dp"
+      android:layout_marginTop="84dp"
+      android:text="TextView"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textViewChannelName" />
+
+  <Button
+      android:id="@+id/startBluetoothDiscovery"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="4dp"
+      android:text="Search"
+      android:onClick="onClickBluetooth"
+      app:layout_constraintBottom_toTopOf="@+id/buttonSendMessage"
+      app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

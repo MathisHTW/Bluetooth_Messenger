@@ -26,7 +26,6 @@ class ASAPMessagingActivity extends ASAPActivity {
     private List<String> sentMessages = new ArrayList<>();
     private List<String> receivedMessages = new ArrayList<>();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //super.onCreate(savedInstanceState);

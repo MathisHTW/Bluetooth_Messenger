@@ -17,8 +17,8 @@ public class TestSerialize {
     private static final String iUser1Name = "Matis";
     private static final String iUser1ID = "3242";
 
-    private static final IUser iUser = new User(iUserName, iUserID);
-    private static final IUser iUser1 = new User(iUser1Name, iUser1ID);
+    private static final IUser iUser = new User(iUserName);
+    private static final IUser iUser1 = new User(iUser1Name);
 
     @Test
     public void serializeAndDeserialize() throws IOException {

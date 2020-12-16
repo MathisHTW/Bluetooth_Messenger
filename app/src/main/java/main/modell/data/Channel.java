@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Channel implements IChannel {
 
-    private final String id ;
+    private final String id;
 
     private final String name;
 
@@ -17,10 +17,10 @@ public class Channel implements IChannel {
         this.id = "-1";
         this.name = "Dummy";
         this.userList = new LinkedList<>();
-        this.userList.add(new User( "Paul"));
+        this.userList.add(new User("Paul"));
     }
 
-    public Channel(String name){
+    public Channel(String name) {
         this.id = "id"; //TODO add ID generator
         this.name = name;
     }
@@ -29,16 +29,6 @@ public class Channel implements IChannel {
         this.id = "id"; //TODO add ID generator
         this.name = name;
         this.userList = userList;
-    }
-
-    @Override
-    public String toString() {
-        return "Channel{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", userList=" + userList + '\'' +
-                ", alive = " + alive +
-                '}';
     }
 
     @Override
@@ -57,5 +47,16 @@ public class Channel implements IChannel {
     }
 
     @Override
-    public boolean getAlive(){ return this.alive; }
+    public boolean getAlive() {
+        return this.alive;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "id='" + id + '\'' +
+                        ", name='" + name + '\'';
+    }
+
+
 }
