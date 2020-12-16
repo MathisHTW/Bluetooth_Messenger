@@ -53,4 +53,28 @@ public class TestStorage {
 
         Assert.assertEquals(0, this.storage.getUserList().size());
     }
+
+    @Test
+    public void DeleteUserWithEmtpyParameter() {
+        this.storage.clear();
+
+    }
+
+    @Test
+    public void addToStorage() {
+        this.storage.clear();
+
+        String name = "Peter Zwegert";
+        String name1 = "Kevin Zwegert";
+        String name2 = "JONAS Zwegert";
+        String name3 = "Achime Zwegert";
+
+        Create create = new Create();
+        create.createUser(name);
+        create.createUser(name1);
+        create.createUser(name2);
+        create.createUser(name3);
+
+        Assert.assertEquals(4, this.storage.getUserList().size());
+    }
 }

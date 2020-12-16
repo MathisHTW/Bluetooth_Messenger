@@ -1,9 +1,5 @@
 package main.controller.logic.CRUD;
 
-import java.util.List;
-
-import main.modell.data.IUser;
-
 interface ICreate {
 
     /**
@@ -11,7 +7,7 @@ interface ICreate {
      *
      * @param name
      */
-    boolean createChannel(String name, List<IUser> users);
+    boolean createChannel(String name);
 
     /**
      * Create a User and add this to storage

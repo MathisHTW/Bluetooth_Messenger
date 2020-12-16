@@ -20,6 +20,11 @@ public class Channel implements IChannel {
         this.userList.add(new User( "Paul"));
     }
 
+    public Channel(String name){
+        this.id = "id"; //TODO add ID generator
+        this.name = name;
+    }
+
     public Channel(String name, List<IUser> userList) {
         this.id = "id"; //TODO add ID generator
         this.name = name;

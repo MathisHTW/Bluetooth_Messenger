@@ -23,8 +23,8 @@ public class Create implements ICreate {
     }
 
     @Override
-    public boolean createChannel(String name, List<IUser> users) {
-        final IChannel iChannel = new Channel(name, users);
+    public boolean createChannel(String name) {
+        final IChannel iChannel = new Channel(name);
         this.storage.addChannelList(iChannel);
 
         Log.e("Debug", "Channel was been create | Name" + name);
