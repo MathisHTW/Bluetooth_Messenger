@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">BluetoothMessenger</string>
+    <string name="buttonSendMessage">send it</string>
+    <string name="editTextNewMessage">enter Message</string>
+    <string name="textViewChannelName">Channel Name</string>
 </resources>
