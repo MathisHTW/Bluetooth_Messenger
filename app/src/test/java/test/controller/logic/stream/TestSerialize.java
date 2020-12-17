@@ -6,9 +6,9 @@ import org.junit.Test;
 import java.io.DataInputStream;
 import java.io.IOException;
 
-import main.controller.logic.stream.Serialize;
-import main.modell.data.IUser;
-import main.modell.data.User;
+import main3.controller.logic.stream.Serialize;
+import main3.modell.data.IUser;
+import main3.modell.data.User;
 
 public class TestSerialize {
 

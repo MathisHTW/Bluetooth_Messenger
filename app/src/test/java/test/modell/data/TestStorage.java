@@ -3,10 +3,10 @@ package test.modell.data;
 import org.junit.Assert;
 import org.junit.Test;
 
-import main.controller.logic.CRUD.Create;
-import main.controller.logic.CRUD.Delete;
-import main.modell.storage.Storage;
-import main.modell.storage.StorageAsSingelton;
+import main3.controller.logic.CRUD.Create;
+import main3.controller.logic.CRUD.Delete;
+import main3.modell.storage.Storage;
+import main3.modell.storage.StorageAsSingelton;
 
 public class TestStorage {
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="main">
+    package="main3">
 
     <application
         android:allowBackup="true"
@@ -9,18 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="main.Start">
+        <activity android:name=".Start" />
+        <activity android:name=".view.CreateChannel" />
+        <activity android:name=".view.CurrentChannel" />
+        <activity android:name=".view.Channel" />
+        <activity android:name=".controller.asap.BTActivity" />
+        <activity android:name=".controller.asap.BTInit">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="main.view.CreateChannel" />
-        <activity android:name="main.view.CurrentChannel" />
-        <activity android:name="main.view.Channel" />
-        <activity android:name="main.controller.asap.ASAPActivity" />
-        <activity android:name="main.controller.asap.ASAPInit" />
 
 
     </application>
