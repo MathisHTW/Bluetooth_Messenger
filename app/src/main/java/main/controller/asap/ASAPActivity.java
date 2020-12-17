@@ -77,6 +77,7 @@ public class ASAPActivity extends ASAPRootActivity {
         }
     }
 
+    /*
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -88,6 +89,7 @@ public class ASAPActivity extends ASAPRootActivity {
         super.onPause();
         super.stopBluetooth();
     }
+     */
 
     @Override
     protected void onStop() {
