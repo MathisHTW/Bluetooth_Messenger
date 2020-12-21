@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="main3">
+    package="main">
 
     <application
         android:allowBackup="true"
@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="main3.Start" />
-        <activity android:name="main3.view.CreateChannel" />
-        <activity android:name="main3.view.CurrentChannel" />
-        <activity android:name="main3.view.Channel" />
-        <activity android:name="main3.controller.asap.BTActivity" />
-        <activity android:name="main3.controller.asap.BTInit">
+        <activity android:name="main.Start" />
+        <activity android:name="main.view.CreateChannel" />
+        <activity android:name="main.view.CurrentChannel" />
+        <activity android:name="main.view.Channel" />
+        <activity android:name="main.controller.asap.BTActivity" />
+        <activity android:name="main.controller.asap.BTInit">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,7 +25,7 @@
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- ASAPService needs to work with Wifi -->
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

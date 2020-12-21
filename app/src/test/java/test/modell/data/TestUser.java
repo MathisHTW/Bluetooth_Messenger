@@ -3,8 +3,8 @@ package test.modell.data;
 import org.junit.Assert;
 import org.junit.Test;
 
-import main3.modell.data.IUser;
-import main3.modell.data.User;
+import main.modell.data.IUser;
+import main.modell.data.User;
 
 public class TestUser {
 
