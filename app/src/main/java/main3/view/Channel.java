@@ -8,21 +8,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.LinkedList;
 
 import main3.R;
 import main3.controller.asap.BTRootActivity;
+import main3.controller.logic.AppController;
 import main3.modell.data.IChannel;
 import main3.modell.storage.Storage;
 import main3.modell.storage.StorageAsSingelton;
 
 public class Channel extends BTRootActivity {
 
+    private AppController appController = AppController.instance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        appController.onActivityCreated(this, savedInstanceState);
 
         setContentView(R.layout.activity_channel);
 
@@ -59,7 +61,7 @@ public class Channel extends BTRootActivity {
 
         LinkedList<IChannel> listItem = new LinkedList<>();
 
-        for (IChannel iChannel : storage.getChannelList()){
+        for (IChannel iChannel : storage.getChannelList()) {
             listItem.add(iChannel);
         }
 
@@ -82,7 +84,32 @@ public class Channel extends BTRootActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        appController.onActivityResumed(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        appController.onActivityPaused(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        appController.onActivityStopped(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        appController.onActivityDestroyed(this);
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
+        appController.onActivityStarted(this);
     }
 }

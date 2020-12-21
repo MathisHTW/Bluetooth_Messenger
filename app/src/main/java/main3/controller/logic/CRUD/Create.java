@@ -14,7 +14,6 @@ import main3.modell.storage.StorageAsSingelton;
 public class Create implements ICreate {
 
     private Storage storage;
-    private final int randomSize = 1000000;
 
     public Create() {
         this.storage = StorageAsSingelton.getIntance();
@@ -47,6 +46,7 @@ public class Create implements ICreate {
      * @return URI for this device
      */
     public String createURI(String channelName) {
+        final int randomSize = 1000000;
         String myURI = "Bluetooth_Messenger://" + channelName;
 
         int random = (int) (Math.random() * randomSize);

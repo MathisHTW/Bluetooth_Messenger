@@ -1,21 +1,27 @@
 package main3.modell.data;
 
-public class Notification implements INotification{
+import java.io.Serializable;
 
-    private int ID;
+public class Notification implements INotification, Serializable {
+
+    private String ID;
 
     private String name;
 
-    public Notification(int ID, String name){
+    public Notification(String name) {
+        new Notification(Ultis.generatID(name), name);
+    }
+
+    Notification(String ID, String name) {
         this.ID = ID;
         this.name = name;
     }
 
-    public int getID(){
+    public String getID() {
         return this.ID;
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 

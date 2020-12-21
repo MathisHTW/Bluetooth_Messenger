@@ -6,18 +6,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import main3.R;
 import main3.controller.asap.BTRootActivity;
+import main3.controller.logic.AppController;
 import main3.controller.logic.CRUD.Create;
 
 public class CreateChannel extends BTRootActivity {
+
+    private AppController appController = AppController.instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_channel);
+        AppController.instance.onActivityCreated(this, savedInstanceState);
     }
 
     @Override
@@ -34,11 +36,36 @@ public class CreateChannel extends BTRootActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean check = new Create().createChannel(textView.getText().toString());
+                Create create = new Create();
+                boolean check = create.createChannel(textView.getText().toString());
                 if (check) {
                     startActivity(intent);
                 }
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        appController.onActivityResumed(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        appController.onActivityPaused(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        appController.onActivityStopped(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        appController.onActivityDestroyed(this);
     }
 }

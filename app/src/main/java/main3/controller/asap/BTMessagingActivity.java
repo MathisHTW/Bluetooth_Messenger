@@ -32,8 +32,7 @@ class BTMessagingActivity extends BTActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.example_messaging_layout);
 
-        // set URI - your app can or your users can choose any valid uri.
-        //TODO add gui for R.id.URL
+
         TextView uriTextView = findViewById(R.id.exampleMessagingUri);
 
         uriTextView.setText("your owner id: " + this.getASAPApplication().getOwnerID()

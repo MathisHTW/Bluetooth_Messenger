@@ -16,5 +16,4 @@ interface ICreate {
      */
     boolean createUser(String name);
 
-
 }

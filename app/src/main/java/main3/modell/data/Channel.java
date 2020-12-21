@@ -1,15 +1,18 @@
 package main3.modell.data;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Channel implements IChannel {
+public class Channel implements IChannel, Serializable {
 
     private final String id;
 
     private final String name;
 
     private List<IUser> userList;
+
+    private List<INotification> notifications;
 
     private boolean alive;
 
@@ -21,14 +24,21 @@ public class Channel implements IChannel {
     }
 
     public Channel(String name) {
-        this.id = "id"; //TODO add ID generator
+        this.id = Ultis.generatID(name);
         this.name = name;
     }
 
     public Channel(String name, List<IUser> userList) {
-        this.id = "id"; //TODO add ID generator
+        this.id = Ultis.generatID(name);
         this.name = name;
         this.userList = userList;
+    }
+
+    public Channel(String name, List<IUser> userList, List<INotification> notifications) {
+        this.id = Ultis.generatID(name);
+        this.name = name;
+        this.userList = userList;
+        this.notifications = notifications;
     }
 
     @Override

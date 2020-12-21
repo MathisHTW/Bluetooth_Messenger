@@ -1,13 +1,10 @@
 package main3.controller.asap;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPMessages;
 import net.sharksystem.asap.android.apps.ASAPMessageReceivedListener;
 
@@ -38,9 +35,6 @@ public class BTActivity extends BTRootActivity {
             super.startBluetooth();
         }
 
-        //TODO add gui for R.id.URL
-        // TextView uriTextView = findViewById(R.id.exampleMessagingUri);
-
         // uriTextView.setText("your owner id: " + this.getASAPApplication().getOwnerID()
         //         + "channel URI: " + URI);
 
@@ -64,6 +58,8 @@ public class BTActivity extends BTRootActivity {
 
     }
 
+    /*
+
     public void sendMessage(byte[] byteContent) {
         try {
             this.sendASAPMessage(
@@ -74,7 +70,7 @@ public class BTActivity extends BTRootActivity {
         } catch (ASAPException e) {
             Log.e(this.getLogStart(), "when sending asap message: " + e.getLocalizedMessage());
         }
-    }
+    }*/
 
     /*
     @Override
@@ -140,53 +136,5 @@ public class BTActivity extends BTRootActivity {
         Log.e("Debug", sb.toString());
         receivedMessagesTV.setText(sb.toString());
     }
-
-    public void onClick(View view) {
-
-        Log.e("Debug", "Press Send Btn");
-
-        EditText messageEditView = findViewById(R.id.editTextNewMessage);
-        Editable messageText = messageEditView.getText();
-
-        Log.d(this.getLogStart(), "going to send message: " + messageText);
-
-        // asap messages are bytes
-        byte[] byteContent = messageText.toString().getBytes();
-
-        Log.d(this.getLogStart(), "going to send messageBytes: " + byteContent);
-
-        this.sendMessage(byteContent);
-
-        // success - remember sent message
-        this.sentMessages.add(messageText.toString());
-    }
-
-    public void onClickBluetooth(View view) {
-        super.startBluetoothDiscovery();
-        super.startBluetoothDiscoverable();
-    }
-
-    /*
-    public void asapNotifyOnlinePeersChanged(List<CharSequence> onlinePeerList) {
-        super.asapNotifyOnlinePeersChanged(onlinePeerList);
-
-        TextView peerListTextView = this.findViewById(R.id.onlinePeersList);
-
-        if (onlinePeerList == null || onlinePeerList.size() < 1) {
-            peerListTextView.setText("no peers online");
-        } else {
-            StringBuilder sb = new StringBuilder();
-            sb.append("peers online:");
-            sb.append("\n");
-            for (CharSequence peerID : onlinePeerList) {
-                sb.append("id: ");
-                sb.append(peerID);
-                sb.append("\n");
-            }
-            peerListTextView.setText(sb.toString());
-        }
-        peerListTextView.refreshDrawableState();
-    }
-    */
 
 }

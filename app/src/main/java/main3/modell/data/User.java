@@ -1,6 +1,8 @@
 package main3.modell.data;
 
-public class User implements IUser {
+import java.io.Serializable;
+
+public class User implements IUser, Serializable {
 
     private String name;
     private final String id;
@@ -12,12 +14,12 @@ public class User implements IUser {
 
     public User(String name) {
 
-        if(null == name || name.isEmpty()){
+        if (null == name || name.isEmpty()) {
             throw new NullPointerException("Name is null or Empty");
         }
 
         this.name = name;
-        this.id = "id"; //TODO set ID Generator
+        this.id = Ultis.generatID(name);
     }
 
     @Override

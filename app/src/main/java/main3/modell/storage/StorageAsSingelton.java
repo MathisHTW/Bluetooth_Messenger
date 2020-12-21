@@ -1,6 +1,8 @@
 package main3.modell.storage;
 
-public final class StorageAsSingelton {
+import java.io.Serializable;
+
+public final class StorageAsSingelton implements Serializable {
 
     private StorageAsSingelton() {
     }

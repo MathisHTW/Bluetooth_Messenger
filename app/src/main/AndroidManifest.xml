@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Start" />
-        <activity android:name=".view.CreateChannel" />
-        <activity android:name=".view.CurrentChannel" />
-        <activity android:name=".view.Channel" />
-        <activity android:name=".controller.asap.BTActivity" />
-        <activity android:name=".controller.asap.BTInit">
+        <activity android:name="main3.Start" />
+        <activity android:name="main3.view.CreateChannel" />
+        <activity android:name="main3.view.CurrentChannel" />
+        <activity android:name="main3.view.Channel" />
+        <activity android:name="main3.controller.asap.BTActivity" />
+        <activity android:name="main3.controller.asap.BTInit">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
