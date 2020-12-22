@@ -63,9 +63,7 @@ public class Channel implements IChannel, Serializable {
 
     @Override
     public String toString() {
-        return
-                "id='" + id + '\'' +
-                        ", name='" + name + '\'';
+        return "Name=" + name ;
     }
 
 

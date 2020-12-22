@@ -12,8 +12,4 @@ public class Read {
         this.storage = StorageAsSingelton.getIntance();
     }
 
-    public boolean readStorage() {
-        LocalStorage localStorage = new LocalStorage();
-        return localStorage.addToStorage(this.storage);
-    }
 }

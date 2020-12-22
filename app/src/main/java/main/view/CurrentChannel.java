@@ -53,9 +53,9 @@ public class CurrentChannel extends BTRootActivity {
         this.receivedListener = new ASAPMessageReceivedListener() {
             @Override
             public void asapMessagesReceived(ASAPMessages asapMessages) {
-                Log.d(getLogStart(), "asapMessageReceived");
+                Log.d("receivedListener", "asapMessageReceived");
                 CurrentChannel.this.doHandleReceivedMessages(asapMessages);
-                Log.e("Debug", asapMessages.toString());
+                Log.e("receivedListener", asapMessages.toString());
             }
         };
 
@@ -69,29 +69,6 @@ public class CurrentChannel extends BTRootActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        final TextView channelName = findViewById(R.id.textViewChannelName);
-        final EditText editText = (EditText) findViewById(R.id.editTextNewMessage);
-        final Button sendButton = findViewById(R.id.buttonSendMessage);
-
-        //final Intent intent = new Intent(this, ASAPMessagingActivity.class);??
-
-        /*
-        //Send message and refresh view
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = editText.getText().toString();
-                //Nachricht mit ASAP verschicken:
-
-                //View refreshen mit Nachrichten aus diesem Channel
-            }
-        });
-
-        */
-
-        //bentötigt noch listener für empfangenen messages:
-
     }
 
     @Override
@@ -127,18 +104,18 @@ public class CurrentChannel extends BTRootActivity {
 
         try {
             Iterator<CharSequence> messagesAsCharSequence = asapMessages.getMessagesAsCharSequence();
-            sb.append("new messages:\n");
+            sb.append("\nnew messages:\n");
             while (messagesAsCharSequence.hasNext()) {
                 String receivedMessage = messagesAsCharSequence.next().toString();
                 this.receivedMessages.add(receivedMessage);
                 sb.append(receivedMessage);
             }
-            sb.append("your messages: \n");
+            sb.append("\nyour messages: \n");
             for (String msg : this.sentMessages) {
                 sb.append(msg);
                 sb.append("\n");
             }
-            sb.append("received messages: \n");
+            sb.append("\nreceived messages: \n");
             for (String msg : this.receivedMessages) {
                 sb.append(msg);
             }
@@ -148,7 +125,7 @@ public class CurrentChannel extends BTRootActivity {
             sb.append(e.getLocalizedMessage());
         }
 
-        TextView receivedMessagesTV = this.findViewById(R.id.textViewForASAPMessenges);
+        TextView receivedMessagesTV = findViewById(R.id.textViewForASAPMessenges);
         Log.e("Debug", sb.toString());
         receivedMessagesTV.setText(sb.toString());
     }

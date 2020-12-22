@@ -21,12 +21,9 @@ import main.modell.storage.StorageAsSingelton;
 
 public class LocalStorage implements ILocalStorage {
 
-    private final static String PROJECT = "com.example.bluetoothmessenger";
     private final static String FILENAME = "lastSave.txt";
 
     private Storage storage;
-    private Set<String> pathSet;
-    private Set<String> fileNames;
     private byte[] data = null;
 
     public LocalStorage() {
@@ -108,16 +105,6 @@ public class LocalStorage implements ILocalStorage {
     }
 
     @Override
-    public Set<String> getFileNames() {
-        return this.fileNames;
-    }
-
-    @Override
-    public Set<String> getPathList() {
-        return this.pathSet;
-    }
-
-    @Override
     public Storage read(Context context) throws NullPointerException {
 
         Storage storage = null;
@@ -172,20 +159,5 @@ public class LocalStorage implements ILocalStorage {
         }
 
         return storage;
-    }
-
-    @Override
-    public synchronized boolean addToStorage(Storage storage) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteAll() {
-        return false;
-    }
-
-    @Override
-    public byte[] getData() {
-        return this.data;
     }
 }
