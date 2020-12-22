@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import main.R;
 import main.controller.asap.BTRootActivity;
-import main.controller.logic.AppController;
+import main.controller.AppController;
 import main.controller.logic.CRUD.Create;
 
 public class CreateChannel extends BTRootActivity {

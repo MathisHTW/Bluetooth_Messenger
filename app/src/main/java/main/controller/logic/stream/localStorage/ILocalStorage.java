@@ -27,7 +27,7 @@ interface ILocalStorage {
      *
      * @return return storage element from file
      */
-    Storage getFile();
+    Storage read(Context context) throws NullPointerException;
 
     /**
      * Get a Storage elements and add to Storage
@@ -46,12 +46,14 @@ interface ILocalStorage {
 
     /**
      * Return from save methode a data byte array
+     *
      * @return byte[]
      */
     byte[] getData();
 
     /**
      * Return names of files
+     *
      * @return Set
      */
     Set<String> getFileNames();

@@ -1,4 +1,4 @@
-package main.controller.logic;
+package main.controller;
 
 import android.app.Activity;
 import android.app.Application;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import main.controller.logic.stream.localStorage.LocalStorage;
+import main.modell.storage.Storage;
 
 /**
  * Global Lifecycle Callbacks

@@ -20,7 +20,7 @@ import java.util.List;
 import main.R;
 import main.controller.asap.BTApplication;
 import main.controller.asap.BTRootActivity;
-import main.controller.logic.AppController;
+import main.controller.AppController;
 
 public class CurrentChannel extends BTRootActivity {
 

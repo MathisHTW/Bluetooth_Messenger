@@ -12,7 +12,7 @@ import java.util.LinkedList;
 
 import main.R;
 import main.controller.asap.BTRootActivity;
-import main.controller.logic.AppController;
+import main.controller.AppController;
 import main.modell.data.IChannel;
 import main.modell.storage.Storage;
 import main.modell.storage.StorageAsSingelton;
@@ -32,32 +32,6 @@ public class Channel extends BTRootActivity {
         TextView textView = (TextView) findViewById(R.id.textViewID);
 
         Storage storage = StorageAsSingelton.getIntance();
-
-        /*
-        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.get;
-
-        List<String> s = new ArrayList<>();
-        for (BluetoothDevice bt : pairedDevices) {
-            s.add(bt.getName());
-        }
-
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                s
-        );
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                final Intent createChannel = new Intent(getApplicationContext(), CurrentChannel.class);
-                startActivity(createChannel);
-            }
-        });
-        */
-
 
         LinkedList<IChannel> listItem = new LinkedList<>();
 
@@ -79,8 +53,6 @@ public class Channel extends BTRootActivity {
                 startActivity(createChannel);
             }
         });
-
-
     }
 
     @Override

@@ -3,11 +3,14 @@ package main.controller.logic.stream.localStorage;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Date;
 import java.util.Iterator;
@@ -17,6 +20,9 @@ import main.modell.storage.Storage;
 import main.modell.storage.StorageAsSingelton;
 
 public class LocalStorage implements ILocalStorage {
+
+    private final static String PROJECT = "com.example.bluetoothmessenger";
+    private final static String FILENAME = "lastSave.txt";
 
     private Storage storage;
     private Set<String> pathSet;
@@ -61,20 +67,18 @@ public class LocalStorage implements ILocalStorage {
         byte[] data = getBytes();
         Log.e("Save", "byte[] length: " + data.length);
 
-        String filename = this.hashCode() + "-" + new Date() + ".txt";
-        File path = context.getFilesDir();
-        File file = new File(path, filename);
+        //File path = new File("/Android/data/" + PROJECT + "/files/");
+        File file = new File(context.getFilesDir(), FILENAME);
 
-        Log.e("Save", path.toString());
+        Log.e("Save", context.getFilesDir().toString());
         Log.e("Save", file.getAbsolutePath());
 
         //Add to management env
-        this.pathSet.add(file.getAbsolutePath());
-        this.fileNames.add(filename);
 
         //This point and below is responsible for the write operation
         FileOutputStream outputStream = null;
         try {
+            //file.mkdir();
             file.createNewFile();
             outputStream = new FileOutputStream(file);
 
@@ -103,33 +107,6 @@ public class LocalStorage implements ILocalStorage {
         return true;
     }
 
-    private String getLastFileSave() throws NullPointerException {
-
-        if(this.getPathList().isEmpty()){
-            throw new NullPointerException("Path list is empty");
-        }
-
-        Iterator<String> iterator = this.getPathList().iterator();
-
-        int index = 0;
-
-        String getTemp = null;
-
-        while (iterator.hasNext()) {
-
-            String temp = null;
-
-            if ((this.getPathList().size() - 1) == index) {
-                getTemp = temp;
-            }
-
-            temp = iterator.next();
-            index++;
-        }
-
-        return getTemp;
-    }
-
     @Override
     public Set<String> getFileNames() {
         return this.fileNames;
@@ -141,37 +118,64 @@ public class LocalStorage implements ILocalStorage {
     }
 
     @Override
-    public Storage getFile() {
+    public Storage read(Context context) throws NullPointerException {
 
-        String path = this.getLastFileSave();
+        Storage storage = null;
+        String path = context.getFilesDir() + "/" + FILENAME;
 
-        FileInputStream inputStream = null;
-        try {
-            inputStream = new FileInputStream(path);
+        File file = context.getFileStreamPath(FILENAME);
 
+        if (file.exists()) {
 
-            Log.e("Save", "File has been create");
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("Save " + IOException.class.getSimpleName(), e.getMessage());
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                    Log.e("Save", "OutputStream close()");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Log.e("Save " + IOException.class.getSimpleName(), e.getMessage());
+            Log.e("ReadStorage", "File exists");
+
+            FileInputStream inputStream = null;
+            ObjectInputStream objectInputStream = null;
+            try {
+                inputStream = new FileInputStream(path);
+                objectInputStream = new ObjectInputStream(inputStream);
+
+                storage = (Storage) objectInputStream.readObject();
+                Log.e("ReadStorage", storage.toString());
+
+                inputStream.close();
+                objectInputStream.close();
+                Log.e("ReadStorage", "File has been create");
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.e("ReadStorage " + IOException.class.getSimpleName(), e.getMessage());
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                        Log.e("Save", "inputStream close()");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.e("Save " + IOException.class.getSimpleName(), e.getMessage());
+                    }
+                }
+
+                if (objectInputStream != null) {
+                    try {
+                        objectInputStream.close();
+                        Log.e("Save", "objectInputStream close()");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.e("Save " + IOException.class.getSimpleName(), e.getMessage());
+                    }
                 }
             }
+        } else {
+            throw new NullPointerException("File not found");
         }
 
-        return null;
+        return storage;
     }
 
     @Override
     public synchronized boolean addToStorage(Storage storage) {
-
         return false;
     }
 
