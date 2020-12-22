@@ -8,13 +8,14 @@
 
     <TextView
         android:id="@+id/textViewChannelName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="277dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/textViewChannelName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextNewMessage"
+        app:layout_constraintEnd_toStartOf="@+id/startBluetoothDiscovery"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextNewMessage"
@@ -41,21 +42,25 @@
 
     <TextView
         android:id="@+id/textViewForASAPMessenges"
-        android:layout_width="284dp"
-        android:layout_height="451dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="84dp"
+        android:layout_width="340dp"
+        android:layout_height="524dp"
+        android:layout_marginBottom="48dp"
+        android:scrollbars="vertical"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/textViewChannelName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewChannelName" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/startBluetoothDiscovery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:text="Search"
         android:onClick="onClickBluetooth"
+        android:text="Search"
         app:layout_constraintBottom_toTopOf="@+id/buttonSendMessage"
         app:layout_constraintEnd_toEndOf="parent" />
 

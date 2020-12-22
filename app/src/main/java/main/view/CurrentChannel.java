@@ -2,10 +2,12 @@ package main.view;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.sharksystem.asap.ASAPException;
@@ -118,6 +120,7 @@ public class CurrentChannel extends BTRootActivity {
             sb.append("\nreceived messages: \n");
             for (String msg : this.receivedMessages) {
                 sb.append(msg);
+                sb.append("\n");
             }
         } catch (IOException e) {
             Log.e("Error", "problems when handling received messages: "
@@ -126,6 +129,7 @@ public class CurrentChannel extends BTRootActivity {
         }
 
         TextView receivedMessagesTV = findViewById(R.id.textViewForASAPMessenges);
+        receivedMessagesTV.setMovementMethod(new ScrollingMovementMethod());
         Log.e("Debug", sb.toString());
         receivedMessagesTV.setText(sb.toString());
     }

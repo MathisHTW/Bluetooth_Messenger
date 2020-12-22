@@ -11,7 +11,6 @@
     <activity android:name="main.view.CreateChannel" />
     <activity android:name="main.view.CurrentChannel" />
     <activity android:name="main.view.Channel" />
-    <activity android:name="main.controller.asap.BTActivity" />
     <activity android:name="main.controller.asap.BTInit">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
