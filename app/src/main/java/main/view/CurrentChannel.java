@@ -23,13 +23,14 @@ import main.R;
 import main.controller.asap.BTApplication;
 import main.controller.asap.BTRootActivity;
 import main.controller.AppController;
+import main.controller.logic.CRUD.Create;
 
 public class CurrentChannel extends BTRootActivity {
 
     private AppController appController = AppController.instance;
 
     private static final CharSequence URI = "asap://exampleURI";
-    private static final CharSequence EXAMPLE_MESSAGE = "ASAP example message";
+    private static final CharSequence EXAMPLE_MESSAGE = "Send a Msg";
     private ASAPMessageReceivedListener receivedListener;
     private List<String> sentMessages = new ArrayList<>();
     private List<String> receivedMessages = new ArrayList<>();
@@ -103,24 +104,25 @@ public class CurrentChannel extends BTRootActivity {
 
         // set up output
         StringBuilder sb = new StringBuilder();
+        Create create = new Create();
 
         try {
             Iterator<CharSequence> messagesAsCharSequence = asapMessages.getMessagesAsCharSequence();
-            sb.append("\nnew messages:\n");
             while (messagesAsCharSequence.hasNext()) {
                 String receivedMessage = messagesAsCharSequence.next().toString();
                 this.receivedMessages.add(receivedMessage);
                 sb.append(receivedMessage);
             }
-            sb.append("\nyour messages: \n");
+
             for (String msg : this.sentMessages) {
+                //create.createMessage(String.valueOf(asapMessages.getURI()), msg);
                 sb.append(msg);
                 sb.append("\n");
             }
-            sb.append("\nreceived messages: \n");
+
             for (String msg : this.receivedMessages) {
+                //create.createMessage(String.valueOf(asapMessages.getURI()), msg);
                 sb.append(msg);
-                sb.append("\n");
             }
         } catch (IOException e) {
             Log.e("Error", "problems when handling received messages: "

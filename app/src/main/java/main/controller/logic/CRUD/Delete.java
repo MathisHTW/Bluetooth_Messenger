@@ -1,6 +1,7 @@
 package main.controller.logic.CRUD;
 
 import main.modell.data.IChannel;
+import main.modell.data.INotification;
 import main.modell.data.IUser;
 import main.modell.storage.Storage;
 import main.modell.storage.StorageAsSingelton;
@@ -24,4 +25,11 @@ public class Delete implements IDelete {
         this.storage.removeUser(iUser.getID());
         return false;
     }
+
+    @Override
+    public boolean deleteMessage(INotification iNotification) {
+        return false;
+    }
+
+
 }

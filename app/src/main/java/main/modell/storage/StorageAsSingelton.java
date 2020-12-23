@@ -7,13 +7,17 @@ public final class StorageAsSingelton implements Serializable {
     private StorageAsSingelton() {
     }
 
-    private volatile static Storage intance;
+    private volatile static Storage instance;
 
+    /**
+     * Get Storage Func
+     * @return Storage instance
+     */
     public synchronized static Storage getIntance() {
-        if (null == intance) {
-            intance = new Storage();
+        if (null == instance) {
+            instance = new Storage();
         }
-        return intance;
+        return instance;
     }
 
 }

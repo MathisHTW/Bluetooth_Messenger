@@ -1,6 +1,7 @@
 package main.controller.logic.CRUD;
 
 import main.modell.data.IChannel;
+import main.modell.data.INotification;
 import main.modell.data.IUser;
 
 public interface IDelete {
@@ -19,4 +20,10 @@ public interface IDelete {
      */
     boolean deleteUser(IUser iUser);
 
+    /**
+     * Delete a Message
+     * @param iNotification
+     * @return
+     */
+    boolean deleteMessage(INotification iNotification);
 }

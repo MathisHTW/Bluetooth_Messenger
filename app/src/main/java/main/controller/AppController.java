@@ -73,6 +73,6 @@ public class AppController extends Application implements Application.ActivityLi
         Log.i("Global Scope", "OnDestroyed");
         final LocalStorage localStorage = new LocalStorage();
         boolean save = localStorage.save(activity.getApplication());
-        Log.e("Save", "Status; " + save);
+        Log.i("Save", "Status; " + save);
     }
 }

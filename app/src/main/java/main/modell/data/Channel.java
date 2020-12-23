@@ -10,35 +10,31 @@ public class Channel implements IChannel, Serializable {
 
     private final String name;
 
-    private List<IUser> userList;
-
     private List<INotification> notifications;
+
+    private final String uriASAP = "asap://";
+
+    private final String uri;
 
     private boolean alive;
 
     public Channel() {
         this.id = "-1";
         this.name = "Dummy";
-        this.userList = new LinkedList<>();
-        this.userList.add(new User("Paul"));
+        this.uri = uriASAP + this.id;
     }
 
     public Channel(String name) {
         this.id = Ultis.generatID(name);
         this.name = name;
+        this.uri = uriASAP + this.name;
     }
 
-    public Channel(String name, List<IUser> userList) {
+    public Channel(String name, List<INotification> notifications) {
         this.id = Ultis.generatID(name);
         this.name = name;
-        this.userList = userList;
-    }
-
-    public Channel(String name, List<IUser> userList, List<INotification> notifications) {
-        this.id = Ultis.generatID(name);
-        this.name = name;
-        this.userList = userList;
         this.notifications = notifications;
+        this.uri = uriASAP + this.name;
     }
 
     @Override
@@ -52,8 +48,8 @@ public class Channel implements IChannel, Serializable {
     }
 
     @Override
-    public List<IUser> getUserList() {
-        return this.userList;
+    public List<INotification> getMessages() {
+        return null;
     }
 
     @Override
@@ -62,9 +58,13 @@ public class Channel implements IChannel, Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Name=" + name ;
+    public String getUri() {
+        return this.uri;
     }
 
+    @Override
+    public String toString() {
+        return "Name=" + name;
+    }
 
 }

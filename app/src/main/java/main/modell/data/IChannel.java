@@ -15,13 +15,19 @@ public interface IChannel {
     String getName();
 
     /**
-     * @return the List of users in this channel
+     *
+     * @return a list of recieved Msg
      */
-    List<IUser> getUserList();
+    List<INotification> getMessages();
 
     /**
      * @return the status of the channel(1 active, 0 not available)
      */
     boolean getAlive();
 
+    /**
+     *
+     * @return a URI
+     */
+    String getUri();
 }

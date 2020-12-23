@@ -4,7 +4,7 @@ import java.util.Date;
 
 class Ultis {
 
-    public static String generatID(String value) {
+    static String generatID(String value) {
         final long minTime = System.currentTimeMillis();
         final Date date = new Date();
         final int number = 100000;
@@ -20,5 +20,4 @@ class Ultis {
 
         return stringBuffer.toString();
     }
-
 }

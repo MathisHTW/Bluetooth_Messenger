@@ -1,6 +1,5 @@
 package main.controller.logic.CRUD;
 
-import main.controller.logic.stream.localStorage.LocalStorage;
 import main.modell.storage.Storage;
 import main.modell.storage.StorageAsSingelton;
 
