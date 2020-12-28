@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import main.modell.data.IUser;
 
-public class Serialize implements Serializable {
+public class SerializeMessages implements SerializableMessages {
 
     @Override
     public byte[] serializer(IUser iUser, String msg) {
@@ -17,7 +17,6 @@ public class Serialize implements Serializable {
 
         try {
             dataOutputStream.writeUTF(iUser.getName());
-            dataOutputStream.writeUTF(iUser.getID());
             dataOutputStream.writeUTF(msg);
         } catch (IOException e) {
             e.printStackTrace();

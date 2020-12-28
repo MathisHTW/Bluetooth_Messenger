@@ -18,7 +18,6 @@ public class LocalStorage implements ILocalStorage {
     private final static String FILENAME = "lastSave.txt";
 
     private Storage storage;
-    private byte[] data = null;
 
     public LocalStorage() {
         this.storage = Storage.getIntance();
@@ -30,6 +29,7 @@ public class LocalStorage implements ILocalStorage {
      * @return if not exception return data[] else null
      */
     private synchronized byte[] getBytes() {
+        byte[] data = null;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream out = null;
 

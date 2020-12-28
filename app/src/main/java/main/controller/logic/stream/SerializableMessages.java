@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 
 import main.modell.data.IUser;
 
-interface Serializable {
+public interface SerializableMessages {
 
     /**
      * Serialize input from Bluetooth messenger

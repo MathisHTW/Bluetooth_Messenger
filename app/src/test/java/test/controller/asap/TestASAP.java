@@ -8,9 +8,13 @@ import net.sharksystem.asap.apps.mock.ASAPSessionMock;
 
 import org.junit.Test;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
+import main.controller.logic.stream.SerializableMessages;
+import main.controller.logic.stream.SerializeMessages;
+import main.modell.data.User;
 import test.controller.asap.mock.ASAPMockSerial;
 
 public class TestASAP {
@@ -18,7 +22,8 @@ public class TestASAP {
     @Test
     public void sendMessage() throws IOException, ASAPException, InterruptedException {
 
-        byte[] serialData = ASAPMockSerial.serialize("Ein Weltwunder ein Weltwunder");
+        final SerializableMessages serializableMessages = new SerializeMessages();
+        final byte[] serialData = serializableMessages.serializer(new User("Kevin"), "HALLO ich bin ready");
 
         //TODO
         ASAPSessionMock asapSessionMock = new ASAPSessionMock();
@@ -39,7 +44,9 @@ public class TestASAP {
                 Iterator<byte[]> iterator = asapMessages.getMessages();
 
                 while (iterator.hasNext()) {
-                    ASAPMockSerial.deserialize(iterator.next());
+                    DataInputStream stream = serializableMessages.deserializer(iterator.next());
+                    System.out.println(stream.readUTF());
+                    System.out.println(stream.readUTF());
                 }
             }
         };
@@ -51,19 +58,19 @@ public class TestASAP {
 
         Thread.sleep(1000);
 
-        asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, ASAPMockSerial.serialize("ICH SENDE ALS 1"));
+        asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, serializableMessages.serializer(new User("Tom"), "Tom  jo alter das geht"));
 
-        asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, ASAPMockSerial.serialize("ICH SENDE ALS 2 das ist ja krass"));
+        asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, serializableMessages.serializer(new User("Matis"), "Ich lade die App gleich runter"));
 
         asapSessionMock.disconnect();
         Thread.sleep(1000);
 
-        asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, ASAPMockSerial.serialize("ICH SENDE ALS 3 das ist ja krass um mein GOD"));
+        asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, serializableMessages.serializer(new User("God"), "Ich habe eh alles geschaffen du Noob gg ez"));
 
         asapSessionMock.connect();
         Thread.sleep(1000);
 
-        asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, ASAPMockSerial.serialize("ICH SENDE ALS 4 das ist ja krass wie heftig"));
+        asapMessageSender.sendASAPMessage(ASAPMockSerial.APP, ASAPMockSerial.URI, serializableMessages.serializer(new User("AntiMade"), "Rush b cyra blat"));
     }
 }
 

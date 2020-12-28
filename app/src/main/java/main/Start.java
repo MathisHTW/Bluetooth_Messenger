@@ -13,6 +13,7 @@ import java.util.Objects;
 
 import main.controller.asap.BTRootActivity;
 import main.controller.AppController;
+import main.controller.logic.CRUD.Read;
 import main.controller.logic.stream.localStorage.LocalStorage;
 import main.modell.storage.Storage;
 import main.view.Channel;
@@ -27,27 +28,8 @@ public class Start extends BTRootActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-        final LocalStorage localStorage = new LocalStorage();
-        try {
-            Storage storage = Storage.getIntance();
-            Storage save = localStorage.read(getApplication());
-
-            if (!save.getChannelList().isEmpty()) {
-                storage.addAllChannelList(save.getChannelList());
-            }
-
-            if (!save.getNotificationList().isEmpty()) {
-                storage.addAllNotification(save.getNotificationList());
-            }
-
-            if (!save.getUserList().isEmpty()) {
-                storage.addAllUser(save.getUserList());
-            }
-
-        } catch (NullPointerException e) {
-            Log.i("Save", Objects.requireNonNull(e.getMessage()));
-        }
+        final Read read = new Read();
+        read.localStorage(getApplication());
 
         appController.onActivityCreated(this, savedInstanceState);
     }
@@ -55,9 +37,7 @@ public class Start extends BTRootActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        this.loadChannelActivity();
-        this.loadCreateChannelActivity();
-        this.loadCreateSettingActivity();
+        this.initOnClickEvents();
         Storage storage = Storage.getIntance();
 
         if (!storage.hasName()) {
@@ -101,6 +81,12 @@ public class Start extends BTRootActivity {
         });
     }
 
+    private void initOnClickEvents(){
+        this.loadCreateSettingActivity();
+        this.loadCreateChannelActivity();
+        this.loadChannelActivity();
+    }
+
     private void loadChannelActivity() {
         final Intent channel = new Intent(this, Channel.class);
         Button buttonChannel = findViewById(R.id.btnJoin);
@@ -124,7 +110,7 @@ public class Start extends BTRootActivity {
         });
     }
 
-    private void loadCreateSettingActivity(){
+    private void loadCreateSettingActivity() {
         final Intent intent = new Intent(this, Settings.class);
         Button buttonSetting = findViewById(R.id.btnChangeName);
         buttonSetting.setOnClickListener(new View.OnClickListener() {

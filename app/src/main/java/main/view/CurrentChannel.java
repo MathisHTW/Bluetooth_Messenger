@@ -15,7 +15,10 @@ import net.sharksystem.asap.ASAPMessages;
 import net.sharksystem.asap.android.apps.ASAPMessageReceivedListener;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,6 +27,10 @@ import main.controller.asap.BTApplication;
 import main.controller.asap.BTRootActivity;
 import main.controller.AppController;
 import main.controller.logic.CRUD.Create;
+import main.controller.logic.stream.SerializableMessages;
+import main.controller.logic.stream.SerializeMessages;
+import main.modell.data.IUser;
+import main.modell.data.User;
 
 public class CurrentChannel extends BTRootActivity {
 
@@ -104,7 +111,21 @@ public class CurrentChannel extends BTRootActivity {
 
         // set up output
         StringBuilder sb = new StringBuilder();
-        Create create = new Create();
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            Iterator<byte[]> msgObj = asapMessages.getMessages();
+
+            while (msgObj.hasNext()) {
+                stringBuilder.append(msgObj.next() + " | " + msgObj.next());
+            }
+
+        } catch (IOException e) {
+            Log.e("Error", "problems when handling received messages: "
+                    + e.getLocalizedMessage());
+        }
+
 
         try {
             Iterator<CharSequence> messagesAsCharSequence = asapMessages.getMessagesAsCharSequence();
@@ -145,7 +166,10 @@ public class CurrentChannel extends BTRootActivity {
         Log.d(this.getLogStart(), "going to send message: " + messageText);
 
         // asap messages are bytes
-        byte[] byteContent = messageText.toString().getBytes();
+        SerializableMessages serializableMessages = new SerializeMessages();
+
+        //TODO WIP
+        byte[] byteContent = serializableMessages.serializer(new User("Kevin"), messageText.toString());
 
         Log.d(this.getLogStart(), "going to send messageBytes: " + byteContent);
 
