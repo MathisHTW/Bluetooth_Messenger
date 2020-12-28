@@ -13,7 +13,7 @@ import main.Start;
 import main.controller.logic.CRUD.Create;
 import main.modell.storage.Storage;
 
-public class Settings extends AppCompatActivity {
+public class FirstLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
