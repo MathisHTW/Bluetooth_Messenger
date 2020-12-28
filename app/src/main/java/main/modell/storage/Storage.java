@@ -18,6 +18,7 @@ public class Storage implements Serializable {
 
     /**
      * Get Storage Func
+     *
      * @return Storage instance
      */
     public synchronized static Storage getIntance() {
@@ -27,16 +28,25 @@ public class Storage implements Serializable {
         return instance;
     }
 
-    private boolean hasName = true;
+    private boolean hasName = false;
 
     private List<IUser> userList;
     private List<IChannel> channelList;
     private List<INotification> notificationList;
+    private IUser appOwnerName = null;
 
     private Storage() {
         this.userList = new LinkedList<>();
         this.channelList = new LinkedList<>();
         this.notificationList = new ArrayList<>();
+    }
+
+    public IUser getAppOwnerName() {
+        return appOwnerName;
+    }
+
+    public void setAppOwnerName(IUser appOwnerName) {
+        this.appOwnerName = appOwnerName;
     }
 
     public void addUser(IUser iUser) {
@@ -108,8 +118,8 @@ public class Storage implements Serializable {
      */
     public boolean hasName() {
 
-        if (this.userList.isEmpty() || this.userList.size() == 0) {
-            this.hasName = false;
+        if (null != appOwnerName) {
+            return true;
         }
 
         return hasName;

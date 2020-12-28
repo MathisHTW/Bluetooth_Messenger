@@ -18,7 +18,7 @@ public class TestStorage {
         String name = "Paul Panzer";
 
         Create create = new Create();
-        create.createUser(name);
+        create.createToUserList(name);
 
         Assert.assertEquals(name, this.storage.getUserList().get(0).getName());
     }
@@ -32,7 +32,7 @@ public class TestStorage {
         Create create = new Create();
 
         try {
-            create.createUser(name);
+            create.createToUserList(name);
         } catch (Exception e) {
             Assert.assertTrue(true);
         }
@@ -45,7 +45,7 @@ public class TestStorage {
         String name = "Peter Zwegert";
 
         Create create = new Create();
-        create.createUser(name);
+        create.createToUserList(name);
 
         Delete delete = new Delete();
         delete.deleteUser(this.storage.getUserList().get(0));
@@ -69,10 +69,10 @@ public class TestStorage {
         String name3 = "Achime Zwegert";
 
         Create create = new Create();
-        create.createUser(name);
-        create.createUser(name1);
-        create.createUser(name2);
-        create.createUser(name3);
+        create.createToUserList(name);
+        create.createToUserList(name1);
+        create.createToUserList(name2);
+        create.createToUserList(name3);
 
         Assert.assertEquals(4, this.storage.getUserList().size());
     }

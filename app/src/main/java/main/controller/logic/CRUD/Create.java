@@ -31,7 +31,7 @@ public class Create implements ICreate {
     }
 
     @Override
-    public boolean createUser(String name) {
+    public boolean createToUserList(String name) {
         final IUser iUser = new User(name);
         this.storage.addUser(iUser);
 
@@ -46,6 +46,16 @@ public class Create implements ICreate {
         this.storage.addNotification(notification);
 
         Log.e("Debug", "Notification was been created");
+
+        return true;
+    }
+
+    @Override
+    public boolean createUser(String name) {
+        final IUser iUser = new User(name);
+        this.storage.setAppOwnerName(iUser);
+
+        Log.e("Debug", "Create a appOwnerName");
 
         return true;
     }

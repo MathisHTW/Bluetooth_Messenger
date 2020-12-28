@@ -19,19 +19,22 @@ public class Read {
     public void localStorage(Context context) {
         final LocalStorage localStorage = new LocalStorage();
         try {
-            Storage storage = Storage.getIntance();
             Storage save = localStorage.read(context);
 
             if (!save.getChannelList().isEmpty()) {
-                storage.addAllChannelList(save.getChannelList());
+                this.storage.addAllChannelList(save.getChannelList());
             }
 
             if (!save.getNotificationList().isEmpty()) {
-                storage.addAllNotification(save.getNotificationList());
+                this.storage.addAllNotification(save.getNotificationList());
             }
 
             if (!save.getUserList().isEmpty()) {
-                storage.addAllUser(save.getUserList());
+                this.storage.addAllUser(save.getUserList());
+            }
+
+            if (save.getAppOwnerName() != null) {
+                this.storage.setAppOwnerName(save.getAppOwnerName());
             }
 
         } catch (NullPointerException e) {

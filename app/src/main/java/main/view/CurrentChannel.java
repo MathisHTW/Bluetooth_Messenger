@@ -31,6 +31,7 @@ import main.controller.logic.stream.SerializableMessages;
 import main.controller.logic.stream.SerializeMessages;
 import main.modell.data.IUser;
 import main.modell.data.User;
+import main.modell.storage.Storage;
 
 public class CurrentChannel extends BTRootActivity {
 
@@ -169,7 +170,7 @@ public class CurrentChannel extends BTRootActivity {
         SerializableMessages serializableMessages = new SerializeMessages();
 
         //TODO WIP
-        byte[] byteContent = serializableMessages.serializer(new User("Kevin"), messageText.toString());
+        byte[] byteContent = serializableMessages.serializer(Storage.getIntance().getAppOwnerName(), messageText.toString());
 
         Log.d(this.getLogStart(), "going to send messageBytes: " + byteContent);
 

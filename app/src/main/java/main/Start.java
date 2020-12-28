@@ -1,20 +1,13 @@
 package main;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AlertDialog;
-
-import java.util.Objects;
-
-import main.controller.asap.BTRootActivity;
 import main.controller.AppController;
+import main.controller.asap.BTRootActivity;
 import main.controller.logic.CRUD.Read;
-import main.controller.logic.stream.localStorage.LocalStorage;
 import main.modell.storage.Storage;
 import main.view.Channel;
 import main.view.CreateChannel;
@@ -30,19 +23,19 @@ public class Start extends BTRootActivity {
         setContentView(R.layout.activity_start);
         final Read read = new Read();
         read.localStorage(getApplication());
-
         appController.onActivityCreated(this, savedInstanceState);
+
+        Storage storage = Storage.getIntance();
+
+        if (!storage.hasName()) {
+            changeName();
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         this.initOnClickEvents();
-        Storage storage = Storage.getIntance();
-
-        if (!storage.hasName()) {
-            changeName();
-        }
         appController.onActivityStarted(this);
     }
 
@@ -71,14 +64,8 @@ public class Start extends BTRootActivity {
     }
 
     private void changeName() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Start.this);
-        builder.setMessage("Change your Name: ");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
+        final Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
     }
 
     private void initOnClickEvents(){

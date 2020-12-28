@@ -16,7 +16,7 @@ interface ICreate {
      * @param name
      * @return if true | false = something is wrong
      */
-    boolean createUser(String name);
+    boolean createToUserList(String name);
 
     /**
      * Create a Notification for Messages
@@ -26,4 +26,12 @@ interface ICreate {
      * @return if true | false = something is wrong
      */
     boolean createMessage(String name, String text);
+
+    /**
+     * Create Username
+     *
+     * @param name
+     * @return if true username was created
+     */
+    boolean createUser(String name);
 }

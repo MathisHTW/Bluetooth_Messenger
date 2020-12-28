@@ -8,25 +8,26 @@
     tools:context="main.view.Settings">
 
   <Button
-      android:id="@+id/button"
+      android:id="@+id/btnChangeName"
       android:layout_width="96dp"
       android:layout_height="46dp"
       android:layout_marginTop="40dp"
       android:layout_marginEnd="16dp"
-      android:text="Button"
+      android:text="Create"
+      android:onClick="onClick"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
   <EditText
-      android:id="@+id/editTextTextPersonName4"
+      android:id="@+id/editTextOwnerName"
       android:layout_width="255dp"
       android:layout_height="46dp"
       android:layout_marginStart="16dp"
       android:layout_marginTop="40dp"
       android:ems="10"
       android:inputType="textPersonName"
-      android:text="Name"
-      app:layout_constraintEnd_toStartOf="@+id/button"
+      android:text="Rambo"
+      app:layout_constraintEnd_toStartOf="@+id/btnChangeName"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,7 +36,7 @@
       android:layout_width="253dp"
       android:layout_height="22dp"
       android:text="Change Name:"
-      app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName4"
+      app:layout_constraintBottom_toTopOf="@+id/editTextOwnerName"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.189"
       app:layout_constraintStart_toStartOf="parent"
