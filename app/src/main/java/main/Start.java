@@ -11,7 +11,7 @@ import main.controller.logic.CRUD.Read;
 import main.modell.storage.Storage;
 import main.view.Channel;
 import main.view.CreateChannel;
-import main.view.FirstLogin;
+import main.view.Settings;
 
 public class Start extends BTRootActivity {
 
@@ -64,7 +64,7 @@ public class Start extends BTRootActivity {
     }
 
     private void changeName() {
-        final Intent intent = new Intent(this, FirstLogin.class);
+        final Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
 
@@ -98,7 +98,7 @@ public class Start extends BTRootActivity {
     }
 
     private void loadCreateSettingActivity() {
-        final Intent intent = new Intent(this, FirstLogin.class);
+        final Intent intent = new Intent(this, Settings.class);
         Button buttonSetting = findViewById(R.id.btnChangeName);
         buttonSetting.setOnClickListener(new View.OnClickListener() {
             @Override
