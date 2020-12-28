@@ -3,21 +3,15 @@ package main.controller.logic.stream.localStorage;
 import android.content.Context;
 import android.util.Log;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Set;
 
 import main.modell.storage.Storage;
-import main.modell.storage.StorageAsSingelton;
 
 public class LocalStorage implements ILocalStorage {
 
@@ -27,7 +21,7 @@ public class LocalStorage implements ILocalStorage {
     private byte[] data = null;
 
     public LocalStorage() {
-        this.storage = StorageAsSingelton.getIntance();
+        this.storage = Storage.getIntance();
     }
 
     /**

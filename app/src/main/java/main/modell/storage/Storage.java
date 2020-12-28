@@ -14,13 +14,26 @@ public class Storage implements Serializable {
 
     private static final long serialVersionUID = 211268099661671010L;
 
+    private volatile static Storage instance;
+
+    /**
+     * Get Storage Func
+     * @return Storage instance
+     */
+    public synchronized static Storage getIntance() {
+        if (null == instance) {
+            instance = new Storage();
+        }
+        return instance;
+    }
+
     private boolean hasName = true;
 
     private List<IUser> userList;
     private List<IChannel> channelList;
     private List<INotification> notificationList;
 
-    public Storage() {
+    private Storage() {
         this.userList = new LinkedList<>();
         this.channelList = new LinkedList<>();
         this.notificationList = new ArrayList<>();

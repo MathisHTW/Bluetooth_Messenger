@@ -11,14 +11,13 @@ import main.modell.data.IUser;
 import main.modell.data.Message;
 import main.modell.data.User;
 import main.modell.storage.Storage;
-import main.modell.storage.StorageAsSingelton;
 
 public class Create implements ICreate {
 
     private Storage storage;
 
     public Create() {
-        this.storage = StorageAsSingelton.getIntance();
+        this.storage = Storage.getIntance();
     }
 
     @Override

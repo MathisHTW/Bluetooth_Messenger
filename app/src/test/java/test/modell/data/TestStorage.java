@@ -6,11 +6,10 @@ import org.junit.Test;
 import main.controller.logic.CRUD.Create;
 import main.controller.logic.CRUD.Delete;
 import main.modell.storage.Storage;
-import main.modell.storage.StorageAsSingelton;
 
 public class TestStorage {
 
-    private Storage storage = StorageAsSingelton.getIntance();
+    private Storage storage = Storage.getIntance();
 
     @Test
     public void createUser() {

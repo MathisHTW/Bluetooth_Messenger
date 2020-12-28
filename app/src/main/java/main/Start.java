@@ -15,7 +15,6 @@ import main.controller.asap.BTRootActivity;
 import main.controller.AppController;
 import main.controller.logic.stream.localStorage.LocalStorage;
 import main.modell.storage.Storage;
-import main.modell.storage.StorageAsSingelton;
 import main.view.Channel;
 import main.view.CreateChannel;
 import main.view.Settings;
@@ -31,7 +30,7 @@ public class Start extends BTRootActivity {
 
         final LocalStorage localStorage = new LocalStorage();
         try {
-            Storage storage = StorageAsSingelton.getIntance();
+            Storage storage = Storage.getIntance();
             Storage save = localStorage.read(getApplication());
 
             if (!save.getChannelList().isEmpty()) {
@@ -59,7 +58,7 @@ public class Start extends BTRootActivity {
         this.loadChannelActivity();
         this.loadCreateChannelActivity();
         this.loadCreateSettingActivity();
-        Storage storage = StorageAsSingelton.getIntance();
+        Storage storage = Storage.getIntance();
 
         if (!storage.hasName()) {
             changeName();

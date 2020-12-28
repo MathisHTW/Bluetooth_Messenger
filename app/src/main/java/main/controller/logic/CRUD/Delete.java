@@ -4,14 +4,13 @@ import main.modell.data.IChannel;
 import main.modell.data.INotification;
 import main.modell.data.IUser;
 import main.modell.storage.Storage;
-import main.modell.storage.StorageAsSingelton;
 
 public class Delete implements IDelete {
 
     private Storage storage;
 
     public Delete() {
-        this.storage = StorageAsSingelton.getIntance();
+        this.storage = Storage.getIntance();
     }
 
     @Override

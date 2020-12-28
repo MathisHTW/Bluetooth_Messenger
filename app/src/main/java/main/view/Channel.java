@@ -14,7 +14,6 @@ import main.controller.AppController;
 import main.controller.asap.BTRootActivity;
 import main.modell.data.IChannel;
 import main.modell.storage.Storage;
-import main.modell.storage.StorageAsSingelton;
 
 public class Channel extends BTRootActivity {
 
@@ -29,7 +28,7 @@ public class Channel extends BTRootActivity {
 
         ListView listView = (ListView) findViewById(R.id.ItemViewList);
 
-        Storage storage = StorageAsSingelton.getIntance();
+        Storage storage = Storage.getIntance();
 
         LinkedList<IChannel> listItem = new LinkedList<>(storage.getChannelList());
 
