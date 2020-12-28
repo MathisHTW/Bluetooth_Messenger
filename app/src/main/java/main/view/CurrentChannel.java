@@ -5,19 +5,17 @@ import android.text.Editable;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.sharksystem.asap.ASAPException;
 import net.sharksystem.asap.ASAPMessages;
 import net.sharksystem.asap.android.apps.ASAPMessageReceivedListener;
 
+import java.io.DataInputStream;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -26,11 +24,8 @@ import main.R;
 import main.controller.asap.BTApplication;
 import main.controller.asap.BTRootActivity;
 import main.controller.AppController;
-import main.controller.logic.CRUD.Create;
 import main.controller.logic.stream.SerializableMessages;
 import main.controller.logic.stream.SerializeMessages;
-import main.modell.data.IUser;
-import main.modell.data.User;
 import main.modell.storage.Storage;
 
 public class CurrentChannel extends BTRootActivity {
@@ -106,56 +101,50 @@ public class CurrentChannel extends BTRootActivity {
         appController.onActivityDestroyed(this);
     }
 
+    private String newMessageBuilder(String name, String msg) {
+        return "New: " + msg + " from:" + name + "\n";
+    }
+
+    private String myMessageBuilder(String msg) {
+        return "My: " + msg + " from:" + Storage.getIntance().getAppOwnerName() + "\n";
+    }
+
     private void doHandleReceivedMessages(ASAPMessages asapMessages) {
         Log.d(this.getLogStart(), "going to handle received messages with uri: "
                 + asapMessages.getURI());
 
-        // set up output
-        StringBuilder sb = new StringBuilder();
-
-        StringBuilder stringBuilder = new StringBuilder();
+        SerializableMessages serializableMessages = new SerializeMessages();
+        StringBuilder builder = new StringBuilder();
 
         try {
-            Iterator<byte[]> msgObj = asapMessages.getMessages();
+            Iterator<byte[]> iterator = asapMessages.getMessages();
 
-            while (msgObj.hasNext()) {
-                stringBuilder.append(msgObj.next() + " | " + msgObj.next());
-            }
+            while (iterator.hasNext()) {
+                DataInputStream stream = serializableMessages.deserializer(iterator.next());
+                String name = stream.readUTF();
+                String msg = stream.readUTF();
 
-        } catch (IOException e) {
-            Log.e("Error", "problems when handling received messages: "
-                    + e.getLocalizedMessage());
-        }
-
-
-        try {
-            Iterator<CharSequence> messagesAsCharSequence = asapMessages.getMessagesAsCharSequence();
-            while (messagesAsCharSequence.hasNext()) {
-                String receivedMessage = messagesAsCharSequence.next().toString();
-                this.receivedMessages.add(receivedMessage);
-                sb.append(receivedMessage);
+                this.receivedMessages.add(newMessageBuilder(name, msg));
+                Log.e("Debug", "Msg: " + msg + " from: " + name);
             }
 
             for (String msg : this.sentMessages) {
-                //create.createMessage(String.valueOf(asapMessages.getURI()), msg);
-                sb.append(msg);
-                sb.append("\n");
+                builder.append(msg);
             }
 
             for (String msg : this.receivedMessages) {
-                //create.createMessage(String.valueOf(asapMessages.getURI()), msg);
-                sb.append(msg);
+                builder.append(msg);
             }
         } catch (IOException e) {
             Log.e("Error", "problems when handling received messages: "
                     + e.getLocalizedMessage());
-            sb.append(e.getLocalizedMessage());
+            builder.append(e.getLocalizedMessage());
         }
 
         TextView receivedMessagesTV = findViewById(R.id.textViewForASAPMessenges);
         receivedMessagesTV.setMovementMethod(new ScrollingMovementMethod());
-        Log.e("Debug", sb.toString());
-        receivedMessagesTV.setText(sb.toString());
+        Log.e("Debug", builder.toString());
+        receivedMessagesTV.setText(builder.toString());
     }
 
     public void onClick(View view) {
@@ -164,20 +153,27 @@ public class CurrentChannel extends BTRootActivity {
         EditText messageEditView = findViewById(R.id.editTextNewMessage);
         Editable messageText = messageEditView.getText();
 
-        Log.d(this.getLogStart(), "going to send message: " + messageText);
+        boolean equaltext = true;
 
-        // asap messages are bytes
-        SerializableMessages serializableMessages = new SerializeMessages();
+        if (!messageText.toString().equals(EXAMPLE_MESSAGE.toString()) && equaltext) {
+            Log.d(this.getLogStart(), "going to send message: " + messageText);
 
-        //TODO WIP
-        byte[] byteContent = serializableMessages.serializer(Storage.getIntance().getAppOwnerName(), messageText.toString());
+            // asap messages are bytes
+            SerializableMessages serializableMessages = new SerializeMessages();
+            equaltext = false;
 
-        Log.d(this.getLogStart(), "going to send messageBytes: " + byteContent);
+            //TODO WIP
+            byte[] byteContent = serializableMessages.serializer(Storage.getIntance().getAppOwnerName(), messageText.toString());
 
-        this.sendMessage(byteContent);
+            Log.d(this.getLogStart(), "going to send messageBytes: " + byteContent);
 
-        // success - remember sent message
-        this.sentMessages.add(messageText.toString());
+            this.sendMessage(byteContent);
+
+            this.sentMessages.add(myMessageBuilder(messageText.toString()));
+        }
+
+        Toast toast = Toast.makeText(getApplication(), "Same Message change your text", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     private void sendMessage(byte[] byteContent) {
@@ -195,5 +191,7 @@ public class CurrentChannel extends BTRootActivity {
     public void onClickBluetooth(View view) {
         super.startBluetoothDiscovery();
         super.startBluetoothDiscoverable();
+        Toast toast = Toast.makeText(getApplication(), "Start BluetoothDiscovery", Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
