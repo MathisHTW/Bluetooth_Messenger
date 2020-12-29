@@ -10,7 +10,7 @@ public class Delete implements IDelete {
     private Storage storage;
 
     public Delete() {
-        this.storage = Storage.getIntance();
+        this.storage = Storage.getInstance();
     }
 
     @Override

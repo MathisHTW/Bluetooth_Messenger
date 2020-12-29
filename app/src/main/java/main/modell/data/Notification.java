@@ -4,17 +4,23 @@ import java.io.Serializable;
 
 public class Notification implements INotification, Serializable {
 
-    private String ID;
+    private final String ID;
 
-    private String name;
+    private final String name;
 
-    public Notification(String name) {
-        new Notification(Ultis.generatID(name), name);
+    public Notification() {
+        this.ID = "-1";
+        this.name = "Notification";
     }
 
-    Notification(String ID, String name) {
-        this.ID = ID;
+    public Notification(String name) {
+
+        if (null == name) {
+            throw new NullPointerException("Name is null");
+        }
+
         this.name = name;
+        this.ID = Ultis.generatID(name);
     }
 
     public String getID() {

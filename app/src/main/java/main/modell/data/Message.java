@@ -10,7 +10,7 @@ public class Message extends Notification implements Serializable {
     }
 
     public Message(String name, String text) {
-        super(Ultis.generatID(name), name);
+        super(name);
         this.text = text;
     }
 }

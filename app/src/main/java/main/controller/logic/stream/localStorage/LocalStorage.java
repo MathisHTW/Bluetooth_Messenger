@@ -20,7 +20,7 @@ public class LocalStorage implements ILocalStorage {
     private Storage storage;
 
     public LocalStorage() {
-        this.storage = Storage.getIntance();
+        this.storage = Storage.getInstance();
     }
 
     /**
@@ -28,7 +28,7 @@ public class LocalStorage implements ILocalStorage {
      *
      * @return if not exception return data[] else null
      */
-    private synchronized byte[] getBytes() {
+    private byte[] getBytes() {
         byte[] data = null;
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream out = null;
@@ -54,6 +54,12 @@ public class LocalStorage implements ILocalStorage {
 
     @Override
     public synchronized boolean save(Context context) {
+
+        if (null == context) {
+            String msg = "Application Context is null";
+            Log.e("NullPointerException", msg);
+            throw new NullPointerException(msg);
+        }
 
         byte[] data = getBytes();
         Log.e("Save", "byte[] length: " + data.length);
@@ -100,6 +106,12 @@ public class LocalStorage implements ILocalStorage {
 
     @Override
     public Storage read(Context context) throws NullPointerException {
+
+        if (null == context) {
+            String msg = "Application Context is null";
+            Log.e("NullPointerException", msg);
+            throw new NullPointerException(msg);
+        }
 
         Storage storage = null;
         String path = context.getFilesDir() + "/" + FILENAME;

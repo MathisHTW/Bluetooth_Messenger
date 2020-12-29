@@ -25,7 +25,7 @@ public class Start extends BTRootActivity {
         read.localStorage(getApplication());
         appController.onActivityCreated(this, savedInstanceState);
 
-        Storage storage = Storage.getIntance();
+        Storage storage = Storage.getInstance();
 
         if (!storage.hasName()) {
             changeName();

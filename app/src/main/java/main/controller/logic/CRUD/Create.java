@@ -17,15 +17,21 @@ public class Create implements ICreate {
     private Storage storage;
 
     public Create() {
-        this.storage = Storage.getIntance();
+        this.storage = Storage.getInstance();
     }
 
     @Override
-    public boolean createChannel(String name) {
+    public boolean createChannel(String name) throws IllegalArgumentException{
+
+        if (name.isEmpty()) {
+            Log.e("Name", "Name is Empty");
+            throw new IllegalArgumentException("Name is Empty");
+        }
+
         final IChannel iChannel = new Channel(name);
         this.storage.addChannelList(iChannel);
 
-        Log.e("Debug", "Channel was been create | Name" + name);
+        //Log.i("Debug", "Channel was been create | Name" + name);
 
         return true;
     }
@@ -45,7 +51,7 @@ public class Create implements ICreate {
         final INotification notification = new Message(name, text);
         this.storage.addNotification(notification);
 
-        Log.e("Debug", "Notification was been created");
+        Log.i("Debug", "Notification was been created");
 
         return true;
     }
@@ -55,7 +61,7 @@ public class Create implements ICreate {
         final IUser iUser = new User(name);
         this.storage.setAppOwnerName(iUser);
 
-        Log.e("Debug", "Create a appOwnerName");
+        Log.i("Debug", "Create a appOwnerName");
 
         return true;
     }

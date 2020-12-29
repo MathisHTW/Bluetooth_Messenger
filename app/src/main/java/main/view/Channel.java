@@ -28,7 +28,7 @@ public class Channel extends BTRootActivity {
 
         ListView listView = (ListView) findViewById(R.id.ItemViewList);
 
-        Storage storage = Storage.getIntance();
+        Storage storage = Storage.getInstance();
 
         LinkedList<IChannel> listItem = new LinkedList<>(storage.getChannelList());
 

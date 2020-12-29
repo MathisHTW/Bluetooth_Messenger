@@ -9,23 +9,23 @@ import main.modell.storage.Storage;
 
 public class TestStorage {
 
-    private Storage storage = Storage.getIntance();
-
     @Test
     public void createUser() {
-        this.storage.clear();
+        Storage storage = Storage.getInstance();
+        storage.clear();
 
         String name = "Paul Panzer";
 
         Create create = new Create();
         create.createToUserList(name);
 
-        Assert.assertEquals(name, this.storage.getUserList().get(0).getName());
+        Assert.assertEquals(name, storage.getUserList().get(0).getName());
     }
 
     @Test
     public void createUserWithoutName() {
-        this.storage.clear();
+        Storage storage = Storage.getInstance();
+        storage.clear();
 
         String name = "";
 
@@ -40,7 +40,8 @@ public class TestStorage {
 
     @Test
     public void deleteUser() {
-        this.storage.clear();
+        Storage storage = Storage.getInstance();
+        storage.clear();
 
         String name = "Peter Zwegert";
 
@@ -48,20 +49,21 @@ public class TestStorage {
         create.createToUserList(name);
 
         Delete delete = new Delete();
-        delete.deleteUser(this.storage.getUserList().get(0));
+        delete.deleteUser(storage.getUserList().get(0));
 
-        Assert.assertEquals(0, this.storage.getUserList().size());
+        Assert.assertEquals(0, storage.getUserList().size());
     }
 
     @Test
     public void DeleteUserWithEmtpyParameter() {
-        this.storage.clear();
-
+        Storage storage = Storage.getInstance();
+        storage.clear();
     }
 
     @Test
     public void addToStorage() {
-        this.storage.clear();
+        Storage storage = Storage.getInstance();
+        storage.clear();
 
         String name = "Peter Zwegert";
         String name1 = "Kevin Zwegert";
@@ -74,6 +76,6 @@ public class TestStorage {
         create.createToUserList(name2);
         create.createToUserList(name3);
 
-        Assert.assertEquals(4, this.storage.getUserList().size());
+        Assert.assertEquals(4, storage.getUserList().size());
     }
 }

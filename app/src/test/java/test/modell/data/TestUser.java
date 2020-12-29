@@ -9,20 +9,14 @@ import main.modell.data.User;
 public class TestUser {
 
     @Test
-    public void createUser(){
-        try {
-            IUser iUser = new User("Kevin");
-        }catch (Exception e){
-            Assert.fail();
-        }
+    public void createUserCheckID() {
+        IUser iUser = new User("Kevin");
+        Assert.assertFalse(iUser.getID().equals("-1"));
     }
 
     @Test
-    public void createUserWithoutString(){
-        try {
-            IUser iUser = new User();
-        }catch (Exception e){
-            Assert.assertTrue(true);
-        }
+    public void createUserToStringReturnOnlyName() {
+        IUser iUser = new User();
+        Assert.assertEquals(iUser.getName(), iUser.toString());
     }
 }

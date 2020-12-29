@@ -16,7 +16,6 @@ import net.sharksystem.asap.android.apps.ASAPMessageReceivedListener;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -106,7 +105,7 @@ public class CurrentChannel extends BTRootActivity {
     }
 
     private String myMessageBuilder(String msg) {
-        return "My: " + msg + " from:" + Storage.getIntance().getAppOwnerName() + "\n";
+        return "My: " + msg + " from:" + Storage.getInstance().getAppOwnerName() + "\n";
     }
 
     private void doHandleReceivedMessages(ASAPMessages asapMessages) {
@@ -163,7 +162,7 @@ public class CurrentChannel extends BTRootActivity {
             equaltext = false;
 
             //TODO WIP
-            byte[] byteContent = serializableMessages.serializer(Storage.getIntance().getAppOwnerName(), messageText.toString());
+            byte[] byteContent = serializableMessages.serializer(Storage.getInstance().getAppOwnerName(), messageText.toString());
 
             Log.d(this.getLogStart(), "going to send messageBytes: " + byteContent);
 

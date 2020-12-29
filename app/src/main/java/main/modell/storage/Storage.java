@@ -14,18 +14,18 @@ public class Storage implements Serializable {
 
     private static final long serialVersionUID = 211268099661671010L;
 
-    private volatile static Storage instance;
+    private static Storage instance = null;
 
     /**
      * Get Storage Func
      *
      * @return Storage instance
      */
-    public synchronized static Storage getIntance() {
-        if (null == instance) {
-            instance = new Storage();
+    public synchronized static Storage getInstance() {
+        if (null == Storage.instance) {
+            Storage.instance = new Storage();
         }
-        return instance;
+        return Storage.instance;
     }
 
     private boolean hasName = false;
@@ -117,18 +117,13 @@ public class Storage implements Serializable {
      * @return if true = found a name | false = not found a name
      */
     public boolean hasName() {
-
-        if (null != appOwnerName) {
-            return true;
-        }
-
-        return hasName;
+        return null != appOwnerName;
     }
 
     public void clear() {
-        this.userList = null;
-        this.channelList = null;
-        this.notificationList = null;
+        this.userList = new LinkedList<>();
+        this.channelList = new LinkedList<>();
+        this.notificationList = new ArrayList<>();
     }
 
     @Override

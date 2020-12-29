@@ -13,7 +13,7 @@ public class Read {
     private Storage storage;
 
     public Read() {
-        this.storage = Storage.getIntance();
+        this.storage = Storage.getInstance();
     }
 
     public void localStorage(Context context) {
