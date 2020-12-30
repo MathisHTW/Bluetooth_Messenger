@@ -1,7 +1,5 @@
 package test.controller.logic.stream.localStorage;
 
-import android.app.Instrumentation;
-
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -20,4 +20,25 @@ class Ultis {
 
         return stringBuffer.toString();
     }
+
+    /**
+     * creates a unique URI for this device to be used as a unique identifier of
+     * the channel of this device
+     *
+     * @param channelName the name of the channel that is entered into the UI
+     * @return URI for this device
+     */
+    public String createURI(String channelName) {
+        final int randomSize = 1000000;
+        String myURI = "Bluetooth_Messenger://" + channelName;
+
+        int random = (int) (Math.random() * randomSize);
+        Date date = new Date();
+        long timeInMillis = date.getTime();
+
+        myURI = myURI + random;
+        myURI = myURI + timeInMillis;
+
+        return myURI;
+    }
 }

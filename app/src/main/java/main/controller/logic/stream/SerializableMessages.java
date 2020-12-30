@@ -12,7 +12,7 @@ public interface SerializableMessages {
      * @param msg = sendable msg
      * @return
      */
-    byte[] serializer(IUser iUser, String msg);
+    byte[] serializer(IUser iUser, String msg) throws NullPointerException;
 
     /**
      * Deserialize input from Bluetooth messenger

@@ -68,16 +68,15 @@ public class Start extends BTRootActivity {
         startActivity(intent);
     }
 
-    private void initOnClickEvents(){
+    private void initOnClickEvents() {
         this.loadCreateSettingActivity();
         this.loadCreateChannelActivity();
-        this.loadChannelActivity();
+        //this.loadChannelActivity();
     }
 
     private void loadChannelActivity() {
         final Intent channel = new Intent(this, Channel.class);
         Button buttonChannel = findViewById(R.id.btnJoin);
-
         buttonChannel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

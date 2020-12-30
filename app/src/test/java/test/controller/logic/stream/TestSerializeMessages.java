@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import main.controller.logic.stream.SerializableMessages;
 import main.controller.logic.stream.SerializeMessages;
 import main.modell.data.IUser;
 import main.modell.data.User;
@@ -20,7 +21,6 @@ public class TestSerializeMessages {
 
     @Test
     public void serializeAndDeserialize() throws IOException {
-
         String msg = "Ich Sende jetzt los alter";
         String msg1 = "Ich sende jetzt zurück alter";
 
@@ -35,6 +35,28 @@ public class TestSerializeMessages {
 
         Assert.assertEquals(iUser1Name, data1.readUTF());
         Assert.assertEquals(msg1, data1.readUTF());
+    }
+
+    @Test
+    public void serializeSetNull() {
+        SerializableMessages serializableMessages = new SerializeMessages();
+
+        try {
+            byte[] one = serializableMessages.serializer(null, null);
+        } catch (NullPointerException e) {
+            Assert.assertTrue(true);
+        }
+    }
+
+    @Test
+    public void deserializeSetNull() {
+        SerializableMessages serializableMessages = new SerializeMessages();
+
+        try {
+            serializableMessages.deserializer(null);
+        } catch (NullPointerException e) {
+            Assert.assertTrue(true);
+        }
     }
 
 }

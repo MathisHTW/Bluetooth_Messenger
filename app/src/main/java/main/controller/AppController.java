@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import main.controller.logic.stream.localStorage.LocalStorage;
 import main.modell.storage.Storage;
+import main.view.Settings;
 
 /**
  * Global Lifecycle Callbacks

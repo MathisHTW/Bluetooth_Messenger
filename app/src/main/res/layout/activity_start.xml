@@ -23,20 +23,21 @@
         android:id="@+id/btnCreateChannel"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:layout_marginBottom="316dp"
+        android:layout_marginBottom="276dp"
         android:text="Create Channel"
-        app:layout_constraintBottom_toTopOf="@+id/btnChangeName"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-16dp" />
 
     <Button
         android:id="@+id/btnJoin"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="96dp"
         android:text="Join Channel"
         app:layout_constraintBottom_toTopOf="@+id/btnCreateChannel"
         tools:layout_editor_absoluteX="16dp" />
 
+    <!--
     <Button
         android:id="@+id/btnChangeName"
         android:layout_width="match_parent"
@@ -45,5 +46,6 @@
         android:text="Change Name"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="16dp" />
+        -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
