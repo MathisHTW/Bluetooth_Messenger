@@ -15,7 +15,11 @@ public interface IChannel {
     String getName();
 
     /**
-     *
+     * set Messages
+     */
+    void setMessage(List<INotification> notifications);
+
+    /**
      * @return a list of recieved Msg
      */
     List<INotification> getMessages();
@@ -26,7 +30,6 @@ public interface IChannel {
     boolean getAlive();
 
     /**
-     *
      * @return a URI
      */
     String getUri();

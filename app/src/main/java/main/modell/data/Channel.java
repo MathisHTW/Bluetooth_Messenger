@@ -48,6 +48,11 @@ public class Channel implements IChannel, Serializable {
     }
 
     @Override
+    public void setMessage(List<INotification> notifications) {
+        this.notifications = notifications;
+    }
+
+    @Override
     public List<INotification> getMessages() {
         return null;
     }

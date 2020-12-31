@@ -17,6 +17,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import main.R;
@@ -25,6 +26,8 @@ import main.controller.asap.BTRootActivity;
 import main.controller.AppController;
 import main.controller.logic.stream.SerializableMessages;
 import main.controller.logic.stream.SerializeMessages;
+import main.modell.data.INotification;
+import main.modell.data.Message;
 import main.modell.storage.Storage;
 
 public class CurrentChannel extends BTRootActivity {
@@ -33,14 +36,33 @@ public class CurrentChannel extends BTRootActivity {
 
     private static final CharSequence URI = "asap://exampleURI";
     private static final CharSequence EXAMPLE_MESSAGE = "Send a Msg";
+
+    private final Storage storage;
+    private String name;
+    private String id;
+    private int selectChannel;
+
     private ASAPMessageReceivedListener receivedListener;
     private List<String> sentMessages = new ArrayList<>();
     private List<String> receivedMessages = new ArrayList<>();
+    private List<INotification> notifications = new LinkedList<>();
+
+    public CurrentChannel() {
+        this.storage = Storage.getInstance();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a_s_a_p);
+
+        //Set name and id of onClicked Channel
+        this.name = this.storage.getChannelList().get(savedInstanceState.getInt("ID")).getName();
+        this.id = this.storage.getChannelList().get(savedInstanceState.getInt("ID")).getID();
+        this.selectChannel = savedInstanceState.getInt("ID");
+
+        Log.i("Channel", "Name of Channel: " + this.name);
+        Log.i("Channel", "Id of Channel: " + this.id);
 
         appController.onActivityCreated(this, savedInstanceState);
 
@@ -79,25 +101,32 @@ public class CurrentChannel extends BTRootActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        appController.onActivityResumed(this);
+        this.appController.onActivityResumed(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        appController.onActivityPaused(this);
+        this.saveNotification();
+        this.appController.onActivityPaused(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        appController.onActivityStopped(this);
+        this.saveNotification();
+        this.appController.onActivityStopped(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        appController.onActivityDestroyed(this);
+        this.saveNotification();
+        this.appController.onActivityDestroyed(this);
+    }
+
+    private void saveNotification() {
+        Storage.getInstance().getChannelList().get(this.selectChannel).setMessage(this.notifications);
     }
 
     private String newMessageBuilder(String name, String msg) {
@@ -124,6 +153,7 @@ public class CurrentChannel extends BTRootActivity {
                 String msg = stream.readUTF();
 
                 this.receivedMessages.add(newMessageBuilder(name, msg));
+                this.notifications.add(new Message(Storage.getInstance().getAppOwnerName().getName(), msg));
                 Log.e("Debug", "Msg: " + msg + " from: " + name);
             }
 
@@ -169,6 +199,7 @@ public class CurrentChannel extends BTRootActivity {
             this.sendMessage(byteContent);
 
             this.sentMessages.add(myMessageBuilder(messageText.toString()));
+            this.notifications.add(new Message(Storage.getInstance().getAppOwnerName().getName(), messageText.toString()));
         }
 
         Toast toast = Toast.makeText(getApplication(), "Same Message change your text", Toast.LENGTH_SHORT);

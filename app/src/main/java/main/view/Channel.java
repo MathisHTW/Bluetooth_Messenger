@@ -2,6 +2,7 @@ package main.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,7 +44,10 @@ public class Channel extends BTRootActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final Intent createChannel = new Intent(getApplicationContext(), CurrentChannel.class);
-                startActivity(createChannel);
+                Bundle bundle = new Bundle();
+                Log.e("ID", String.valueOf(position));
+                bundle.putInt("ID", position);
+                startActivity(createChannel, bundle);
             }
         });
     }

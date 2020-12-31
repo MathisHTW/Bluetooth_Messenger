@@ -25,10 +25,6 @@ public class Read {
                 this.storage.addAllChannelList(save.getChannelList());
             }
 
-            if (!save.getNotificationList().isEmpty()) {
-                this.storage.addAllNotification(save.getNotificationList());
-            }
-
             if (!save.getUserList().isEmpty()) {
                 this.storage.addAllUser(save.getUserList());
             }
