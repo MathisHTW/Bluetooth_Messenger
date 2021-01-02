@@ -23,10 +23,19 @@
         android:id="@+id/btnCreateChannel"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:layout_marginBottom="276dp"
+        android:layout_marginBottom="132dp"
         android:text="Create Channel"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnCreateAppOwner"
         tools:layout_editor_absoluteX="-16dp" />
+
+    <Button
+        android:id="@+id/btnCreateAppOwner"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_marginBottom="124dp"
+        android:text="Settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/btnJoin"

@@ -62,13 +62,13 @@ public class LocalStorage implements ILocalStorage {
         }
 
         byte[] data = getBytes();
-        Log.e("Save", "byte[] length: " + data.length);
+        Log.d("LocalStorage", "byte[] length: " + data.length);
 
         //File path = new File("/Android/data/" + PROJECT + "/files/");
         File file = new File(context.getFilesDir(), FILENAME);
 
-        Log.e("Save", context.getFilesDir().toString());
-        Log.e("Save", file.getAbsolutePath());
+        Log.d("LocalStorage", context.getFilesDir().toString());
+        Log.d("LocalStorage", file.getAbsolutePath());
 
         //Add to management env
 
@@ -83,7 +83,7 @@ public class LocalStorage implements ILocalStorage {
             outputStream.flush();
             outputStream.close();
 
-            Log.e("Save", "File has been create");
+            Log.d("LocalStorage", "File has been create");
         } catch (IOException e) {
             e.printStackTrace();
             Log.e("Save " + IOException.class.getSimpleName(), e.getMessage());
@@ -92,10 +92,10 @@ public class LocalStorage implements ILocalStorage {
             if (outputStream != null) {
                 try {
                     outputStream.close();
-                    Log.e("Save", "OutputStream close()");
+                    Log.d("LocalStorage", "OutputStream close()");
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Log.e("Save " + IOException.class.getSimpleName(), e.getMessage());
+                    Log.e("LocalStorage " + IOException.class.getSimpleName(), e.getMessage());
                     return false;
                 }
             }
@@ -120,7 +120,7 @@ public class LocalStorage implements ILocalStorage {
 
         if (file.exists()) {
 
-            Log.e("ReadStorage", "File exists");
+            Log.d("LocalStorage", "File exists");
 
             FileInputStream inputStream = null;
             ObjectInputStream objectInputStream = null;
@@ -129,34 +129,34 @@ public class LocalStorage implements ILocalStorage {
                 objectInputStream = new ObjectInputStream(inputStream);
 
                 storage = (Storage) objectInputStream.readObject();
-                Log.e("ReadStorage", storage.toString());
+                Log.d("LocalStorage", storage.toString());
 
                 inputStream.close();
                 objectInputStream.close();
-                Log.e("ReadStorage", "File has been create");
+                Log.d("LocalStorage", "File has been create");
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.e("ReadStorage " + IOException.class.getSimpleName(), e.getMessage());
+                Log.e("LocalStorage " + IOException.class.getSimpleName(), e.getMessage());
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } finally {
                 if (inputStream != null) {
                     try {
                         inputStream.close();
-                        Log.e("Save", "inputStream close()");
+                        Log.d("LocalStorage", "inputStream close()");
                     } catch (IOException e) {
                         e.printStackTrace();
-                        Log.e("Save " + IOException.class.getSimpleName(), e.getMessage());
+                        Log.e("LocalStorage " + IOException.class.getSimpleName(), e.getMessage());
                     }
                 }
 
                 if (objectInputStream != null) {
                     try {
                         objectInputStream.close();
-                        Log.e("Save", "objectInputStream close()");
+                        Log.d("LocalStorage", "objectInputStream close()");
                     } catch (IOException e) {
                         e.printStackTrace();
-                        Log.e("Save " + IOException.class.getSimpleName(), e.getMessage());
+                        Log.e("LocalStorage " + IOException.class.getSimpleName(), e.getMessage());
                     }
                 }
             }

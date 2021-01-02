@@ -56,11 +56,15 @@ public class CurrentChannel extends BTRootActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a_s_a_p);
 
+        //TODO Make a probleme with ASAP
+        /*
         //Set name and id of onClicked Channel
         this.selectChannel = savedInstanceState.getInt("ID");
         this.name = this.storage.getChannelList().get(selectChannel).getName();
         this.id = this.storage.getChannelList().get(selectChannel).getID();
         this.uri = this.storage.getChannelList().get(selectChannel).getUri();
+        */
+
 
         Log.i("Channel", "Name of Channel: " + this.name);
         Log.i("Channel", "Id of Channel: " + this.id);

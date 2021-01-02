@@ -8,7 +8,6 @@ import android.widget.Button;
 import main.controller.AppController;
 import main.controller.asap.BTRootActivity;
 import main.controller.logic.CRUD.Read;
-import main.modell.storage.Storage;
 import main.view.Channel;
 import main.view.CreateChannel;
 import main.view.Settings;
@@ -22,9 +21,12 @@ public class Start extends BTRootActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        //TODO Bug duplication of Channel
+        /*
         if (!Storage.hasName()) {
             this.changeName();
         }
+         */
 
         final Read read = new Read();
         read.localStorage(getApplication());
@@ -69,7 +71,7 @@ public class Start extends BTRootActivity {
     }
 
     private void initOnClickEvents() {
-        //this.loadCreateSettingActivity();
+        this.loadCreateSettingActivity();
         this.loadCreateChannelActivity();
         this.loadChannelActivity();
     }
@@ -96,16 +98,17 @@ public class Start extends BTRootActivity {
         });
     }
 
-    /**
-     private void loadCreateSettingActivity() {
-     final Intent intent = new Intent(this, Settings.class);
-     Button buttonSetting = findViewById(R.id.btnChangeName);
-     buttonSetting.setOnClickListener(new View.OnClickListener() {
-    @Override public void onClick(View v) {
-    startActivity(intent);
+
+    private void loadCreateSettingActivity() {
+        final Intent intent = new Intent(this, Settings.class);
+        Button buttonSetting = findViewById(R.id.btnCreateAppOwner);
+        buttonSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
     }
-    });
-     }
-     */
+
 
 }

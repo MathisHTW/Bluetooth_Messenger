@@ -1,5 +1,7 @@
 package main.modell.storage;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +11,7 @@ import java.util.List;
 import main.modell.data.IChannel;
 import main.modell.data.INotification;
 import main.modell.data.IUser;
+import main.modell.data.User;
 
 public class Storage implements Serializable {
 
@@ -28,13 +31,12 @@ public class Storage implements Serializable {
         return Storage.instance;
     }
 
-    private static boolean hasName = false;
-    private static IUser appOwnerName = null;
+    private static IUser appOwnerName = new User("Unknown");
 
     private List<IUser> userList;
     private List<IChannel> channelList;
     private List<INotification> notificationList;
-    
+
     private Storage() {
         this.userList = new LinkedList<>();
         this.channelList = new LinkedList<>();
@@ -54,6 +56,7 @@ public class Storage implements Serializable {
     }
 
     public void addChannelList(IChannel iChannel) {
+        Log.d("Storage", "Add new Channel size: " + this.channelList.size());
         this.channelList.add(iChannel);
     }
 
@@ -104,7 +107,8 @@ public class Storage implements Serializable {
     }
 
     public List<IChannel> getChannelList() {
-        return channelList;
+        Log.d("Storage", "Channelsize: " + this.channelList.size());
+        return this.channelList;
     }
 
     public List<INotification> getNotificationList() {
@@ -129,7 +133,7 @@ public class Storage implements Serializable {
     @Override
     public String toString() {
         return "Storage{" +
-                "hasName=" + hasName +
+                "App Owner=" + this.getAppOwnerName() +
                 ", userList=" + Arrays.toString(userList.toArray()) +
                 ", channelList=" + Arrays.toString(channelList.toArray()) +
                 ", notificationList=" + Arrays.toString(notificationList.toArray()) +

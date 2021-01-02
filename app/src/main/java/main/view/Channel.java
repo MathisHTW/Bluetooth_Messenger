@@ -19,6 +19,7 @@ import main.modell.storage.Storage;
 public class Channel extends BTRootActivity {
 
     private AppController appController = AppController.instance;
+    private Storage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class Channel extends BTRootActivity {
 
         ListView listView = (ListView) findViewById(R.id.ItemViewList);
 
-        Storage storage = Storage.getInstance();
+        storage = Storage.getInstance();
 
         LinkedList<IChannel> listItem = new LinkedList<>(storage.getChannelList());
 
