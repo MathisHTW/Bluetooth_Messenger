@@ -28,13 +28,13 @@ public class Storage implements Serializable {
         return Storage.instance;
     }
 
-    private boolean hasName = false;
+    private static boolean hasName = false;
+    private static IUser appOwnerName = null;
 
     private List<IUser> userList;
     private List<IChannel> channelList;
     private List<INotification> notificationList;
-    private IUser appOwnerName = null;
-
+    
     private Storage() {
         this.userList = new LinkedList<>();
         this.channelList = new LinkedList<>();
@@ -46,7 +46,7 @@ public class Storage implements Serializable {
     }
 
     public void setAppOwnerName(IUser appOwnerName) {
-        this.appOwnerName = appOwnerName;
+        Storage.appOwnerName = appOwnerName;
     }
 
     public void addUser(IUser iUser) {
@@ -116,7 +116,7 @@ public class Storage implements Serializable {
      *
      * @return if true = found a name | false = not found a name
      */
-    public boolean hasName() {
+    public static boolean hasName() {
         return null != appOwnerName;
     }
 

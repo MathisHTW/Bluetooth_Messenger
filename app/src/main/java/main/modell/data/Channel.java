@@ -18,6 +18,9 @@ public class Channel implements IChannel, Serializable {
 
     private boolean alive;
 
+    /**
+     * Create a Default Channel
+     */
     public Channel() {
         this.id = "-1";
         this.name = "Dummy";
@@ -30,6 +33,11 @@ public class Channel implements IChannel, Serializable {
         this.uri = uriASAP + this.name;
     }
 
+    /**
+     * Create a Channel
+     * @param name set a name
+     * @param notifications set a list of sendet Messages
+     */
     public Channel(String name, List<INotification> notifications) {
         this.id = Ultis.generatID(name);
         this.name = name;

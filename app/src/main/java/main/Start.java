@@ -22,11 +22,9 @@ public class Start extends BTRootActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        Storage storage = Storage.getInstance();
-
-         if (!storage.hasName()) {
-         changeName();
-         }
+        if (!Storage.hasName()) {
+            this.changeName();
+        }
 
         final Read read = new Read();
         read.localStorage(getApplication());
@@ -99,16 +97,15 @@ public class Start extends BTRootActivity {
     }
 
     /**
-    private void loadCreateSettingActivity() {
-        final Intent intent = new Intent(this, Settings.class);
-        Button buttonSetting = findViewById(R.id.btnChangeName);
-        buttonSetting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intent);
-            }
-        });
+     private void loadCreateSettingActivity() {
+     final Intent intent = new Intent(this, Settings.class);
+     Button buttonSetting = findViewById(R.id.btnChangeName);
+     buttonSetting.setOnClickListener(new View.OnClickListener() {
+    @Override public void onClick(View v) {
+    startActivity(intent);
     }
+    });
+     }
      */
 
 }

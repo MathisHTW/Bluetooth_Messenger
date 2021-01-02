@@ -30,6 +30,7 @@ public interface IChannel {
     boolean getAlive();
 
     /**
+     * URI e.g: asap://name, asap://myChannel
      * @return a URI
      */
     String getUri();

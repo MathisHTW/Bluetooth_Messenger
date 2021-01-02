@@ -34,12 +34,12 @@ public class CurrentChannel extends BTRootActivity {
 
     private AppController appController = AppController.instance;
 
-    private static final CharSequence URI = "asap://exampleURI";
     private static final CharSequence EXAMPLE_MESSAGE = "Send a Msg";
 
     private final Storage storage;
     private String name;
     private String id;
+    private CharSequence uri;
     private int selectChannel;
 
     private ASAPMessageReceivedListener receivedListener;
@@ -57,9 +57,10 @@ public class CurrentChannel extends BTRootActivity {
         setContentView(R.layout.activity_a_s_a_p);
 
         //Set name and id of onClicked Channel
-        this.name = this.storage.getChannelList().get(savedInstanceState.getInt("ID")).getName();
-        this.id = this.storage.getChannelList().get(savedInstanceState.getInt("ID")).getID();
         this.selectChannel = savedInstanceState.getInt("ID");
+        this.name = this.storage.getChannelList().get(selectChannel).getName();
+        this.id = this.storage.getChannelList().get(selectChannel).getID();
+        this.uri = this.storage.getChannelList().get(selectChannel).getUri();
 
         Log.i("Channel", "Name of Channel: " + this.name);
         Log.i("Channel", "Id of Channel: " + this.id);
@@ -184,33 +185,35 @@ public class CurrentChannel extends BTRootActivity {
 
         boolean equaltext = true;
 
-        if (!messageText.toString().equals(EXAMPLE_MESSAGE.toString()) && equaltext) {
-            Log.d(this.getLogStart(), "going to send message: " + messageText);
 
-            // asap messages are bytes
-            SerializableMessages serializableMessages = new SerializeMessages();
-            equaltext = false;
+        Log.d(this.getLogStart(), "going to send message: " + messageText);
 
-            //TODO WIP
-            byte[] byteContent = serializableMessages.serializer(Storage.getInstance().getAppOwnerName(), messageText.toString());
+        // asap messages are bytes
+        SerializableMessages serializableMessages = new SerializeMessages();
+        equaltext = false;
 
-            Log.d(this.getLogStart(), "going to send messageBytes: " + byteContent);
+        //TODO WIP
+        byte[] byteContent = serializableMessages.serializer(Storage.getInstance().getAppOwnerName(), messageText.toString());
 
-            this.sendMessage(byteContent);
+        Log.d(this.getLogStart(), "going to send messageBytes: " + byteContent);
 
-            this.sentMessages.add(myMessageBuilder(messageText.toString()));
-            this.notifications.add(new Message(Storage.getInstance().getAppOwnerName().getName(), messageText.toString()));
-        }
+        this.sendMessage(byteContent);
 
+        this.sentMessages.add(myMessageBuilder(messageText.toString()));
+        this.notifications.add(new Message(Storage.getInstance().getAppOwnerName().getName(), messageText.toString()));
+
+        /*
         Toast toast = Toast.makeText(getApplication(), "Same Message change your text", Toast.LENGTH_SHORT);
         toast.show();
+
+         */
     }
 
     private void sendMessage(byte[] byteContent) {
         try {
             this.sendASAPMessage(
                     BTApplication.ASAP_Messenger,
-                    URI,
+                    uri,
                     byteContent,
                     true);
         } catch (ASAPException e) {
