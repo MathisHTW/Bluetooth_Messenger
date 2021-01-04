@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 import main.R;
 import main.controller.asap.BTApplication;
@@ -26,6 +27,7 @@ import main.controller.asap.BTRootActivity;
 import main.controller.AppController;
 import main.controller.logic.stream.SerializableMessages;
 import main.controller.logic.stream.SerializeMessages;
+import main.modell.data.Channel;
 import main.modell.data.INotification;
 import main.modell.data.Message;
 import main.modell.storage.Storage;
@@ -56,23 +58,25 @@ public class CurrentChannel extends BTRootActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a_s_a_p);
 
-        //TODO Make a probleme with ASAP
-        /*
-        //Set name and id of onClicked Channel
-        this.selectChannel = savedInstanceState.getInt("ID");
+        //Get Information about ID, name, URI
+        Log.d("CurrentChannel", "Bundle is loaded");
+        this.selectChannel = getIntent().getExtras().getInt("ID");
         this.name = this.storage.getChannelList().get(selectChannel).getName();
         this.id = this.storage.getChannelList().get(selectChannel).getID();
         this.uri = this.storage.getChannelList().get(selectChannel).getUri();
-        */
 
+        //TODO add Senden Messages
+        TextView textView = findViewById(R.id.textViewChannelName);
+        textView.setText("ChannelName=" + this.name);
+
+        if (null == this.uri) {
+            this.uri = Channel.URI_ASAP + "my";
+        }
 
         Log.i("Channel", "Name of Channel: " + this.name);
         Log.i("Channel", "Id of Channel: " + this.id);
 
         appController.onActivityCreated(this, savedInstanceState);
-
-        TextView textView = findViewById(R.id.textViewChannelName);
-        textView.setText("ASPA has been started");
 
         if (!this.isBluetoothEnvironmentOn()) {
             Log.d(this.getLogStart(), "start bt button pressed - ask service to start bt");

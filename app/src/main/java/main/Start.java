@@ -20,18 +20,9 @@ public class Start extends BTRootActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-        //TODO Bug duplication of Channel
-        /*
-        if (!Storage.hasName()) {
-            this.changeName();
-        }
-         */
-
         final Read read = new Read();
         read.localStorage(getApplication());
         appController.onActivityCreated(this, savedInstanceState);
-
     }
 
     @Override

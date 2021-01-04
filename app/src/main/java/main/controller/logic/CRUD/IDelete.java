@@ -9,9 +9,8 @@ public interface IDelete {
     /**
      * Delete a Channel and remove this from storage
      *
-     * @param iChannel
      */
-    boolean deleteChannel(IChannel iChannel);
+    boolean deleteChannel(String name);
 
     /**
      * Delete a User and remove this from storage
@@ -22,8 +21,14 @@ public interface IDelete {
 
     /**
      * Delete a Message
+     *
      * @param iNotification
      * @return
      */
     boolean deleteMessage(INotification iNotification);
+
+    /**
+     * Clear all Settings
+     */
+    void deleteAll();
 }

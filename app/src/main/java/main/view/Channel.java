@@ -41,14 +41,14 @@ public class Channel extends BTRootActivity {
         );
         listView.setAdapter(adapter);
 
+        //überragung von ID der angeclickten Liste
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final Intent createChannel = new Intent(getApplicationContext(), CurrentChannel.class);
-                Bundle bundle = new Bundle();
                 Log.e("ID", String.valueOf(position));
-                bundle.putInt("ID", position);
-                startActivity(createChannel, bundle);
+                createChannel.putExtra("ID", position);
+                startActivity(createChannel);
             }
         });
     }

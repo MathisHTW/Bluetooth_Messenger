@@ -89,12 +89,12 @@ public class Storage implements Serializable {
         this.userList.remove(removeUser);
     }
 
-    public void removeChannel(String id) {
+    public void removeChannel(String name) {
 
         IChannel removeChannel = null;
 
         for (IChannel iChannel : this.channelList) {
-            if (iChannel.getID().compareTo(id) == 0) {
+            if (iChannel.getName().compareTo(name) == 0) {
                 removeChannel = iChannel;
             }
         }
@@ -115,19 +115,11 @@ public class Storage implements Serializable {
         return notificationList;
     }
 
-    /**
-     * Check has User create a Username
-     *
-     * @return if true = found a name | false = not found a name
-     */
-    public static boolean hasName() {
-        return null != appOwnerName;
-    }
-
     public void clear() {
         this.userList = new LinkedList<>();
         this.channelList = new LinkedList<>();
         this.notificationList = new ArrayList<>();
+        this.setAppOwnerName(new User("Unknown"));
     }
 
     @Override

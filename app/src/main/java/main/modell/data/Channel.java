@@ -1,7 +1,6 @@
 package main.modell.data;
 
 import java.io.Serializable;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Channel implements IChannel, Serializable {
@@ -12,7 +11,7 @@ public class Channel implements IChannel, Serializable {
 
     private List<INotification> notifications;
 
-    private final String uriASAP = "asap://";
+    public static final String URI_ASAP = "asap://";
 
     private final String uri;
 
@@ -24,13 +23,13 @@ public class Channel implements IChannel, Serializable {
     public Channel() {
         this.id = "-1";
         this.name = "Dummy";
-        this.uri = uriASAP + this.id;
+        this.uri = URI_ASAP + this.id;
     }
 
     public Channel(String name) {
         this.id = Ultis.generatID(name);
         this.name = name;
-        this.uri = uriASAP + this.name;
+        this.uri = URI_ASAP + this.name;
     }
 
     /**
@@ -42,7 +41,7 @@ public class Channel implements IChannel, Serializable {
         this.id = Ultis.generatID(name);
         this.name = name;
         this.notifications = notifications;
-        this.uri = uriASAP + this.name;
+        this.uri = URI_ASAP + this.name;
     }
 
     @Override

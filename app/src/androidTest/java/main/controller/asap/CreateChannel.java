@@ -1,46 +1,38 @@
 package main.controller.asap;
 
 
-import androidx.test.espresso.DataInteraction;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.rule.GrantPermissionRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-
-import static androidx.test.InstrumentationRegistry.getInstrumentation;
-import static androidx.test.espresso.Espresso.onData;
-import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.pressBack;
-import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
-import static androidx.test.espresso.action.ViewActions.*;
-import static androidx.test.espresso.assertion.ViewAssertions.*;
-import static androidx.test.espresso.matcher.ViewMatchers.*;
-
-import main.R;
-import main.modell.storage.Storage;
-
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import main.R;
+import main.modell.storage.Storage;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class DefaultJoinChannel {
+public class CreateChannel {
 
     @Rule
     public ActivityTestRule<BTInit> mActivityTestRule = new ActivityTestRule<>(BTInit.class);
@@ -56,22 +48,29 @@ public class DefaultJoinChannel {
     }
 
     @Test
-    public void defaultJoinChannel() {
-        try {
-            ViewInteraction appCompatButton = onView(
-                    allOf(withId(R.id.btnJoin), withText("Join Channel"),
-                            childAtPosition(
-                                    childAtPosition(
-                                            withId(android.R.id.content),
-                                            0),
-                                    3),
-                            isDisplayed()));
-            appCompatButton.perform(click());
+    public void createChannel() {
+        ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.btnCreateChannel), withText("Create Channel"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                1),
+                        isDisplayed()));
+        appCompatButton.perform(click());
 
-            pressBack();
-        } catch (Exception e) {
-            Assert.fail();
-        }
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.btnCreate), withText("Create"),
+                        childAtPosition(
+                                allOf(withId(R.id.CreateChannelView),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                0),
+                        isDisplayed()));
+        appCompatButton2.perform(click());
+
+        Assert.assertEquals(1, Storage.getInstance().getChannelList().size());
     }
 
     private static Matcher<View> childAtPosition(

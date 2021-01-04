@@ -21,11 +21,17 @@ public class Create implements ICreate {
     }
 
     @Override
-    public boolean createChannel(String name) throws IllegalArgumentException{
-
+    public boolean createChannel(String name) throws IllegalArgumentException {
         if (name.isEmpty()) {
-            Log.e("Name", "Name is Empty");
+            Log.e("Create", "Name is Empty");
             throw new IllegalArgumentException("Name is Empty");
+        }
+
+        boolean result = this.checkChannelAreDuplicated(name);
+
+        if (result) {
+            Log.e("Create", "Channel is not unique");
+            throw new IllegalStateException("Channel is not unique");
         }
 
         final IChannel iChannel = new Channel(name);
@@ -62,4 +68,18 @@ public class Create implements ICreate {
         return true;
     }
 
+    /**
+     * Check if duplication name in Channel ist
+     *
+     * @param name
+     * @return if true duplication or false unique
+     */
+    private boolean checkChannelAreDuplicated(String name) {
+        for (IChannel channel : this.storage.getChannelList()) {
+            if (channel.getName().toLowerCase().compareTo(name.toLowerCase()) == 0) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

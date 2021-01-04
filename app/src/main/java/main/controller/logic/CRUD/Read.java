@@ -3,12 +3,14 @@ package main.controller.logic.CRUD;
 import android.content.Context;
 import android.util.Log;
 
+import java.util.HashSet;
 import java.util.Objects;
 
 import main.controller.logic.stream.localStorage.LocalStorage;
+import main.modell.data.IChannel;
 import main.modell.storage.Storage;
 
-public class Read {
+public class Read implements IRead{
 
     private Storage storage;
 

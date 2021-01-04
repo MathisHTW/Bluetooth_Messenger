@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import main.R;
 import main.Start;
 import main.controller.AppController;
 import main.controller.logic.CRUD.Create;
+import main.controller.logic.CRUD.Delete;
 import main.modell.data.User;
 import main.modell.storage.Storage;
 
@@ -24,6 +26,9 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        this.initEvents();
+        TextView textView = findViewById(R.id.editTextOwnerName);
+        textView.setText(Storage.getInstance().getAppOwnerName().getName());
         appController.onActivityCreated(this, savedInstanceState);
     }
 
@@ -33,15 +38,52 @@ public class Settings extends AppCompatActivity {
         appController.onActivityStarted(this);
     }
 
-    public void onClick(View view) {
-        TextView textView = findViewById(R.id.editTextOwnerName);
-        Storage.getInstance().setAppOwnerName(new User(textView.getText().toString()));
+    private void initEvents() {
+        Button delete = findViewById(R.id.deleteAll);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        Log.d("Settings", "Settings View add Username");
-        Log.d("Settings", Storage.getInstance().getAppOwnerName().getName());
+                Delete delete = new Delete();
+                delete.deleteAll();
+                Log.d("Settings", "Delete all Settings");
 
-        Toast toast = Toast.makeText(getApplication(), "Your has change your Username", Toast.LENGTH_SHORT);
-        toast.show();
-        //startActivity(new Intent(this, Channel.class));
+                Toast toast = Toast.makeText(getApplication(), "Your has delete all Settings", Toast.LENGTH_SHORT);
+                toast.show();
+                startActivity(new Intent(getApplicationContext(), Settings.class));
+            }
+        });
+
+        Button add = findViewById(R.id.btnAppOwner);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView textView = findViewById(R.id.editTextOwnerName);
+                Storage.getInstance().setAppOwnerName(new User(textView.getText().toString()));
+
+                Log.d("Settings", "Settings View add Username");
+                Log.d("Settings", Storage.getInstance().getAppOwnerName().getName());
+
+                Toast toast = Toast.makeText(getApplication(), "Your has change your Username", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+        Button deleteChannelByName = findViewById(R.id.btnDeleteChannel);
+        deleteChannelByName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView textView = findViewById(R.id.editTextDeleteChannel);
+                String text = textView.getText().toString();
+
+                Log.d("Settings", "Remove Channel: " + text);
+                Delete delete = new Delete();
+                delete.deleteChannel(text);
+
+                Toast toast = Toast.makeText(getApplication(), "Your has deleted Channel: " + text, Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
     }
 }

@@ -14,15 +14,15 @@ public class Delete implements IDelete {
     }
 
     @Override
-    public boolean deleteChannel(IChannel iChannel) {
-        this.storage.removeChannel(iChannel.getID());
-        return false;
+    public boolean deleteChannel(String name) {
+        this.storage.removeChannel(name);
+        return true;
     }
 
     @Override
     public boolean deleteUser(IUser iUser) {
         this.storage.removeUser(iUser.getID());
-        return false;
+        return true;
     }
 
     @Override
@@ -30,5 +30,9 @@ public class Delete implements IDelete {
         return false;
     }
 
+    @Override
+    public void deleteAll() {
+        this.storage.clear();
+    }
 
 }
