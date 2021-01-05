@@ -34,7 +34,8 @@ public class Channel implements IChannel, Serializable {
 
     /**
      * Create a Channel
-     * @param name set a name
+     *
+     * @param name          set a name
      * @param notifications set a list of sendet Messages
      */
     public Channel(String name, List<INotification> notifications) {
@@ -61,7 +62,7 @@ public class Channel implements IChannel, Serializable {
 
     @Override
     public List<INotification> getMessages() {
-        return null;
+        return this.notifications;
     }
 
     @Override

@@ -4,13 +4,18 @@ import android.content.Context;
 import android.util.Log;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 import main.controller.logic.stream.localStorage.LocalStorage;
+import main.modell.data.Channel;
 import main.modell.data.IChannel;
+import main.modell.data.INotification;
+import main.modell.data.Message;
 import main.modell.storage.Storage;
 
-public class Read implements IRead{
+public class Read implements IRead {
 
     private Storage storage;
 
@@ -25,6 +30,10 @@ public class Read implements IRead{
 
             if (!save.getChannelList().isEmpty()) {
                 this.storage.addAllChannelList(save.getChannelList());
+            }
+
+            if (save.getChannelList().size() == 0) {
+                this.storage.addChannelList(new Channel(Storage.DEFAULT_CHANNEL_NAME));
             }
 
             if (!save.getUserList().isEmpty()) {

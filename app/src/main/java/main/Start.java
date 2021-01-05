@@ -29,31 +29,31 @@ public class Start extends BTRootActivity {
     protected void onStart() {
         super.onStart();
         this.initOnClickEvents();
-        appController.onActivityStarted(this);
+        this.appController.onActivityStarted(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        appController.onActivityResumed(this);
+        this.appController.onActivityResumed(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        appController.onActivityPaused(this);
+        this.appController.onActivityPaused(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        appController.onActivityStopped(this);
+        this.appController.onActivityStopped(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        appController.onActivityDestroyed(this);
+        this.appController.onActivityDestroyed(this);
     }
 
     private void changeName() {
@@ -89,7 +89,6 @@ public class Start extends BTRootActivity {
         });
     }
 
-
     private void loadCreateSettingActivity() {
         final Intent intent = new Intent(this, Settings.class);
         Button buttonSetting = findViewById(R.id.btnCreateAppOwner);
@@ -100,6 +99,4 @@ public class Start extends BTRootActivity {
             }
         });
     }
-
-
 }

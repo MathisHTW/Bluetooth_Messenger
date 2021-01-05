@@ -6,4 +6,5 @@ public interface INotification {
 
     String getName();
 
+    String getText();
 }

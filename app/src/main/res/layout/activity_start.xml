@@ -14,37 +14,42 @@
         android:inputType="textPersonName"
         android:text="Bluetooth Messenger"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnJoin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnCreateChannel"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:layout_marginBottom="132dp"
         android:text="Create Channel"
-        app:layout_constraintBottom_toTopOf="@+id/btnCreateAppOwner"
-        tools:layout_editor_absoluteX="-16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnJoin" />
 
     <Button
         android:id="@+id/btnCreateAppOwner"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:layout_marginBottom="124dp"
+        android:layout_marginBottom="64dp"
         android:text="Settings"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateChannel"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnJoin"
         android:layout_width="match_parent"
         android:layout_height="59dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginTop="136dp"
         android:text="Join Channel"
-        app:layout_constraintBottom_toTopOf="@+id/btnCreateChannel"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
     <!--
     <Button

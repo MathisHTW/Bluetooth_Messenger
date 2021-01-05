@@ -19,17 +19,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 import main.R;
 import main.controller.asap.BTApplication;
 import main.controller.asap.BTRootActivity;
 import main.controller.AppController;
+import main.controller.logic.CRUD.Read;
 import main.controller.logic.stream.SerializableMessages;
 import main.controller.logic.stream.SerializeMessages;
-import main.modell.data.Channel;
 import main.modell.data.INotification;
 import main.modell.data.Message;
+import main.modell.data.User;
 import main.modell.storage.Storage;
 
 public class CurrentChannel extends BTRootActivity {
@@ -57,49 +57,10 @@ public class CurrentChannel extends BTRootActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_a_s_a_p);
+        this.appController.onActivityCreated(this, savedInstanceState);
 
-        //Get Information about ID, name, URI
-        Log.d("CurrentChannel", "Bundle is loaded");
-        this.selectChannel = getIntent().getExtras().getInt("ID");
-        this.name = this.storage.getChannelList().get(selectChannel).getName();
-        this.id = this.storage.getChannelList().get(selectChannel).getID();
-        this.uri = this.storage.getChannelList().get(selectChannel).getUri();
-
-        //TODO add Senden Messages
-        TextView textView = findViewById(R.id.textViewChannelName);
-        textView.setText("ChannelName=" + this.name);
-
-        if (null == this.uri) {
-            this.uri = Channel.URI_ASAP + "my";
-        }
-
-        Log.i("Channel", "Name of Channel: " + this.name);
-        Log.i("Channel", "Id of Channel: " + this.id);
-
-        appController.onActivityCreated(this, savedInstanceState);
-
-        if (!this.isBluetoothEnvironmentOn()) {
-            Log.d(this.getLogStart(), "start bt button pressed - ask service to start bt");
-            super.startBluetooth();
-        }
-
-        EditText messageEditView = findViewById(R.id.editTextNewMessage);
-        messageEditView.setText(EXAMPLE_MESSAGE);
-
-        this.receivedListener = new ASAPMessageReceivedListener() {
-            @Override
-            public void asapMessagesReceived(ASAPMessages asapMessages) {
-                Log.d("receivedListener", "asapMessageReceived");
-                CurrentChannel.this.doHandleReceivedMessages(asapMessages);
-                Log.e("receivedListener", asapMessages.toString());
-            }
-        };
-
-        // set listener to get informed about newly arrived messages
-        this.getASAPApplication().addASAPMessageReceivedListener(
-                BTApplication.ASAP_Messenger, // listen to this app
-                this.receivedListener
-        );
+        this.init();
+        this.initASAP();
     }
 
     @Override
@@ -134,8 +95,80 @@ public class CurrentChannel extends BTRootActivity {
         this.appController.onActivityDestroyed(this);
     }
 
+    private void init() {
+        //Get Information about ID, name, URI
+        Log.d("CurrentChannel", "Bundle is loaded");
+        this.selectChannel = getIntent().getExtras().getInt("ID");
+        this.name = this.storage.getChannelList().get(selectChannel).getName();
+        this.id = this.storage.getChannelList().get(selectChannel).getID();
+        this.uri = this.storage.getChannelList().get(selectChannel).getUri();
+        Log.i("Channel", "Name of Channel: " + this.name);
+        Log.i("Channel", "Id of Channel: " + this.id);
+
+        //TODO add Senden Messages
+        TextView textView = findViewById(R.id.textViewChannelName);
+        textView.setText("ChannelName=" + this.name);
+
+        EditText messageEditView = findViewById(R.id.editTextNewMessage);
+        messageEditView.setText(EXAMPLE_MESSAGE);
+
+        //TODO is not more usefull
+        //this.readNotification();
+    }
+
+    private void initASAP() {
+        /**
+         Check Bluetooth is on
+         */
+        if (!this.isBluetoothEnvironmentOn()) {
+            Log.d(this.getLogStart(), "start bt button pressed - ask service to start bt");
+            super.startBluetooth();
+        }
+
+        /**
+         * Create Listener
+         */
+        this.receivedListener = new ASAPMessageReceivedListener() {
+            @Override
+            public void asapMessagesReceived(ASAPMessages asapMessages) {
+                Log.d("receivedListener", "asapMessageReceived");
+                CurrentChannel.this.doHandleReceivedMessages(asapMessages);
+                Log.e("receivedListener", asapMessages.toString());
+            }
+        };
+
+        /**
+         * set listener to get informed about newly arrived messages
+         */
+        this.getASAPApplication().addASAPMessageReceivedListener(
+                BTApplication.ASAP_Messenger, // listen to this app
+                this.receivedListener
+        );
+    }
+
+    /**
+     * After close app save current messages
+     */
     private void saveNotification() {
         Storage.getInstance().getChannelList().get(this.selectChannel).setMessage(this.notifications);
+    }
+
+    private void readNotification() {
+        TextView textView = findViewById(R.id.textViewForASAPMessenges);
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        List<INotification> notifications = Storage.getInstance().getChannelList().get(selectChannel).getMessages();
+        if (notifications != null) {
+            for (INotification notification : notifications) {
+                stringBuilder.append(notification.getName() + " " + notification.getText() + "\n");
+            }
+
+            textView.setText(stringBuilder.toString());
+        } else {
+            textView.setText("No Messages");
+        }
+
     }
 
     private String newMessageBuilder(String name, String msg) {

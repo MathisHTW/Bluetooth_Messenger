@@ -50,7 +50,6 @@ public class Settings extends AppCompatActivity {
 
                 Toast toast = Toast.makeText(getApplication(), "Your has delete all Settings", Toast.LENGTH_SHORT);
                 toast.show();
-                startActivity(new Intent(getApplicationContext(), Settings.class));
             }
         });
 
@@ -85,5 +84,11 @@ public class Settings extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.appController.onActivityDestroyed(this);
     }
 }

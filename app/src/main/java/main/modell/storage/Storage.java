@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import main.modell.data.Channel;
 import main.modell.data.IChannel;
 import main.modell.data.INotification;
 import main.modell.data.IUser;
@@ -18,6 +19,9 @@ public class Storage implements Serializable {
     private static final long serialVersionUID = 211268099661671010L;
 
     private static Storage instance = null;
+
+    public final static String DEFAULT_APP_USERNAME = "Unknown";
+    public final static String DEFAULT_CHANNEL_NAME = "Public";
 
     /**
      * Get Storage Func
@@ -31,7 +35,7 @@ public class Storage implements Serializable {
         return Storage.instance;
     }
 
-    private static IUser appOwnerName = new User("Unknown");
+    private IUser appOwnerName;
 
     private List<IUser> userList;
     private List<IChannel> channelList;
@@ -41,6 +45,8 @@ public class Storage implements Serializable {
         this.userList = new LinkedList<>();
         this.channelList = new LinkedList<>();
         this.notificationList = new ArrayList<>();
+
+        this.appOwnerName = new User(DEFAULT_APP_USERNAME);
     }
 
     public IUser getAppOwnerName() {
@@ -48,7 +54,7 @@ public class Storage implements Serializable {
     }
 
     public void setAppOwnerName(IUser appOwnerName) {
-        Storage.appOwnerName = appOwnerName;
+        this.appOwnerName = appOwnerName;
     }
 
     public void addUser(IUser iUser) {
@@ -119,7 +125,9 @@ public class Storage implements Serializable {
         this.userList = new LinkedList<>();
         this.channelList = new LinkedList<>();
         this.notificationList = new ArrayList<>();
-        this.setAppOwnerName(new User("Unknown"));
+
+        this.addChannelList(new Channel("Public"));
+        this.setAppOwnerName(new User(DEFAULT_APP_USERNAME));
     }
 
     @Override

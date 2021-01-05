@@ -13,7 +13,7 @@ public class TestCreate {
         Storage.getInstance().clear();
         Create create = new Create();
         create.createChannel("Power");
-        Assert.assertEquals("Power", Storage.getInstance().getChannelList().get(0).getName());
+        Assert.assertEquals("Power", Storage.getInstance().getChannelList().get(1).getName());
     }
 
     @Test

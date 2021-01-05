@@ -21,8 +21,8 @@ public class TestDelete {
     public void deleteAllWithOneUserAndOneChannel() {
         Delete delete = new Delete();
         delete.deleteAll();
-        Assert.assertEquals(0, Storage.getInstance().getChannelList().size());
-        Assert.assertEquals("Rambo", Storage.getInstance().getAppOwnerName().getName());
+        Assert.assertEquals(1, Storage.getInstance().getChannelList().size());
+        Assert.assertEquals(Storage.DEFAULT_APP_USERNAME, Storage.getInstance().getAppOwnerName().getName());
     }
 
     @Test
@@ -39,8 +39,8 @@ public class TestDelete {
 
         Delete delete = new Delete();
         delete.deleteAll();
-        Assert.assertEquals(0, Storage.getInstance().getChannelList().size());
-        Assert.assertEquals("Rambo", Storage.getInstance().getAppOwnerName().getName());
+        Assert.assertEquals(1, Storage.getInstance().getChannelList().size());
+        Assert.assertEquals(Storage.DEFAULT_APP_USERNAME, Storage.getInstance().getAppOwnerName().getName());
     }
 
     @Test
@@ -52,7 +52,7 @@ public class TestDelete {
         Delete delete = new Delete();
         delete.deleteChannel("PowerTower");
 
-        Assert.assertEquals(0, Storage.getInstance().getChannelList().size());
+        Assert.assertEquals(1, Storage.getInstance().getChannelList().size());
     }
 
 }

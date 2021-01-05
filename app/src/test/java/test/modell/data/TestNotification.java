@@ -10,7 +10,7 @@ public class TestNotification {
     @Test
     public void createNotification() {
         try {
-            Notification notification = new Notification("Test123");
+            Notification notification = new Notification("Test123", "MAL");
         } catch (Exception e) {
             Assert.fail();
         }
@@ -19,7 +19,7 @@ public class TestNotification {
     @Test
     public void createNotificationNullPointer(){
         try {
-            Notification notification = new Notification(null);
+            Notification notification = new Notification(null, null);
         } catch (Exception e) {
             Assert.assertTrue(true);
         }
