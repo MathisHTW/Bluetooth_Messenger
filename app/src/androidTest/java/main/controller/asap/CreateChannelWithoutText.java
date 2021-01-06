@@ -94,7 +94,7 @@ public class CreateChannelWithoutText {
                         isDisplayed()));
         appCompatButton2.perform(click());
 
-        Assert.assertEquals(0, Storage.getInstance().getChannelList().size());
+        Assert.assertEquals(1, Storage.getInstance().getChannelList().size());
     }
 
     private static Matcher<View> childAtPosition(

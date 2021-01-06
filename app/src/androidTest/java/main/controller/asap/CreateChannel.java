@@ -70,7 +70,7 @@ public class CreateChannel {
                         isDisplayed()));
         appCompatButton2.perform(click());
 
-        Assert.assertEquals(1, Storage.getInstance().getChannelList().size());
+        Assert.assertEquals(2, Storage.getInstance().getChannelList().size());
     }
 
     private static Matcher<View> childAtPosition(
