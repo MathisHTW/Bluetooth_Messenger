@@ -46,4 +46,38 @@ public class TestCreate {
         }
     }
 
+    @Test
+    public void addSingleUser(){
+        Storage.getInstance().clear();
+        Create create = new Create();
+        create.createToUserList("newUser");
+
+        Assert.assertEquals("newUser",Storage.getInstance().getUserList().get(0).getName());
+    }
+
+    @Test
+    public void addTwoDifferentUsers(){
+        Storage.getInstance().clear();
+        Create create = new Create();
+        create.createToUserList("newUser1");
+        create.createToUserList("newUser2");
+
+        Assert.assertEquals("newUser1",Storage.getInstance().getUserList().get(0).getName());
+        Assert.assertEquals("newUser2",Storage.getInstance().getUserList().get(1).getName());
+        Assert.assertNotEquals(Storage.getInstance().getUserList().get(0).getID(),Storage.getInstance().getUserList().get(1).getID());
+    }
+
+    @Test
+    public void addTwoSimilarUsers(){
+        Storage.getInstance().clear();
+        Create create = new Create();
+        create.createToUserList("newUser1");
+        create.createToUserList("newUser1");
+
+        Assert.assertEquals("newUser1",Storage.getInstance().getUserList().get(0).getName());
+        Assert.assertEquals("newUser1",Storage.getInstance().getUserList().get(1).getName());
+        Assert.assertNotEquals(Storage.getInstance().getUserList().get(0).getID(),Storage.getInstance().getUserList().get(1).getID());
+    }
+    
+
 }
