@@ -1,7 +1,5 @@
 package main.modell.storage;
 
-import android.util.Log;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +12,7 @@ import main.modell.data.INotification;
 import main.modell.data.IUser;
 import main.modell.data.User;
 
-public class Storage implements Serializable {
+public class Storage implements Serializable, IStorageChannel, IStorageNotification, IStorageUser {
 
     private static final long serialVersionUID = 211268099661671010L;
 
@@ -35,96 +33,79 @@ public class Storage implements Serializable {
         return Storage.instance;
     }
 
-    private IUser appOwnerName;
-
-    private List<IUser> userList;
-    private List<IChannel> channelList;
-    private List<INotification> notificationList;
+    private IStorageUser storageUser;
+    private IStorageChannel storageChannel;
+    private IStorageNotification storageNotification;
 
     private Storage() {
-        this.userList = new LinkedList<>();
-        this.channelList = new LinkedList<>();
-        this.notificationList = new ArrayList<>();
+        this.storageChannel = new StorageChannel(new LinkedList<IChannel>());
+        this.storageNotification = new StorageNotification(new ArrayList<INotification>());
+        this.storageUser = new StorageUser(new LinkedList<IUser>());
 
-        this.appOwnerName = new User(DEFAULT_APP_USERNAME);
-    }
-
-    public IUser getAppOwnerName() {
-        return appOwnerName;
-    }
-
-    public void setAppOwnerName(IUser appOwnerName) {
-        this.appOwnerName = appOwnerName;
-    }
-
-    public void addUser(IUser iUser) {
-        this.userList.add(iUser);
-    }
-
-    public void addChannelList(IChannel iChannel) {
-        Log.d("Storage", "Add new Channel size: " + this.channelList.size());
-        this.channelList.add(iChannel);
-    }
-
-    public void addNotification(INotification iNotification) {
-        this.notificationList.add(iNotification);
+        this.storageUser.setAppOwnerName(new User(DEFAULT_APP_USERNAME));
     }
 
     public void addAllChannelList(List<IChannel> list) {
-        this.channelList.addAll(list);
+        this.storageChannel.addAllChannelList(list);
     }
 
-    public void addAllUser(List<IUser> iUsers) {
-        this.userList.addAll(iUsers);
-    }
-
-    public void addAllNotification(List<INotification> notifications) {
-        this.notificationList.addAll(notifications);
-    }
-
-    public void removeUser(String id) {
-
-        IUser removeUser = null;
-
-        for (IUser iUser : this.userList) {
-            if (iUser.getID().compareTo(id) == 0) {
-                removeUser = iUser;
-            }
-        }
-
-        this.userList.remove(removeUser);
+    public void addChannelList(IChannel iChannel) {
+        this.storageChannel.addChannelList(iChannel);
     }
 
     public void removeChannel(String name) {
-
-        IChannel removeChannel = null;
-
-        for (IChannel iChannel : this.channelList) {
-            if (iChannel.getName().compareTo(name) == 0) {
-                removeChannel = iChannel;
-            }
-        }
-
-        this.channelList.remove(removeChannel);
-    }
-
-    public List<IUser> getUserList() {
-        return userList;
+        this.storageChannel.removeChannel(name);
     }
 
     public List<IChannel> getChannelList() {
-        Log.d("Storage", "Channelsize: " + this.channelList.size());
-        return this.channelList;
+        return this.storageChannel.getChannelList();
+    }
+
+    public void addNotification(INotification iNotification) {
+        this.storageNotification.addNotification(iNotification);
+    }
+
+    public void addAllNotification(List<INotification> notifications) {
+        this.storageNotification.addAllNotification(notifications);
     }
 
     public List<INotification> getNotificationList() {
-        return notificationList;
+        return this.storageNotification.getNotificationList();
+    }
+
+    public IUser getAppOwnerName() {
+        return this.storageUser.getAppOwnerName();
+    }
+
+    public void setAppOwnerName(IUser appOwnerName) {
+        this.storageUser.setAppOwnerName(appOwnerName);
+    }
+
+    public void addUser(IUser iUser) {
+        this.storageUser.addUser(iUser);
+    }
+
+    public void addAllUser(List<IUser> iUsers) {
+        this.storageUser.addAllUser(iUsers);
+    }
+
+    public void removeUser(String id) {
+        this.storageUser.removeUser(id);
+    }
+
+    public List<IUser> getUserList() {
+        return this.storageUser.getUserList();
     }
 
     public void clear() {
-        this.userList = new LinkedList<>();
-        this.channelList = new LinkedList<>();
-        this.notificationList = new ArrayList<>();
+
+        this.storageNotification = null;
+        this.storageChannel = null;
+        this.storageUser = null;
+
+        this.storageChannel = new StorageChannel(new LinkedList<IChannel>());
+        this.storageNotification = new StorageNotification(new ArrayList<INotification>());
+        this.storageUser = new StorageUser(new LinkedList<IUser>());
 
         this.addChannelList(new Channel("Public"));
         this.setAppOwnerName(new User(DEFAULT_APP_USERNAME));
@@ -133,10 +114,9 @@ public class Storage implements Serializable {
     @Override
     public String toString() {
         return "Storage{" +
-                "App Owner=" + this.getAppOwnerName() +
-                ", userList=" + Arrays.toString(userList.toArray()) +
-                ", channelList=" + Arrays.toString(channelList.toArray()) +
-                ", notificationList=" + Arrays.toString(notificationList.toArray()) +
+                ", " + this.storageUser.toString() +
+                ", " + this.storageNotification.toString() +
+                ", " + this.storageChannel.toString() +
                 '}';
     }
 }
