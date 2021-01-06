@@ -1,4 +1,4 @@
-package main.controller.asap;
+package main.view.testCreateChannel;
 
 
 import android.view.View;
@@ -21,12 +21,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import main.R;
+import main.controller.asap.BTInit;
 import main.modell.storage.Storage;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CreateChannelWithoutText {
+public class CreateSameChannel {
 
     @Rule
     public ActivityTestRule<BTInit> mActivityTestRule = new ActivityTestRule<>(BTInit.class);
@@ -50,7 +50,7 @@ public class CreateChannelWithoutText {
     }
 
     @Test
-    public void createChannelWithoutText() {
+    public void createSameChannel() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.btnCreateChannel), withText("Create Channel"),
                         childAtPosition(
@@ -60,28 +60,6 @@ public class CreateChannelWithoutText {
                                 1),
                         isDisplayed()));
         appCompatButton.perform(click());
-
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.textViewName), withText("..."),
-                        childAtPosition(
-                                allOf(withId(R.id.CreateChannelView),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                3),
-                        isDisplayed()));
-        appCompatEditText.perform(replaceText(""));
-
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.textViewName),
-                        childAtPosition(
-                                allOf(withId(R.id.CreateChannelView),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                3),
-                        isDisplayed()));
-        appCompatEditText2.perform(closeSoftKeyboard());
 
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.btnCreate), withText("Create"),
@@ -94,7 +72,20 @@ public class CreateChannelWithoutText {
                         isDisplayed()));
         appCompatButton2.perform(click());
 
-        Assert.assertEquals(1, Storage.getInstance().getChannelList().size());
+        pressBack();
+
+        ViewInteraction appCompatButton3 = onView(
+                allOf(withId(R.id.btnCreate), withText("Create"),
+                        childAtPosition(
+                                allOf(withId(R.id.CreateChannelView),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                0),
+                        isDisplayed()));
+        appCompatButton3.perform(click());
+
+        Assert.assertEquals(2, Storage.getInstance().getChannelList().size());
     }
 
     private static Matcher<View> childAtPosition(

@@ -1,4 +1,4 @@
-package main.controller.asap;
+package main.view.testCreateChannel;
 
 
 import android.view.View;
@@ -21,10 +21,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import main.R;
+import main.controller.asap.BTInit;
 import main.modell.storage.Storage;
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -33,7 +33,7 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CreateSameChannel {
+public class CreateChannel {
 
     @Rule
     public ActivityTestRule<BTInit> mActivityTestRule = new ActivityTestRule<>(BTInit.class);
@@ -49,7 +49,7 @@ public class CreateSameChannel {
     }
 
     @Test
-    public void createSameChannel() {
+    public void createChannel() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.btnCreateChannel), withText("Create Channel"),
                         childAtPosition(
@@ -70,19 +70,6 @@ public class CreateSameChannel {
                                 0),
                         isDisplayed()));
         appCompatButton2.perform(click());
-
-        pressBack();
-
-        ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.btnCreate), withText("Create"),
-                        childAtPosition(
-                                allOf(withId(R.id.CreateChannelView),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                0),
-                        isDisplayed()));
-        appCompatButton3.perform(click());
 
         Assert.assertEquals(2, Storage.getInstance().getChannelList().size());
     }

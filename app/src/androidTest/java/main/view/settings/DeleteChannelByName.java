@@ -1,4 +1,4 @@
-package main.controller.asap;
+package main.view.settings;
 
 
 import android.view.View;
@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import main.R;
+import main.controller.asap.BTInit;
 import main.modell.storage.Storage;
 
 import static androidx.test.espresso.Espresso.onView;

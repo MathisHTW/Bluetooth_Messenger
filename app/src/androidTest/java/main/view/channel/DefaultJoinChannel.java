@@ -1,4 +1,4 @@
-package main.controller.asap;
+package main.view.channel;
 
 
 import androidx.test.espresso.DataInteraction;
@@ -22,6 +22,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.*;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
 
 import main.R;
+import main.controller.asap.BTInit;
 import main.modell.storage.Storage;
 
 import org.hamcrest.Description;
