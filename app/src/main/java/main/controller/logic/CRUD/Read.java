@@ -40,9 +40,6 @@ public class Read implements IRead {
                 this.storage.addAllUser(save.getUserList());
             }
 
-            if (save.getAppOwnerName() != null) {
-                this.storage.setAppOwnerName(save.getAppOwnerName());
-            }
 
         } catch (NullPointerException e) {
             Log.i("Save", Objects.requireNonNull(e.getMessage()));

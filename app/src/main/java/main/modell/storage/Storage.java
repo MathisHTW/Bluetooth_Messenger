@@ -2,7 +2,6 @@ package main.modell.storage;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,6 +41,7 @@ public class Storage implements Serializable, IStorageChannel, IStorageNotificat
         this.storageNotification = new StorageNotification(new ArrayList<INotification>());
         this.storageUser = new StorageUser(new LinkedList<IUser>());
 
+        //this.storageChannel.addChannelList(new Channel(DEFAULT_CHANNEL_NAME));
         this.storageUser.setAppOwnerName(new User(DEFAULT_APP_USERNAME));
     }
 
