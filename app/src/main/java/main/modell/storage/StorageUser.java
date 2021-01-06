@@ -1,12 +1,12 @@
 package main.modell.storage;
 
-import java.lang.reflect.Array;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
 import main.modell.data.IUser;
 
-class StorageUser implements IStorageUser {
+class StorageUser implements IStorageUser, Serializable {
 
     private IUser appOwnerName;
     private List<IUser> userList;
