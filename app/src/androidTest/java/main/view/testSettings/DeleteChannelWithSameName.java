@@ -1,4 +1,4 @@
-package main.view.settings;
+package main.view.testSettings;
 
 
 import android.view.View;

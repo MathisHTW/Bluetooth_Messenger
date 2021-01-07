@@ -12,6 +12,7 @@ import main.controller.logic.stream.localStorage.LocalStorage;
 import main.modell.data.Channel;
 import main.modell.data.IChannel;
 import main.modell.data.INotification;
+import main.modell.data.IUser;
 import main.modell.data.Message;
 import main.modell.storage.Storage;
 
@@ -45,5 +46,16 @@ public class Read implements IRead {
             Log.i("Save", Objects.requireNonNull(e.getMessage()));
         }
     }
+
+    @Override
+    public List<IChannel> getChannels() {
+        return this.storage.getChannelList();
+    }
+
+    @Override
+    public IUser getAppOwner() {
+        return this.storage.getAppOwnerName();
+    }
+
 
 }
