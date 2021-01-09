@@ -33,7 +33,7 @@ class StorageNotification implements IStorageNotification, Serializable {
     }
 
     @Override
-    public void removeNotification(String id) {
+    public synchronized void removeNotification(String id) {
         INotification remove = null;
 
         for (INotification msg : this.notifications) {
