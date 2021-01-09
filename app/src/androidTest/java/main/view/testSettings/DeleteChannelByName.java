@@ -1,4 +1,4 @@
-package main.controller.asap;
+package main.view.testSettings;
 
 
 import android.view.View;
@@ -14,12 +14,14 @@ import androidx.test.runner.AndroidJUnit4;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import main.R;
+import main.controller.asap.BTInit;
 import main.modell.storage.Storage;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -137,6 +139,8 @@ public class DeleteChannelByName {
                                 5),
                         isDisplayed()));
         appCompatButton4.perform(click());
+
+        Assert.assertEquals(1, Storage.getInstance().getChannelList().size());
     }
 
     private static Matcher<View> childAtPosition(

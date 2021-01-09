@@ -3,6 +3,7 @@ package main.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +40,12 @@ public class Settings extends AppCompatActivity {
     }
 
     private void initEvents() {
+
+
+            this.deleteByChannel();
+            this.deleteAppOwner();
+
+
         Button delete = findViewById(R.id.deleteAll);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,12 +59,22 @@ public class Settings extends AppCompatActivity {
                 toast.show();
             }
         });
+    }
 
+    private void deleteAppOwner() {
         Button add = findViewById(R.id.btnAppOwner);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TextView textView = findViewById(R.id.editTextOwnerName);
+
+                if (textView.getText().length() == 0) {
+                    TextView view = findViewById(R.id.textViewErrorBySettings);
+                    view.setText("Error Input was Empty");
+                    view.setBackgroundColor(Color.RED);
+                    return;
+                }
+
                 Storage.getInstance().setAppOwnerName(new User(textView.getText().toString()));
 
                 Log.d("Settings", "Settings View add Username");
@@ -67,13 +84,22 @@ public class Settings extends AppCompatActivity {
                 toast.show();
             }
         });
+    }
 
+    private void deleteByChannel()  {
         Button deleteChannelByName = findViewById(R.id.btnDeleteChannel);
         deleteChannelByName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TextView textView = findViewById(R.id.editTextDeleteChannel);
                 String text = textView.getText().toString();
+
+                if (text.isEmpty()) {
+                    TextView view = findViewById(R.id.textViewErrorBySettings);
+                    view.setText("Error Input was Empty");
+                    view.setBackgroundColor(Color.RED);
+                    return;
+                }
 
                 Log.d("Settings", "Remove Channel: " + text);
                 Delete delete = new Delete();
@@ -83,7 +109,6 @@ public class Settings extends AppCompatActivity {
                 toast.show();
             }
         });
-
     }
 
     @Override

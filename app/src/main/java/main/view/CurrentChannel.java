@@ -84,14 +84,14 @@ public class CurrentChannel extends BTRootActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        this.saveNotification();
+        //this.saveNotification();
         this.appController.onActivityStopped(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        this.saveNotification();
+        //this.saveNotification();
         this.appController.onActivityDestroyed(this);
     }
 

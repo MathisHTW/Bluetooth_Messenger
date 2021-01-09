@@ -1,4 +1,4 @@
-package main.controller.asap;
+package main.view.testSettings;
 
 
 import android.view.View;
@@ -21,10 +21,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import main.R;
+import main.controller.asap.BTInit;
 import main.modell.storage.Storage;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -32,7 +35,7 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class CreateChannel {
+public class ChangeAppOwnerName {
 
     @Rule
     public ActivityTestRule<BTInit> mActivityTestRule = new ActivityTestRule<>(BTInit.class);
@@ -41,36 +44,54 @@ public class CreateChannel {
     public GrantPermissionRule mGrantPermissionRule =
             GrantPermissionRule.grant(
                     "android.permission.WRITE_EXTERNAL_STORAGE");
-
     @Before
     public void setup() {
         Storage.getInstance().clear();
     }
 
     @Test
-    public void createChannel() {
+    public void changeAppOwnerName1() {
         ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.btnCreateChannel), withText("Create Channel"),
+                allOf(withId(R.id.btnCreateAppOwner), withText("Settings"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                1),
+                                2),
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.btnCreate), withText("Create"),
+        ViewInteraction appCompatEditText = onView(
+                allOf(withId(R.id.editTextOwnerName), withText("Unknown"),
                         childAtPosition(
-                                allOf(withId(R.id.CreateChannelView),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
                                 0),
+                        isDisplayed()));
+        appCompatEditText.perform(replaceText("Kevin"));
+
+        ViewInteraction appCompatEditText2 = onView(
+                allOf(withId(R.id.editTextOwnerName), withText("Kevin"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        appCompatEditText2.perform(closeSoftKeyboard());
+
+        ViewInteraction appCompatButton2 = onView(
+                allOf(withId(R.id.btnAppOwner), withText("Add"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                5),
                         isDisplayed()));
         appCompatButton2.perform(click());
 
-        Assert.assertEquals(2, Storage.getInstance().getChannelList().size());
+        Assert.assertEquals("Kevin", Storage.getInstance().getAppOwnerName().getName());
     }
 
     private static Matcher<View> childAtPosition(

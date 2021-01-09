@@ -55,6 +55,17 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/editTextOwnerName" />
 
+  <TextView
+      android:id="@+id/textViewErrorBySettings"
+      android:layout_width="253dp"
+      android:layout_height="22dp"
+      android:layout_marginBottom="400dp"
+      app:layout_constraintBottom_toTopOf="@+id/deleteAll"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/editTextDeleteChannel" />
+
   <Button
       android:id="@+id/btnAppOwner"
       android:layout_width="wrap_content"
