@@ -2,9 +2,11 @@ package main.modell.storage;
 
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import main.modell.data.IChannel;
 import main.modell.data.INotification;
 
 class StorageNotification implements IStorageNotification, Serializable {
@@ -27,7 +29,20 @@ class StorageNotification implements IStorageNotification, Serializable {
 
     @Override
     public List<INotification> getNotificationList() {
-        return null;
+        return this.notifications;
+    }
+
+    @Override
+    public void removeNotification(String id) {
+        INotification remove = null;
+
+        for (INotification msg : this.notifications) {
+            if (msg.getID().compareTo(id) == 0) {
+                remove = msg;
+            }
+        }
+
+        this.notifications.remove(remove);
     }
 
     @Override

@@ -27,7 +27,8 @@ public class Delete implements IDelete {
 
     @Override
     public boolean deleteMessage(INotification iNotification) {
-        return false;
+        this.storage.removeNotification(iNotification.getID());
+        return true;
     }
 
     @Override
