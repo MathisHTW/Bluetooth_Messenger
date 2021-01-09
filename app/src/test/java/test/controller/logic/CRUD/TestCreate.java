@@ -104,7 +104,7 @@ public class TestCreate {
         Assert.assertEquals(Storage.getInstance().getNotificationList().get(0).getID(),Storage.getInstance().getNotificationList().get(1).getID());  //Was wenn User mit demselben namen?
     }
 
-    @Test //getNotificatinList() not yet implemented in StorageNotification
+    @Test //getNotificationList() not yet implemented in StorageNotification
     public void addTwoMessagesDifferentUsers(){
         Storage.getInstance().clear();
         Create create = new Create();
