@@ -41,7 +41,6 @@ public class Read implements IRead {
                 this.storage.addAllUser(save.getUserList());
             }
 
-
         } catch (NullPointerException e) {
             Log.i("Save", Objects.requireNonNull(e.getMessage()));
         }

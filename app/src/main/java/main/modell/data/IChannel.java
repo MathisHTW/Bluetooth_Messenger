@@ -24,6 +24,7 @@ public interface IChannel {
      */
     List<INotification> getMessages();
 
+    @Deprecated
     /**
      * @return the status of the channel(1 active, 0 not available)
      */
@@ -31,6 +32,7 @@ public interface IChannel {
 
     /**
      * URI e.g: asap://name, asap://myChannel
+     *
      * @return a URI
      */
     String getUri();

@@ -52,75 +52,79 @@ public class ChangeAndDeletePublicChannel {
 
     @Test
     public void changeAndDeletePublicChannel() {
-        ViewInteraction appCompatButton = onView(
-                allOf(withId(R.id.btnCreateAppOwner), withText("Settings"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatButton.perform(click());
+        try {
+            ViewInteraction appCompatButton = onView(
+                    allOf(withId(R.id.btnCreateAppOwner), withText("Settings"),
+                            childAtPosition(
+                                    childAtPosition(
+                                            withId(android.R.id.content),
+                                            0),
+                                    2),
+                            isDisplayed()));
+            appCompatButton.perform(click());
 
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.editTextOwnerName), withText("Unknown"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatEditText.perform(replaceText("UnknownLord"));
+            ViewInteraction appCompatEditText = onView(
+                    allOf(withId(R.id.editTextOwnerName), withText("Unknown"),
+                            childAtPosition(
+                                    childAtPosition(
+                                            withId(android.R.id.content),
+                                            0),
+                                    0),
+                            isDisplayed()));
+            appCompatEditText.perform(replaceText("UnknownLord"));
 
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.editTextOwnerName), withText("UnknownLord"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                0),
-                        isDisplayed()));
-        appCompatEditText2.perform(closeSoftKeyboard());
+            ViewInteraction appCompatEditText2 = onView(
+                    allOf(withId(R.id.editTextOwnerName), withText("UnknownLord"),
+                            childAtPosition(
+                                    childAtPosition(
+                                            withId(android.R.id.content),
+                                            0),
+                                    0),
+                            isDisplayed()));
+            appCompatEditText2.perform(closeSoftKeyboard());
 
-        ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.btnAppOwner), withText("Add"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                5),
-                        isDisplayed()));
-        appCompatButton2.perform(click());
+            ViewInteraction appCompatButton2 = onView(
+                    allOf(withId(R.id.btnAppOwner), withText("Add"),
+                            childAtPosition(
+                                    childAtPosition(
+                                            withId(android.R.id.content),
+                                            0),
+                                    5),
+                            isDisplayed()));
+            appCompatButton2.perform(click());
 
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.editTextDeleteChannel), withText("..."),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText3.perform(replaceText("Public"));
+            ViewInteraction appCompatEditText3 = onView(
+                    allOf(withId(R.id.editTextDeleteChannel), withText("..."),
+                            childAtPosition(
+                                    childAtPosition(
+                                            withId(android.R.id.content),
+                                            0),
+                                    1),
+                            isDisplayed()));
+            appCompatEditText3.perform(replaceText("Public"));
 
-        ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.editTextDeleteChannel), withText("Public"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatEditText4.perform(closeSoftKeyboard());
+            ViewInteraction appCompatEditText4 = onView(
+                    allOf(withId(R.id.editTextDeleteChannel), withText("Public"),
+                            childAtPosition(
+                                    childAtPosition(
+                                            withId(android.R.id.content),
+                                            0),
+                                    1),
+                            isDisplayed()));
+            appCompatEditText4.perform(closeSoftKeyboard());
 
-        ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.btnDeleteChannel), withText("Remove"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                6),
-                        isDisplayed()));
-        appCompatButton3.perform(click());
+            ViewInteraction appCompatButton3 = onView(
+                    allOf(withId(R.id.btnDeleteChannel), withText("Remove"),
+                            childAtPosition(
+                                    childAtPosition(
+                                            withId(android.R.id.content),
+                                            0),
+                                    6),
+                            isDisplayed()));
+            appCompatButton3.perform(click());
+        } catch (Exception e) {
+            Assert.fail();
+        }
 
         Assert.assertEquals(0, Storage.getInstance().getChannelList().size());
         Assert.assertEquals("UnknownLord", Storage.getInstance().getAppOwnerName().getName());

@@ -42,8 +42,8 @@ public class Settings extends AppCompatActivity {
     private void initEvents() {
 
 
-            this.deleteByChannel();
-            this.deleteAppOwner();
+        this.deleteByChannel();
+        this.deleteAppOwner();
 
 
         Button delete = findViewById(R.id.deleteAll);
@@ -68,6 +68,7 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 TextView textView = findViewById(R.id.editTextOwnerName);
 
+                //TODO call a exception better für testablitiy
                 if (textView.getText().length() == 0) {
                     TextView view = findViewById(R.id.textViewErrorBySettings);
                     view.setText("Error Input was Empty");
@@ -86,7 +87,7 @@ public class Settings extends AppCompatActivity {
         });
     }
 
-    private void deleteByChannel()  {
+    private void deleteByChannel() {
         Button deleteChannelByName = findViewById(R.id.btnDeleteChannel);
         deleteChannelByName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +95,7 @@ public class Settings extends AppCompatActivity {
                 TextView textView = findViewById(R.id.editTextDeleteChannel);
                 String text = textView.getText().toString();
 
+                //TODO call a exception better für testablitiy
                 if (text.isEmpty()) {
                     TextView view = findViewById(R.id.textViewErrorBySettings);
                     view.setText("Error Input was Empty");

@@ -17,7 +17,15 @@ public interface IRead {
      */
     void localStorage(Context context);
 
+    /**
+     * Get List of Channel
+     * @return
+     */
     List<IChannel> getChannels();
 
+    /**
+     * Get IUser of App Owner
+     * @return
+     */
     IUser getAppOwner();
 }

@@ -21,6 +21,7 @@ class Ultis {
         return stringBuffer.toString();
     }
 
+    @Deprecated
     /**
      * creates a unique URI for this device to be used as a unique identifier of
      * the channel of this device
