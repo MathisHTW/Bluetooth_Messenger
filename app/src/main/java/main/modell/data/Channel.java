@@ -27,6 +27,11 @@ public class Channel implements IChannel, Serializable {
     }
 
     public Channel(String name) {
+
+        if (null == name) {
+            throw new NullPointerException("name is null");
+        }
+
         this.id = Ultis.generatID(name);
         this.name = name;
         this.uri = URI_ASAP + this.name;
@@ -39,6 +44,11 @@ public class Channel implements IChannel, Serializable {
      * @param notifications set a list of sendet Messages
      */
     public Channel(String name, List<INotification> notifications) {
+
+        if (null == name || null == notifications) {
+            throw new NullPointerException("name or notification is null");
+        }
+
         this.id = Ultis.generatID(name);
         this.name = name;
         this.notifications = notifications;

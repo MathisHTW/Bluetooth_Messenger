@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import main.controller.logic.CRUD.Create;
 import main.controller.logic.CRUD.Delete;
-import main.modell.data.INotification;
 import main.modell.storage.Storage;
 
 public class TestDelete {
@@ -49,10 +48,8 @@ public class TestDelete {
         Storage.getInstance().clear();
         Create create = new Create();
         create.createChannel("PowerTower");
-
         Delete delete = new Delete();
         delete.deleteChannel("PowerTower");
-
         Assert.assertEquals(1, Storage.getInstance().getChannelList().size());
     }
 
@@ -63,10 +60,9 @@ public class TestDelete {
         create.createMessage("SenderName", "Nachricht 1 2 4");
         Assert.assertEquals("SenderName", Storage.getInstance().getNotificationList().get(0).getName());
         Assert.assertEquals("Nachricht 1 2 4", Storage.getInstance().getNotificationList().get(0).getText());
-
         Delete delete = new Delete();
         delete.deleteMessage(Storage.getInstance().getNotificationList().get(0));
-//        Assert.assertNull(Storage.getInstance().getNotificationList().get(0));
+//      Assert.assertNull(Storage.getInstance().getNotificationList().get(0));
     }
 
     @Test
@@ -79,7 +75,6 @@ public class TestDelete {
         Assert.assertEquals("Nachricht 1 2 4", Storage.getInstance().getNotificationList().get(0).getText());
         Assert.assertEquals("SenderName", Storage.getInstance().getNotificationList().get(1).getName());
         Assert.assertEquals("Nachricht Neu 3", Storage.getInstance().getNotificationList().get(1).getText());
-
         Delete delete = new Delete();
         delete.deleteMessage(Storage.getInstance().getNotificationList().get(0));
 //        Assert.assertNull(Storage.getInstance().getNotificationList().get(0));

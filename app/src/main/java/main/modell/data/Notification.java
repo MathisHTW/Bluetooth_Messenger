@@ -17,8 +17,8 @@ public class Notification implements INotification, Serializable {
 
     public Notification(String name, String message) {
 
-        if (null == name) {
-            throw new NullPointerException("Name is null");
+        if (null == name || null == message) {
+            throw new NullPointerException("Name or message are/is null");
         }
 
         this.name = name;

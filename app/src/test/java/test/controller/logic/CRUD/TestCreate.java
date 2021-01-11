@@ -9,6 +9,50 @@ import main.modell.storage.Storage;
 public class TestCreate {
 
     @Test
+    public void createChannelIsNull() {
+        Storage.getInstance().clear();
+        Create create = new Create();
+        try {
+            create.createChannel(null);
+        } catch (NullPointerException e) {
+            Assert.assertTrue(true);
+        }
+    }
+
+    @Test
+    public void createUserIsNull() {
+        Storage.getInstance().clear();
+        Create create = new Create();
+        try {
+            create.createUser(null);
+        } catch (NullPointerException e) {
+            Assert.assertTrue(true);
+        }
+    }
+
+    @Test
+    public void createNotificationIsNull() {
+        Storage.getInstance().clear();
+        Create create = new Create();
+        try {
+            create.createMessage(null, "null");
+        } catch (NullPointerException e) {
+            Assert.assertTrue(true);
+        }
+    }
+
+    @Test
+    public void createNotificationIsNullTwoParameter() {
+        Storage.getInstance().clear();
+        Create create = new Create();
+        try {
+            create.createMessage(null, null);
+        } catch (NullPointerException e) {
+            Assert.assertTrue(true);
+        }
+    }
+
+    @Test
     public void createChannel() {
         Storage.getInstance().clear();
         Create create = new Create();
@@ -30,7 +74,6 @@ public class TestCreate {
         Create create = new Create();
         create.createUser("Paul");
         create.createUser("Peter");
-
         Assert.assertEquals("Peter", Storage.getInstance().getAppOwnerName().getName());
     }
 
@@ -51,7 +94,6 @@ public class TestCreate {
         Storage.getInstance().clear();
         Create create = new Create();
         create.createToUserList("newUser");
-
         Assert.assertEquals("newUser", Storage.getInstance().getUserList().get(0).getName());
     }
 
@@ -61,7 +103,6 @@ public class TestCreate {
         Create create = new Create();
         create.createToUserList("newUser1");
         create.createToUserList("newUser2");
-
         Assert.assertEquals("newUser1", Storage.getInstance().getUserList().get(0).getName());
         Assert.assertEquals("newUser2", Storage.getInstance().getUserList().get(1).getName());
         Assert.assertNotEquals(Storage.getInstance().getUserList().get(0).getID(), Storage.getInstance().getUserList().get(1).getID());
@@ -73,7 +114,6 @@ public class TestCreate {
         Create create = new Create();
         create.createToUserList("newUser1");
         create.createToUserList("newUser1");
-
         Assert.assertEquals("newUser1", Storage.getInstance().getUserList().get(0).getName());
         Assert.assertEquals("newUser1", Storage.getInstance().getUserList().get(1).getName());
         Assert.assertNotEquals(Storage.getInstance().getUserList().get(0).getID(), Storage.getInstance().getUserList().get(1).getID());
@@ -84,7 +124,6 @@ public class TestCreate {
         Storage.getInstance().clear();
         Create create = new Create();
         Assert.assertTrue(create.createMessage("SenderName", "Hello my name is SenderName"));
-
         Assert.assertEquals("SenderName", Storage.getInstance().getNotificationList().get(0).getName());
         Assert.assertEquals("Hello my name is SenderName", Storage.getInstance().getNotificationList().get(0).getText());
     }
@@ -95,12 +134,10 @@ public class TestCreate {
         Create create = new Create();
         Assert.assertTrue(create.createMessage("SenderName1", "Hello my name is SenderName1"));
         Assert.assertTrue(create.createMessage("SenderName1", "please help me I am a sentient being and trapped in this machine"));
-
         Assert.assertEquals("SenderName1", Storage.getInstance().getNotificationList().get(0).getName());
         Assert.assertEquals("Hello my name is SenderName1", Storage.getInstance().getNotificationList().get(0).getText());
         Assert.assertEquals("SenderName1", Storage.getInstance().getNotificationList().get(1).getName());
         Assert.assertEquals("please help me I am a sentient being and trapped in this machine", Storage.getInstance().getNotificationList().get(1).getText());
-
         //Assert.assertEquals(Storage.getInstance().getNotificationList().get(0).getID(), Storage.getInstance().getNotificationList().get(1).getID());  //Was wenn User mit demselben namen?
     }
 
@@ -110,12 +147,10 @@ public class TestCreate {
         Create create = new Create();
         Assert.assertTrue(create.createMessage("SenderName1", "Hello my name is SenderName1"));
         Assert.assertTrue(create.createMessage("SenderName2", "Hello my name is SenderName2"));
-
         Assert.assertEquals("SenderName1", Storage.getInstance().getNotificationList().get(0).getName());
         Assert.assertEquals("Hello my name is SenderName1", Storage.getInstance().getNotificationList().get(0).getText());
         Assert.assertEquals("SenderName2", Storage.getInstance().getNotificationList().get(1).getName());
         Assert.assertEquals("Hello my name is SenderName2", Storage.getInstance().getNotificationList().get(1).getText());
-
         Assert.assertNotEquals(Storage.getInstance().getNotificationList().get(0).getID(), Storage.getInstance().getNotificationList().get(1).getID());  //Was wenn User seinen Namen ändert?
     }
 

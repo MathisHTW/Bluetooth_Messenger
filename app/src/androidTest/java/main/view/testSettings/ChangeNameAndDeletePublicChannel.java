@@ -35,7 +35,7 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ChangeAndDeletePublicChannel {
+public class ChangeNameAndDeletePublicChannel {
 
     @Rule
     public ActivityTestRule<BTInit> mActivityTestRule = new ActivityTestRule<>(BTInit.class);
