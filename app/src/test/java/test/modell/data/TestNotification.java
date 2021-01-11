@@ -17,10 +17,19 @@ public class TestNotification {
     }
 
     @Test
-    public void createNotificationNullPointer(){
+    public void createNotificationNullPointerNameAndMessageIsNull(){
         try {
             Notification notification = new Notification(null, null);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
+            Assert.assertTrue(true);
+        }
+    }
+
+    @Test
+    public void createNotificationNullPointerNameIsNull(){
+        try {
+            Notification notification = new Notification(null, "null");
+        } catch (NullPointerException e) {
             Assert.assertTrue(true);
         }
     }

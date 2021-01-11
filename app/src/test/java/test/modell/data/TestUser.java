@@ -19,4 +19,14 @@ public class TestUser {
         IUser iUser = new User();
         Assert.assertEquals(iUser.getName(), iUser.toString());
     }
+
+    @Test
+    public void createUserNameIsNull() {
+        try {
+            IUser iUser = new User(null);
+        } catch (NullPointerException e) {
+            Assert.assertTrue(true);
+        }
+
+    }
 }

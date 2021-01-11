@@ -55,12 +55,6 @@ public class TestStorage {
     }
 
     @Test
-    public void DeleteUserWithEmtpyParameter() {
-        Storage storage = Storage.getInstance();
-        storage.clear();
-    }
-
-    @Test
     public void addToStorage() {
         Storage storage = Storage.getInstance();
         storage.clear();
