@@ -7,7 +7,9 @@ import android.widget.Button;
 
 import main.controller.AppController;
 import main.controller.asap.BTRootActivity;
+import main.controller.logic.CRUD.Create;
 import main.controller.logic.CRUD.Read;
+import main.modell.storage.Storage;
 import main.view.Channel;
 import main.view.CreateChannel;
 import main.view.Settings;
@@ -22,6 +24,12 @@ public class Start extends BTRootActivity {
         setContentView(R.layout.activity_start);
         final Read read = new Read();
         read.localStorage(getApplication());
+
+        if (Storage.getInstance().getChannelList().size() == 0) {
+            final Create create = new Create();
+            create.createChannel("Public");
+        }
+
         appController.onActivityCreated(this, savedInstanceState);
     }
 
