@@ -14,6 +14,7 @@ import main.modell.data.IChannel;
 import main.modell.data.INotification;
 import main.modell.data.IUser;
 import main.modell.data.Message;
+import main.modell.data.User;
 import main.modell.storage.Storage;
 
 public class Read implements IRead {
@@ -39,6 +40,10 @@ public class Read implements IRead {
 
             if (!save.getUserList().isEmpty()) {
                 this.storage.addAllUser(save.getUserList());
+            }
+
+            if (!save.getAppOwnerName().getName().equals(Storage.DEFAULT_APP_USERNAME)) {
+                this.storage.setAppOwnerName(new User(save.getAppOwnerName().getName()));
             }
 
         } catch (NullPointerException e) {

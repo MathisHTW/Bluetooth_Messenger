@@ -129,6 +129,7 @@ public class LocalStorage implements ILocalStorage {
                 objectInputStream = new ObjectInputStream(inputStream);
 
                 storage = (Storage) objectInputStream.readObject();
+
                 Log.d("LocalStorage", storage.toString());
 
                 inputStream.close();

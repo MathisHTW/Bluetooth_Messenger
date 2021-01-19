@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import main.modell.data.IUser;
+import main.modell.data.User;
 
 class StorageUser implements IStorageUser, Serializable {
 
