@@ -20,7 +20,7 @@ import test.controller.asap.mock.ASAPMockSerial;
 public class TestASAP {
 
     @Test
-    public void sendMessage() throws IOException, ASAPException, InterruptedException {
+    public void sendMessage() throws ASAPException, InterruptedException {
 
         final SerializableMessages serializableMessages = new SerializeMessages();
         final byte[] serialData = serializableMessages.serializer(new User("Kevin"), "HALLO ich bin ready");

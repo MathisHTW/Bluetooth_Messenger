@@ -57,14 +57,15 @@
 
   <TextView
       android:id="@+id/textViewErrorBySettings"
-      android:layout_width="253dp"
-      android:layout_height="22dp"
-      android:layout_marginBottom="400dp"
+      android:layout_width="370dp"
+      android:layout_height="32dp"
+      android:layout_marginTop="72dp"
       app:layout_constraintBottom_toTopOf="@+id/deleteAll"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintHorizontal_bias="0.487"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/editTextDeleteChannel" />
+      app:layout_constraintTop_toBottomOf="@+id/editTextDeleteChannel"
+      app:layout_constraintVertical_bias="0.11" />
 
   <Button
       android:id="@+id/btnAppOwner"

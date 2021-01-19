@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import main.controller.logic.stream.localStorage.LocalStorage;
+import main.modell.data.Channel;
 import main.modell.storage.Storage;
 import main.view.Settings;
 

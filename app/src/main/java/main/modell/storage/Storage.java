@@ -73,7 +73,6 @@ public class Storage implements Serializable, IStorageChannel, IStorageNotificat
         return this.storageNotification.getNotificationList();
     }
 
-    @Override
     public void removeNotification(String id) {
         this.storageNotification.removeNotification(id);
     }
