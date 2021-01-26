@@ -83,4 +83,4 @@ public class BTRootActivity extends ASAPActivity {
 }
 ```
 
-###Last but not least let the "ASAPRootAcitivity" inherit the class where you want to start ASAP
+### Last but not least let the "ASAPRootAcitivity" inherit the class where you want to start ASAP
