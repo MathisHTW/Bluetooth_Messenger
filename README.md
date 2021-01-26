@@ -105,5 +105,6 @@ public class Start extends BTRootActivity {
 
         appController.onActivityCreated(this, savedInstanceState);
     }
+    ...
 
 ```
