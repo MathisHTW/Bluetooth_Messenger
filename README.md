@@ -84,3 +84,26 @@ public class BTRootActivity extends ASAPActivity {
 ```
 
 ### Last but not least let the "ASAPRootAcitivity" inherit the class where you want to start ASAP
+#### Example: 
+
+```Java
+public class Start extends BTRootActivity {
+
+    private AppController appController = AppController.instance;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_start);
+        final Read read = new Read();
+        read.localStorage(getApplication());
+
+        if (Storage.getInstance().getChannelList().size() == 0) {
+            final Create create = new Create();
+            create.createChannel("Public");
+        }
+
+        appController.onActivityCreated(this, savedInstanceState);
+    }
+
+```
