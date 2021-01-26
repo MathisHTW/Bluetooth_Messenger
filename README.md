@@ -6,9 +6,10 @@
 ### Example:
 
 #### ASAPApplication
+---
 ```Java
-
-  public static final String ASAP_Messenger = "ASAP_MESSENGER";
+public class BTApplication extends net.sharksystem.asap.android.apps.ASAPApplication {
+    public static final String ASAP_Messenger = "ASAP_MESSENGER";
     private CharSequence id;
     static BTApplication instance;
 
@@ -49,4 +50,35 @@
         return this.id;
     }
 
+}
+
+```
+
+#### ASAPInit
+---
+```Java
+public class BTInit extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        BTApplication.applicationInstance(this);
+
+        // launch real first activity
+        this.finish();
+        Intent intent = new Intent(this, Start.class);
+        this.startActivity(intent);
+    }
+}
+```
+
+#### ASAPRootAcitivity
+---
+```Java
+public class BTRootActivity extends ASAPActivity {
+    public BTRootActivity() {
+        super(BTApplication.getInstance());
+    }
+}
 ```
